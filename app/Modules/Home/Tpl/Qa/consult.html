@@ -1,0 +1,89 @@
+<include file="../Public/header" /> 
+<include file="../Public/navigation" />
+<!--内容开始-->
+<div class="container pb50 mb100 ">
+<include file="../Public/goodsnavigation" />
+  <ul class="consulting">
+      <volist name="qaList" id="vo">
+      <li>
+      <p><span>咨询内容：</span>{$vo.question}</p>
+      <p><span class="color-service">316蛋糕商城：</span>{$vo.answer}</p>
+      </li>
+      </volist>
+
+      <!--更多咨询-->
+      <div id="more">
+      </div>
+      <!--更多咨询-->
+      
+  </ul>
+
+  <!--提示加载-->
+  <div id="alert_more" class="alert alert-info none">正在加载中...</div>
+  <!--提示加载-->
+ 
+  <div id="message" class="alert alert-success none alert-shenlan"  >咨询提交成功</div>
+
+    <!--咨询表单-->
+    <div class="w tc" style="position:fixed; background:#ddd; bottom:0; left:0; width:100%; text-align:center;">
+	<div class="container" style="background:#ddd;" >
+	  <form onsubmit="return addConsult()" id="form">
+      <input type="hidden" name="obj_id" value="{$cakeInfo[id]}" />
+      <input type="text"  class="form-control mt10" placeholder="请输入您要咨询的内容" name="question" required="required">
+      <input class="btn btn-primary btn-lg btn-block mt10 mb10" value="发送" type="submit" />
+      </form>
+    </div>
+  </div>
+  <!--咨询表单-->
+ 
+ </div>
+</div>
+<!--内容结束-->	
+<script>
+$(document).ready(function () {
+$(window).scroll(function () {
+//$(window).scrollTop()这个方法是当前滚动条滚动的距离
+//$(window).height()获取当前窗体的高度
+//$(document).height()获取当前文档的高度
+var bot = 50; //bot是底部距离的高度
+
+if("undefined" == typeof scroll_status){
+	if ((bot + $(window).scrollTop()) >= ($(document).height() - $(window).height())) {
+		if("undefined" == typeof last_id){
+			last_id = "{$last_id}";
+			}
+
+		$("#alert_more").fadeIn("slow");
+		//控制在规定时间内容只能向服务器发送一次数据
+		window.setTimeout(function(){
+			$.ajax({
+				url: "{:U('Home/Qa/getQa')}",
+				data: {last_id: last_id},
+				dataType: 'json',
+				success: function(data){
+					last_id = data['last_id'];
+					scroll_status = data['status'];
+					$("#alert_more").fadeOut("slow");
+					$("#more").append(data['result']);
+				}
+			})
+		}, 2000);
+		}
+	}
+})  
+})
+
+
+function addConsult(){
+    $.post("{:U('Home/Qa/addConsult')}", $("#form").serialize(), function(result){
+            if(result){
+                $("#message").fadeIn("slow");
+                setTimeout("$('#message').fadeOut('slow')", 2000);
+                setTimeout("window.location.reload()", 2300);
+            }
+            })
+    return false;
+}
+</script>
+</body>
+</html>

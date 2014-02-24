@@ -1,0 +1,67 @@
+<include file="../Public/header" />
+
+
+<!--页面标题 BEGIN-->
+<div class="tabs">
+  <ul>
+    <li><a href="javascript:void(0)" class="current">广告位管理</a></li>
+  </ul>
+</div>
+<!--END 页面标题-->
+
+<!--工具栏 BEGIN-->
+<div class="toolbar">
+  <div class="page right">{$pageHtml}</div>
+  <a href="{:U('Admin/Ad/addPosition')}" class="btn"><span>添加广告位</span></a>
+  <a href="javascript:void(0)" class="btn del-btn"><span>删除广告位</span></a>
+</div>
+<!--END 工具栏-->
+
+<!--列表 BEGIN-->
+<div class="list">
+  <form action="{:U('Admin/Ad/doDelPosition')}" method="post" class="del-form">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <th width="5%"><input type="checkbox" class="check-all" /></th>
+          <th width="5%">ID</th>
+          <th width="20%">名称</th>
+          <th width="10%">广告数</th>
+          <th width="40%">描述</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <empty name="positionList">
+          <tr><td colspan="6" class="empty">暂无相关信息</td></tr>
+        <else />
+          <volist name="positionList" id="position">
+            <tr>
+              <td><input type="checkbox" name="id[]" value="{$position[id]}"></td>
+              <td>{$position[id]}</td>
+              <td>{$position[name]}</td>
+              <td>{$position[ads]}</td>
+              <td>{$position[desc]}</td>
+              <td>
+                <a href="{$position[url_admin_edit]}" class="mr10">编辑</a>
+                <a href="{$position[url_admin_del]}">删除</a>
+              </td>
+            </tr>
+          </volist>
+        </empty>
+      </tbody>
+    </table>
+  </form>
+</div>
+<!--END 列表-->
+
+<!--工具栏 BEGIN-->
+<div class="toolbar">
+  <div class="page right">{$pageHtml}</div>
+  <a href="{:U('Admin/Ad/addPosition')}" class="btn"><span>添加广告位</span></a>
+  <a href="javascript:void(0)" class="btn del-btn"><span>删除广告位</span></a>
+</div>
+<!--END 工具栏-->
+
+
+<include file="../Public/footer" />

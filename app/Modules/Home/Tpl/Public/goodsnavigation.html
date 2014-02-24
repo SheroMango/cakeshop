@@ -1,0 +1,15 @@
+<ul class="filter row clearfix">
+    <li class="col-xs-3">
+        <a href="{:U('Home/Cake/detail', array('id'=>$goods_id))}" <eq name="current" value="detail">class="active"</eq>>蛋糕介绍</a>
+    </li>
+    <li class="col-xs-3">
+        <a href="{:U('Home/Qa/consult', array('goods_id'=>$goods_id))}" <eq name="current" value="qa">class="active"</eq>>咨询</a>
+    </li>
+    <li class="col-xs-3">
+        <a href="{:U('Home/Comment/ls', array('goods_id'=>$goods_id))}" <eq name="current" value="comment">class="active"</eq>>评价</a>
+    </li>
+    <li class="col-xs-3">
+        <a href="{:U('Home/Cake/notice', array('goods_id'=>$goods_id))}" <eq name="current" value="notice">class="active"</eq>>购前须知</a>
+    </li>
+</ul>
+

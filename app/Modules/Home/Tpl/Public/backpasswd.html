@@ -1,0 +1,40 @@
+<include file="../Public/header" />
+<include file="../Public/navigation" />
+<!--内容开始-->
+<div class="container">
+    <form id="form" onsubmit="return check()" action="{:U('Home/Public/doBakcPasswd')}" method="post">
+    <div class="row mt30 mb20">
+		<div class="col-xs-3 phone"><span class="form-control">+86</span></div>
+        <div class="col-xs-9"><input id="mobile" class="form-control" name="mobile" type="tel" placeholder="请填写手机号码" required="required"></div>         
+    </div>
+    <input type="submit" value="提交" class="btn btn-primary btn-lg btn-block mt30 mb30"/>
+    </form>
+</div>
+<!--内容结束-->
+<script>
+function check(){
+	var mobile = $("#mobile").val();
+	if(mobile.length < 11)
+	{
+		$("#message").addClass("alert-warning");
+		$("#message").html("您输入的手机号码不正确，请重新输入");
+		$("#message").fadeIn("slow");
+		window.setTimeout('$("#message").fadeOut("slow")', 2000);
+		return false;
+	}else{
+		$.post("{:U('Home/Public/doBakcPasswd')}", $("#form").serialize(), function(data){
+			$("#message").addClass("alert-"+data['status']);
+			$("#message").html(data['content']);
+			$("#message").fadeIn("slow");
+			window.setTimeout('$("#message").fadeOut("slow")', 2000);
+			if(data['status'] == 'success'){
+				url = "{:U('Home/Public/regbackpasswd', array('mobile'=>'" + mobile + "'))}";
+				window.setTimeout("window.location.href = '" + url + "'", 2300);
+			}
+		},
+		'json')
+		return false;
+	}
+}
+</script>
+<include file="../Public/footer" />

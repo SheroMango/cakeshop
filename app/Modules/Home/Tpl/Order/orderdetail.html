@@ -1,0 +1,43 @@
+<include file="../Public/header" />
+<include file="../Public/navigation" />
+<!--内容开始-->
+<div class="container">
+<form action="{$orderInfo[action_url]}" method="post">
+  <ul class="product-promise">
+    <li>
+      <h4>订单号：{$orderInfo[order_sn]}
+          <input type="hidden" name="id" value="{$orderInfo[id]}" />
+          <input type="hidden" name="order_sn" value="{$orderInfo[order_sn]}" /></h4>
+      <p>下单时间：{$orderInfo[ctime]}</p>
+      <p>订单状态：{$orderInfo[order_status_name]}</p>
+    </li>
+    <li>
+      <h4>商品信息：</h4>
+      <input type="hidden" name="goods_id" value="{$goodsInfo[goods_id]}" />
+      <p>{$goodsInfo[goods_name]}<input type="hidden" name="goods_name" value="{$goodsInfo[goods_name]}" />（品牌：{$goodsInfo[brand_name]}）</p>
+      <p>价格：￥{$goodsInfo[goods_price]}元</p>
+      <p>数量：{$goodsInfo[goods_number]}</p>
+    </li>
+    <li>
+      <h4>收货人：</h4>
+      <p>姓名：{$consigneeInfo[consignee_name]}</p>
+      <p>联系方式：{$consigneeInfo[consignee_mobile]}</p>
+      <p>配送区域：{$consigneeInfo[consignee_district]}</p>
+      <p>详细地址：{$consigneeInfo[consignee_address]}</p>
+      <p>配送时间：{$consigneeInfo[arrive_time]}</p>
+    </li>
+    <li>
+      <h4>订购人：</h4>
+      <p>姓名：{$orderOneInfo[order_name]}</p>
+      <p>联系方式：{$orderOneInfo[order_mobile]}</p>
+    </li>
+  </ul>
+  <div class="write-order">
+    <p>总计：<em class="color-red">{$orderInfo[order_total]}元<input type="hidden" name="order_total" value="{$orderInfo[order_total]}" /></em> </p>
+    <if condition="$orderInfo[order_status] == 0"><a href="{:U('Home/Order/setStatus', array('toStatus'=>'7', 'order_sn'=>$orderInfo[order_sn], 'id'=>$orderInfo[id]))}" role="button" class="btn btn-danger btn-lg btn-block mt30">取消订单</a></if>
+    <input type="submit" class="btn btn-warning btn-lg btn-block mt10" value="{$orderInfo[action_name]}">
+  </div>
+</form>
+</div>
+<!--内容结束--> 
+<include file="../Public/footer" />

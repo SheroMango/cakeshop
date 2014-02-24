@@ -1,0 +1,40 @@
+<include file="../Public/header" />
+<include file="../Public/navigation" />
+<!--内容开始-->
+<div class="container">
+     <form id="form"  onsubmit="return doLogin()">
+         <input class="form-control mt20" type="text" name="mobile" placeholder="手机号" required="required" > 
+         <input id="password" class="form-control mt20" type="password" name="password" placeholder="请输入密码" required="required">     
+         <div class="mima mt30 tr"><a href="{:U('Home/Public/backpasswd')}">忘记密码？</a></div> 
+         <input type="submit" class="btn btn-primary btn-lg btn-block mt10" value="登录"/> 
+         <div class="mima mt20 tr"><a href="{:U('Home/Public/register')}">还没有账号？马上去注册&gt;&gt;</a></div> 
+    </form>
+</div>
+
+<!--内容结束-->	
+
+<script>
+function doLogin(){
+    $.post(
+		"{:U('Home/Public/doLogin')}",
+		$("#form").serialize(),
+		function result(data){
+			$("#message").addClass('alert-'+data['status']);
+			$("#message").html(data['content']);
+			$("#message").fadeIn("slow");
+			window.setTimeout('$("#message").fadeOut("slow")', 2000);
+			if(data['status'] == 'success'){
+				var location_url = "{:U('Home/Index/index')}";
+				window.setTimeout("window.location.href='" + location_url + "'", 2300);
+			}else{
+                $("#password").val('');
+                alert = "alert-" + data['status'];
+                window.setTimeout('$("#message").removeClass(alert)', 2500);
+            }
+			},
+		'json'
+		)
+	return false;
+}
+</script>
+<include file="../Public/footer" />

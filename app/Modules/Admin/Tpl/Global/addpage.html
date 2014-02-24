@@ -1,0 +1,58 @@
+<include file="../Public/header" />
+
+  <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li><a href="javascript:void(0)" class="current">添加单页</a></li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+  
+  <!--编辑表单 BEGIN-->
+  <div class="edit">
+    <form action="{:U('admin/global/doAddPage')}" method="post">
+      <dl>
+        <dt>单页标题：</dt>
+        <dd><input type="text" name="page[title]" class="w300"/></dd>
+      </dl>
+      <dl>
+        <dt>单页标识：</dt>
+        <dd><input type="text" name="page[spell]" class="w100" /></dd>
+      </dl>
+      <dl>
+        <dt>单页内容：</dt>
+        <dd>
+          <textarea id="content" name="page[content]" style="width:700px; height:250px;"></textarea>
+        </dd>
+      </dl>    
+      <dl class="cb">
+        <dt>排序：</dt>
+        <dd>
+          <input type="text" name="page[display_order]" class="w100" />
+          <p class="tips">数字越小越靠前</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>显示状态：</dt>
+        <dd>
+          <input type="radio" id="status-yes" name="page[status]" value="1" checked="checked"/> <label for="status-yes">显示</label>&nbsp;&nbsp;
+          <input type="radio" id="status-no" name="page[status]" value="0" /> <label for="status-no">不显示</label>
+        </dd>
+      </dl>
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><input type="submit"  value="提 交" class="btn submit-btn" /></dd>
+      </dl>
+    </form>
+  </div>
+  <!--编辑表单 BEGIN-->
+
+<include file="../Public/footer" />
+
+<!--编辑器 BEGIN-->
+<script type="text/javascript" src="__JS__/other/editor/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__JS__/other/editor/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+UE.getEditor('content');
+</script>
+<!--END 编辑器-->

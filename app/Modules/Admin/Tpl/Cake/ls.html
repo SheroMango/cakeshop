@@ -1,0 +1,96 @@
+<include file="Public:header" />
+
+  <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li><a href="javascript:void(0)" class="current">蛋糕列表</a></li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+  
+  <!--搜索 BEGIN-->
+  <div class="search">
+    <form action="{:U('Admin/Cake/ls')}" method="post">
+      <table width="100%">
+        <th width="80">名称：</th>
+        <td>
+          <input type="text" name="name" />
+          <input type="submit" value="搜 索" class="btn search-btn" />
+        </td>
+        <th width="80" class="fr">销量：</th>
+        <td>
+            <a href="{:U('Admin/Cake/ls', array('sales'=>10000))}">1000以上</a>&nbsp;|
+            <a href="{:U('Admin/Cake/ls', array('sales'=>1000))}">100以上</a>&nbsp;|
+            <a href="{:U('Admin/Cake/ls', array('sales'=> 100))}">10以上</a>&nbsp;|
+            <a href="{:U('Admin/Cake/ls', array('sales'=>0))}">10以下</a>
+        </td>
+
+      </table>
+    </form>
+  </div>
+  <!--END 搜索--> 
+  
+  <!--工具栏 BEGIN-->
+  <div class="toolbar">
+    <a href="{:U('Admin/Cake/addCake')}" class="btn"><span>添加新商品</span></a>
+  </div>
+  <!--END工具栏 BEGIN-->
+  
+  <!--列表 BEGIN-->
+  <div class="list">
+    <form action="{:U('Admin/Cake/doDelCake')}" method="post" class="del-form">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th width="5%"><input type="checkbox" class="check-all" /></th>
+            <th width="5%">编号</th>
+            <th width="20%">商品名称</th>
+            <th width="20%">商品品牌</th>
+            <th width="9%">价格</th>
+            <th width="5%">上/下架</th>
+            <th width="5%">折扣</th>
+            <th width="5%">库存</th>
+            <th width="5%">销量</th>
+            <th width="10%">更新时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <empty name="pageList">
+            <tr>
+              <td colspan="11" class="empty">暂无相关信息</td>
+            </tr>
+          <else />
+            <volist name="pageList" id="page">
+              <tr>
+                <td><input type="checkbox" name="id[]" value="{$page[id]}"></td>
+                <td>{$page[id]}</td>
+                <td>{$page[name]}</td>
+                <td>{$page[brand_id]}</td>
+                <td>{$page[price]}</td>
+                <td>{$page[sale_name]}</td>
+                <td>{$page[discount]}</td>
+                <td>{$page[number]}</td>
+                <td>{$page[sales]}</td>
+                <td>{$page[mtime_text]}</td>
+                <td>
+                  <a href="{:U('Admin/Cake/editCake', array('id'=>$page[id]))}" class="mr10">编辑</a>
+                  <a href="{:U('Admin/Cake/doDelCake', array('id'=>$page[id]))}">删除</a>
+                </td>
+              </tr>
+            </volist>
+          </empty>
+        </tbody>
+      </table>
+    </form>
+  </div>
+  <!--列表 END-->
+
+  <!--工具栏 BEGIN-->
+  <div class="toolbar">
+    <div class="page right">{$pageHtml}</div>
+    <a href="javascript:void(0)" class="btn del-btn"><span>删除</span></a>
+  </div>
+  <!--END 工具栏-->
+
+<include file="Public:footer" />

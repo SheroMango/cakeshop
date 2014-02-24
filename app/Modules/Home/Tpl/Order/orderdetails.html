@@ -1,0 +1,46 @@
+<include file="../Public/header" />
+<!--头部开始-->
+<div class="header container index">
+   <div class="col-xs-3"><a href="javascript:window.history.go(-1);"><img class="img-responsive fl" src="__IMG__/fanhui.png" /></a></div>
+      <div class="col-xs-6">
+         <h2>我的订单</h2>
+      </div>
+   <div class="col-xs-3"><a href="{:U('Home/Index/index')}"><img class="img-responsive fr" src="__IMG__/index.png" /></a></div>
+</div>  
+<!--头部结束-->
+<!--内容开始-->
+<div class="container">
+<form action="">
+  <ul class="product-promise">
+    <li>
+      <h4>订单号：{$orderInfo[order_sn]}</h4>
+      <p>下单时间：{$orderInfo[ctime]}</p>
+    </li>
+    <li>
+      <h4>商品信息：</h4>
+      <p>{$goodsInfo[goods_name]}（品牌：{$goodsInfo[brand_name]}）</p>
+      <p>价格：￥{$goodsInfo[goods_price]}元</p>
+      <p>数量：{$goodsInfo[goods_number]}</p>
+    </li>
+    <li>
+      <h4>收货人：</h4>
+      <p>姓名：{$consigneeInfo[consignee_name]}</p>
+      <p>联系方式：{$consigneeInfo[consignee_mobile]}</p>
+      <p>配送区域：{$consigneeInfo[consignee_district]}</p>
+      <p>详细地址：{$consigneeInfo[consignee_address]}</p>
+      <p>配送时间：{$consigneeInfo[arrive_time]}</p>
+    </li>
+    <li>
+      <h4>订购人：</h4>
+      <p>姓名：{$orderOneInfo[order_name]}</p>
+      <p>联系方式：{$orderOneInfo[order_mobile]}</p>
+    </li>
+  </ul>
+  <div class="write-order">
+    <p>总计：<em class="color-red">{$orderInfo[order_total]}元</em> </p>
+    <a class="btn btn-warning btn-lg btn-block mt30" href="{:U('Home/Order/ls')}">查看订单</a>
+  </div>
+</form>
+</div>
+<!--内容结束--> 
+<include file="../Public/footer" />

@@ -1,0 +1,57 @@
+<include file="../Public/header" />
+<include file="../Public/navigation" />
+<!--内容开始-->
+<div class="container pt50 pb50">
+<form action="{:U('Home/User/doEditInfo')}" method="post" role="form" class="form-horizontal" onsubmit="return doEditInfo()" id="form" >
+	<input type="hidden" name="page[id]" value="{$userInfo[id]}" />
+	<div class="form-group">
+		<label for="name" class="col-xs-12">姓名</label>
+		<div class="col-xs-12"><input class="form-control" name="page[name]" value="{$userInfo[name]}" calss="form-control" /></div>
+	</div>
+	<div class="form-group">
+		<label class="col-xs-12">性别</label>
+		<div class="col-xs-12">
+   
+          <div class="radio">
+            <label>
+			<input  type="radio" name="page[sex]" <eq name="userInfo[sex]" value="1">checked="checked"</eq>  class="mr5">男
+		  </label>
+          </div>
+          <div class="radio">
+		   <label>
+			<input  type="radio" name="page[sex]" <eq name="userInfo[sex]" value="0">checked="checked"</eq> class="mr5">女
+		   </label>
+        </div>
+      </div>
+	</div>
+	<div class="form-group">
+		<label for="birth" class="col-xs-12">生日</label>
+		<div class="col-xs-12"><input class="form-control" type="date" name="page[birth]" value="{$userInfo[birth]}"  calss="form-control" /></div>
+	</div>
+	<div class="form-group">
+		<label for="remark" class="col-xs-12">备注</label>
+		<div class="col-xs-12"><input class="form-control" name="page[remark]" value="{$userInfo[remark]}"  calss="form-control" /></div>
+	</div>
+	<input type="submit" value="提交" class="btn btn-primary btn-lg btn-block mt30" />
+</form>
+</div>
+<!--内容结束-->
+<script>
+function doEditInfo(){
+    $.post(
+		"{:U('Home/User/doEditInfo')}",
+		$("#form").serialize(),
+		function result(data){
+			$("#message").addClass('alert-'+data['status']);
+			$("#message").html(data['content']);
+			$("#message").fadeIn("slow");
+			window.setTimeout('$("#message").fadeOut("slow")', 2000);
+            alert = "alert-" + data['status'];
+            window.setTimeout('$("#message").removeClass(alert)', 2500);
+			},
+		'json'
+		)
+	return false;
+}
+</script>
+<include file="../Public/footer" />

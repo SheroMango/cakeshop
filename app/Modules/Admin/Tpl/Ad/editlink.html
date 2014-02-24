@@ -1,0 +1,46 @@
+<include file="../Public/header" />
+
+
+<!--页面标题 BEGIN-->
+<div class="tabs">
+  <ul>
+    <li><a href="javascript:void(0)" class="current">编辑</a></li>
+  </ul>
+</div>
+<!--END 页面标题-->
+
+<!--编辑表单 BEGIN-->
+<div class="edit">
+  <form action="{:U('Admin/Ad/doEditLink')}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="ad[id]" value="{$adInfo[id]}" />
+    <dl>
+      <dt>标题：</dt>
+      <dd><input type="text" name="ad[title]" value="{$adInfo[title]}" /></dd>
+    </dl>
+    <dl>
+      <dt>链接地址：</dt>
+      <dd><input type="text" name="ad[link]" value="{$adInfo[link]}"  style="width:300px;" /></dd>
+    </dl>    
+    <dl>
+      <dt>排序：</dt>
+      <dd>
+        <input type="text" name="ad[display_order]" value="{$adInfo[display_order]}" />
+        <p class="tips">数字越小越靠前</p>
+      </dd>
+    </dl>
+    <dl>
+      <dt>是否显示：</dt>
+      <dd>
+        <input type="radio" name="ad[status]" value="1" <eq name="adInfo[status]" value="1">checked="checked"</eq> /> 是 &nbsp;
+        <input type="radio" name="ad[status]" value="0" <eq name="adInfo[status]" value="0">checked="checked"</eq> /> 否 &nbsp;
+      </dd>
+    </dl>
+    <dl>
+      <dt>&nbsp;</dt><dd><input type="submit" class="btn submit-btn" value="确定" /></dd>
+    </dl>
+  </form>
+</div>
+<!--END 编辑表单-->
+
+
+<include file="../Public/footer" />

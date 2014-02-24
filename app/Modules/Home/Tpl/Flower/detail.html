@@ -1,0 +1,117 @@
+<include file="../Public/header" /> 
+<!--头部开始-->
+<div class="header container index">
+   <div class="col-xs-3"><a href="javascript:window.history.go(-1);"><img class="img-responsive fl" src="__IMG__/fanhui.png" /></a></div>
+      <div class="col-xs-6">
+         <h2>鲜花详情</h2>
+      </div>
+   <div class="col-xs-3"><a href="{:U('Home/Index/index')}"><img class="img-responsive fr" src="__IMG__/index.png" /></a></div>
+</div>  
+<!--头部结束-->
+<!--内容开始-->
+<form name="form1" action="" method="post" enctype="multipart/form-data">
+<div class="container">
+  <ul class="filter row clearfix">
+    <li class="col-xs-3"><a href="{:U('Home/Flower/detail', array('id'=>$flowerInfo[id]))}" class="active">蛋糕介绍</a></li>
+    <li class="col-xs-3"><a href="{:U('Home/Flower/consult', array('id'=>$flowerInfo[id]))}">咨询</a></li>
+    <li class="col-xs-3"><a href="{:U('Home/Flower/evaluate', array('id'=>$flowerInfo[id]))}">评价（55）</a></li>
+    <li class="col-xs-3"><a href="{:U('Home/Flower/notice', array('id'=>$flowerInfo[id]))}">购前须知</a></li>
+  </ul>
+  <input type="hidden" name="goods[id]" id="goodsid" value="{$flowerInfo[id]}" />
+  <input type="hidden" name="goods[price]" id="goodsprice" value="{$flowerInfo[price]}" />
+  <div class="cake-show row pt_rl">
+    <img src="{$flowerInfo[pic]}" class="img-responsive">
+    <div class="cake-introduce lnhg">
+     <h2>
+       {$flowerInfo[name]}
+       <a href="###" class="btn btn-warning btn-sm ml10">网付</a>
+       <a href="###" class="btn btn-primary btn-sm ml5">到付</a>
+     </h2>
+     <p>价格：<span class="color-notice" id="price">￥{$flowerInfo[price]}元</span></p>
+     <p class="color-notice">{$flowerInfo[discount_desc]}</p>
+    </div>
+  </div>
+  
+  
+  <div class="primary-bottom row">
+    <div class="col-xs-12">
+      <!--<ul class="cake-select hgauto">
+       <volist name="sizeList" id="size">
+        
+          <input type="hidden" name="size_id" value="{$size[id]}" />
+          <li><a href="{:U('Home/Flower/detail', array('size_id'=>$size[id], 'id'=>$flowerInfo[id]))}" class="selected">{$size[attr_value]}</a></li>
+        
+       </volist>
+      </ul>-->
+
+      <p class="color-gray ft20">{$flowerInfo[desc]}</p>
+      <ul class="cake-select hgauto">
+       <volist name="sizeList" id="size">
+        <if condition="$size[attr_price] eq $sizePrice">
+        <input type="hidden" name="goods[sizeid]" id="sizeid" value="{$size[id]}" />
+        <li class="selected"><a href="###" class="selsize" name="{$size[id]}">{$size[attr_value]}<em></em></a></li>
+        <else />
+        <li><a href="###" class="selsize" name="{$size[id]}">{$size[attr_value]} <em></em></a></li>
+        </if>
+       </volist>
+      </ul>
+   
+      <p class="price cb clearfix">
+        <span class="fl mt10">数量：</span><em class="subtract-btn fl">-</em> <input type="text" name="goods[num]" value="1" class="num fl"> <em class="add-btn fl">+</em> 
+      </p>
+      <p class="mt20 mb30"><input type="submit" class="btn btn-warning" value="立即订购"  onclick="tjbutton()"/></p>
+      <h4 class="mb20"><img src="__IMG__/biao.gif">南宁市区内免费配送（联系电话:010-1258489）</h4>
+      <table border="1" bordercolor="#e2e2e2">
+        <volist name = "attList" id ="attr">
+        <tr>
+          <td width = "20%">{$attr[attr_id]}</td>
+          <td>{$attr[attr_value]}</td>
+        </tr>
+        </volist>
+      </table>
+      <img src="__IMG__/lintu.jpg" class="img-responsive"/>
+    </div>
+  </div>   
+  <div class="row pb50 delt-bottom">
+    <img src="__IMG__/lin-logo.jpg" class="img-responsive"/>
+    <div class="col-xs-12 jieshao mt20 mb20">
+      <p>上海元祖梦果子股份有限公司1981年创立于台湾，1993年进驻上海至今，元祖食品以上海为基地，已先后在中国大陆的上海、无锡、杭州、成都、武汉、青岛、长沙、重庆、广东、福建、大连等主要城市设立了多家分公司，门店遍及台海两岸，力求以时效确保质量新鲜、服务贴心。从初创时期开始，随着产品的不断创新和门店数的扩增，公司每年业绩稳步成长。</p>
+    </div>
+    <h3>精致礼品管家</h3>
+  </div>
+</div>
+</form>
+<!--内容结束--> 
+</body>
+</html>
+<script type="text/javascript">
+  function tjbutton(){
+    document.form1.action = '{:U('Home/Order/writeOrder')}';
+    document.form1.submit();  
+  }
+  
+</script>
+
+//选择价格
+<script type="text/javascript">
+
+  $(".selsize").click(function(){
+    var sizeid = $(this).attr('name');
+    var goodsid = $("#goodsid").val();
+    $.ajax({
+       type: "POST",
+       url: "{:U('Home/Flower/selprice')}",
+       dataType:"json",
+       data: "size_id="+sizeid+"&id="+goodsid,
+       success: function(msg){
+         var sizeid = msg.sizeid;
+         var price = msg.price;
+         $('#price').text("￥"+price+"元");
+         $("#goodsprice").val(price);
+         $("#sizeid").val(sizeid);
+       }
+    });
+
+  });
+  
+</script>

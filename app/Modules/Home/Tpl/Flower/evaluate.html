@@ -1,0 +1,44 @@
+<include file="../Public/header" /> 
+<!--头部开始-->
+<div class="header container index">
+   <div class="col-xs-3"><a href="javascript:window.history.go(-1);"><img class="img-responsive fl" src="__IMG__/fanhui.png" /></a></div>
+      <div class="col-xs-6">
+         <h2>鲜花详情</h2>
+      </div>
+   <div class="col-xs-3"><a href="{:U('Home/Index/index')}"><img class="img-responsive fr" src="__IMG__/index.png" /></a></div>
+</div>  
+<!--头部结束-->
+<!--内容开始-->
+<div class="container">
+  <ul class="filter row clearfix">
+    <li class="col-xs-3"><a href="{:U('Home/Flower/detail', array('id'=>$flowerInfo[id]))}">蛋糕介绍</a></li>
+    <li class="col-xs-3"><a href="{:U('Home/Flower/consult', array('id'=>$flowerInfo[id]))}">咨询</a></li>
+    <li class="col-xs-3"><a href="{:U('Home/Flower/evaluate', array('id'=>$flowerInfo[id]))}" class="active">评价（55）</a></li>
+    <li class="col-xs-3"><a href="{:U('Home/Flower/notice', array('id'=>$flowerInfo[id]))}">购前须知</a></li>
+  </ul>
+ <ul class="product-evaluate pb50">
+  <li>
+   <p>150*****891<span class="fr"><img src="images/product/star-arrow.png">5.0</span></p>
+   <p>觉得还可以！</p>
+   <p class="posted">2013-12-12 15:55:30[本商品评价] </p>
+  </li>
+  <li>
+   <p>150*****891<span class="fr"><img src="images/product/star-arrow.png">5.0</span></p>
+   <p>觉得还可以！</p>
+   <p class="posted">2013-12-12 15:55:30[本商品评价] </p>
+  </li>
+  <li>
+   <p>150*****891<span class="fr"><img src="images/product/star-arrow.png">5.0</span></p>
+   <p>觉得还可以！</p>
+   <p class="posted">2013-12-12 15:55:30[本商品评价] </p>
+  </li>
+  <li>
+   <p>150*****891<span class="fr"><img src="images/product/star-arrow.png">5.0</span></p>
+   <p>觉得还可以！</p>
+   <p class="posted">2013-12-12 15:55:30[本商品评价] </p>
+  </li>     
+ </ul>
+</div>
+<!--内容结束-->	
+</body>
+</html>

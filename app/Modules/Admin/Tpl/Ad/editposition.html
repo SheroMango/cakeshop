@@ -1,0 +1,36 @@
+<include file="../Public/header" />
+
+
+<!--页面标题 BEGIN-->
+<div class="tabs">
+  <ul>
+    <li><a href="javascript:void(0)" class="current">编辑广告位</a></li>
+  </ul>
+</div>
+<!--END 页面标题-->
+
+<!--编辑表单 BEGIN-->
+<div class="edit">
+  <form name="add_form" action="{:U('Admin/Ad/doEditPosition')}" method="post">
+    <input type="hidden" name="id" value="{$positionInfo[id]}" />
+    <dl>
+      <dt>名称：</dt>
+      <dd><input type="text" name="position[name]" value="{$positionInfo[name]}" /></dd>
+    </dl>
+    <dl>
+      <dt>描述：</dt>
+      <dd><textarea type="text" name="position[desc]" style="width:400px; height:80px;"/>{$positionInfo[desc]}</textarea></dd>
+    </dl>
+    <dl>
+      <dt>广告数量：</dt>
+      <dd>{$positionInfo[ads]}</dd>
+    </dl>
+    <dl>
+      <dt>&nbsp;</dt><dd><input type="submit" class="btn submit-btn" value="提 交" /></dd>
+    </dl>
+  </form>
+</div>
+<!--END 编辑表单-->
+
+
+<include file="../Public/footer" />

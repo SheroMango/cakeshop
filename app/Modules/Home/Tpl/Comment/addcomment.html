@@ -1,0 +1,68 @@
+<include file="../Public/header" />
+<include file="../Public/navigation" />
+<div class="container pt30 pb20">
+<form id="form" role="form" onsubmit="return doComment()">
+    <input type="hidden" name="goods_id" value="{$goods_id}" />
+    <input type="hidden" name="order_sn" value="{$order_sn}" />
+    <div class="form-group">
+        <label>商品名称：</label>
+        <p>{$goods_name}</p>
+    </div>
+    <div class="form-group">
+        <label>姓名：</label>
+        <p>{$user_name}</p>
+    </div>
+    <div class="form-group" >
+        <label for="rank">星级：</label>
+        <div id="starData"></div>
+        <input type="hidden" name="rank" id="rank" />
+    </div>
+    <div class="form-group">
+        <label for="content">评价内容：</label>
+        <textarea class="from-control w" id="content" name="content" rows="3"></textarea>
+    </div>
+    <input type="submit" class="btn btn-primary w" value="评价" />
+</form>
+</div>
+<script>
+$(function(){
+    var data = ''
+    for(var o=1; o<=5; o++){
+        data += "<span id='star"+o+"' onclick='starEvent("+o+")' class='glyphicon glyphicon-star-empty ' style=' font-size:34px; margin-right:5px;'></span>";
+    }
+    $("#starData").html(data);
+})
+
+function starEvent(data){
+    $("#rank").val(data);
+    for(var j=1; j<=data; j++){
+        var leftStar = "#star" + j;
+        $(leftStar).removeClass("glyphicon-star-empty");
+        $(leftStar).addClass("glyphicon-star");
+    }
+    for(var k=5; k>data; k--){
+        var rightStar = "#star" + k;
+        $(rightStar).removeClass("glyphicon-star");
+        $(rightStar).addClass("glyphicon-star-empty");
+    }
+}
+
+function doComment(){
+    $.post("{:U('Home/Comment/doAddComment')}", $("#form").serialize(), function(data){
+        $("#message").html(data['content'])
+            .addClass("alert-"+data['status'])
+            .fadeIn("slow");
+        window.setTimeout('$("#message").fadeOut("slow")', 2000);
+        if(data['status'] == 'success'){
+            window.setTimeout("window.location.href='"+data['url']+"'", 2500);
+        }
+        window.setTimeout('$("#message").removeClass("alert-'+data['status']+'")', 2500);
+        }, "json");
+    return false;
+}
+</script>
+<include file="../Public/footer" />
+<style>
+.glyphicon-star-empty{ color:#ccc;}
+.glyphicon-star{ color:#fce100;}
+</style>

@@ -1,0 +1,66 @@
+<include file="../Public/header" />
+
+
+  <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li><a href="javascript:void(0)" class="current">积分规则</a></li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+
+  <!--工具栏 BEGIN-->
+  <div class="toolbar">
+    <a href="{:U('Admin/Global/addCreditRule')}" class="btn"><span>添加规则</span></a>
+    <a href="javascript:void(0);" class="btn del-btn"><span>删除规则</span></a>
+  </div>
+  <!--END 工具栏-->
+  
+  <!--列表 BEGIN-->
+  <div class="list">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <th width="5%"><input type="checkbox" class="check-all" /> </th>
+          <th width="5%">ID</th>
+          <th width="20%">规则名称</th>
+          <th width="20%">操作标识</th>
+          <th width="20%">周期</th>
+          <th width="15%">积分</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <empty name="list">
+          <tr><td colspan="7" class="empty">暂无相关信息</td></tr>
+        <else />
+          <volist name="list" id="vo">
+            <tr>
+              <td><input type="checkbox" name="checkbox" id="checkbox2" onclick="checkon(this)" value="{$vo.id}"></td>
+              <td>{$vo.id}</td>
+              <td>{$vo.name}</td>
+              <td>{$vo.action}</td>
+              <td>{$vo.cycle}</td>
+              <td>{$vo.credits}</td>
+              <td>
+                <a href="{:U('Admin/Global/editCreditRule', array('id'=>$vo['id']))}" class="mr10">编辑</a> 
+                <a href="javascript:void(0);" onclick="deleteCredit({$vo['id']});">删除</a>
+              </td>
+            </tr>
+          </volist>
+        </empty>
+      </tbody>
+    </table>
+  </div>
+  <!--END 列表-->
+  
+  <!--工具栏 BEGIN-->
+  <div class="toolbar">
+    <div class="page right">{$html}</div>
+    <a href="{:U('Admin/Global/addCreditRule')}" class="btn"><span>添加规则</span></a>
+    <a href="javascript:void(0);" class="btn del-btn"><span>删除规则</span></a>
+  </div>
+  <!--END 工具栏-->
+
+<include file="../Public/footer" />

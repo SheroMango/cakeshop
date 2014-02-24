@@ -1,0 +1,77 @@
+<include file="../Public/header" />
+
+<div class="so_main">
+  <div class="page_tit">积分规则</div>
+  <div class="tit_tab" style="display:none;">
+    <ul>
+    <li><a href="{:U('admin/Global/credit')}" class="on">积分规则</a></li>
+    </ul>
+  </div>
+  <div class="edit">
+    <eq name="type" value="add">
+          <form method="post" action="{:U('admin/Global/addCreditRule')}">
+        <h3>添加积分规则</h3>
+    <else/>
+          <form method="post" action="{:U('admin/Global/editCreditRule')}">
+        <h3>编辑积分规则</h3>
+        <input type="hidden" name="id" value="{$info['id']}">
+    </eq>
+    
+    <eq name="type" value="edit">
+    <dl>
+      <dt>规则id：</dt>
+      <dd>{$info['id']}</dd>
+    </dl> 
+    </eq>  
+    
+    <dl>
+      <dt>规则名称：</dt>
+      <dd>
+        <input name="name" type="text" value="{$info['name']}" />
+        <p>例如：添加目的地</p>
+      </dd>
+    </dl>
+    <dl>
+      <dt>操作标识：</dt>
+      <dd>
+        <input name="action" type="text" value="{$info['action']}">
+        <p>例如：add_dest</p>
+      </dd>
+    </dl>
+    <dl>
+      <dt>周期：</dt>
+      <dd>
+        <label class="check-line">
+          <input type="radio" name="cycle" value="every" <eq name="info[cycle]" value="every">checked</eq> class="s-ck" />每次
+        </label>&nbsp;
+        <label>
+          <input type="radio" name="cycle" value="day" <eq name="info[cycle]" value="day">checked</eq> class="s-ck" />每天
+        </label>&nbsp;
+        <label>
+          <input type="radio" name="cycle" value="week" <eq name="info[cycle]" value="week">checked</eq> class="s-ck" />每周
+        </label>&nbsp;
+        <label>
+          <input type="radio" name="cycle" value="month" <eq name="info[cycle]" value="month">checked</eq> class="s-ck" />每月
+        </label>&nbsp;
+        <label>
+          <input type="radio" name="cycle"  value="year" <eq name="info[cycle]" value="year">checked</eq> class="s-ck" />每年
+        </label>&nbsp;
+        <label>
+          <input type="radio" name="cycle"  value="one" <eq name="info[cycle]" value="one">checked</eq>  class="s-ck"/>仅一次
+        </label>
+      </dd>
+    </dl>
+    <dl>
+      <dt>积分：</dt>
+      <dd>
+        <input type="text" name="credits" value="{$info['credits']}" />
+        <p>增加积分填写正数，减少积分填写负数</p></dd>
+    </dl>
+    <div class="page_btm">
+      <input type="submit" class="btn_b" value="确定" />
+    </div>
+    </form>
+  </div>
+</div>
+
+<include file="../Public/footer" />

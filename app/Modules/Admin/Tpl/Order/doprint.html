@@ -1,0 +1,90 @@
+<include file="../Public/header" />
+<style>
+@media print{
+	@page {
+		size: auto;
+		margin: 0mm;
+	}
+}
+</style>
+
+<body>
+<h1>订单信息</h1>
+<table width="640" border="0" class="no-border">
+  <tr>
+    <td colspan="6">收 货 人：	{$orderInfo.consignee_name}</td>					
+    <td colspan="2" class="tr">订单编号： {$orderInfo.order_sn}</td>
+  </tr>
+  <tr>
+    <td colspan="8">联系电话：{$orderInfo.consignee_mobile}</td>
+  </tr>
+  <tr>
+    <td colspan="8">收货地址：{$orderInfo.consignee_district}&nbsp;{$orderInfo.consignee_address}</td>
+  </tr>
+  <tr>
+    <td colspan="2">订购人：{$orderInfo.order_name}</td>
+    <td colspan="2">联系电话：{$orderInfo.order_mobile}</td>
+    <td colspan="4">送货时间：{$orderInfo.arrive_time}</td>
+  </tr>
+</table>
+<table width="640" border="1"> 
+  <tr>
+    <th>商品名称</th>	
+    <th>规格</th>	
+    <th>数量</th>	
+    <th>原价</th>	
+    <th>折扣</th>	
+    <th>单价</th>	
+    <th>运费</th>	
+    <th>小计</th>
+  </tr>
+  <tr>
+    <td class="tc">{$goodsInfo.name}</td>	
+    <td class="tc"></td>	
+    <td class="tc">{$orderGoodsInfo.goods_number}</td>	
+    <td class="tc">{$goodsInfo.price}</td>	
+    <td class="tc">{$goodsInfo.discount}</td>	
+    <td class="tc">{$orderGoodsInfo.goods_price}</td>	
+    <td class="tc">1 </td>	
+    <td class="tc">1 </td>
+  </tr>
+  <tr>
+    <td colspan="8">定制语：{$orderInfo.custom_lang}</td>
+  </tr>
+  <tr>
+    <td colspan="8">订单备注：{$orderInfo.postscript}</td>
+  </tr>
+  <tr>
+    <td colspan="5" class="tc">总计：{$orderInfo.order_total}</td>
+    <td colspan="3" class="tc">支付方式：{$orderInfo.pay_type_name}</td>
+  </tr>
+</table>
+<table width="640" border="0"  class="no-border">   
+  <tr>
+    <td colspan="2">3156蛋糕商城</td>                      
+    <td colspan="2">地址：南宁市</td>                                   
+    <td colspan="2">订购电话：0531-1456789</td>                                
+    <td colspan="2">投诉电话：0531-1456789</td>
+  </tr>
+  <tr>
+    <td colspan="2">收货时间：</td>                                              
+    <td colspan="3">配送人员：</td>                                           
+    <td colspan="3">客户签收：</td>
+  </tr>
+</table>
+<style> 
+table.no-border td{ height:26px; line-height:26px;}
+table td,table th{ padding:0 5px; height:20px; line-height:20px; text-align:left;}
+table td.tc{ text-align:center;}
+table td.tr{ text-align:right;}
+table th{  text-align:center; background:#c0c0c0;}
+h1{ display:block; padding-bottom:10px;  font-size:30px; color:#000;text-align:center;}
+
+</style>
+<script>
+$(function(){
+    window.print(); 
+})
+</script>
+</body>
+</html>

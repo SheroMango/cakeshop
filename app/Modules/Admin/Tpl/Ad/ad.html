@@ -1,0 +1,86 @@
+<include file="../Public/header" />
+
+
+<!--页面标题 BEGIN-->
+<div class="tabs">
+  <ul>
+    <li><a href="javascript:void(0)" class="current">广告管理</a></li>
+  </ul>
+</div>
+<!--END 页面标题-->
+
+<!--搜索 BEGIN-->
+<div class="search">
+  <form action="{:U('Admin/Ad/ad')}" method="post">
+    <table width="100%">
+      <th width="80">标题：</th>
+      <td width="100"><input type="text" name="name" class="w100" /></td>
+      <th width="80">广告位：</th>
+      <td>
+        <select name="position">
+          <option>-广告位不限-</option>
+          <volist name="positionList" id="position">
+          <option value="{$position[id]}">{$position[name]}</option>
+          </volist>
+        </select>&nbsp;&nbsp;
+        <input type="submit" value="搜 索" class="btn search-btn" />
+      </td>
+    </table>
+  </form>
+</div>
+<!--END 搜索-->  
+
+<!--工具栏 BEGIN-->
+<div class="toolbar">
+  <div class="page right">{$page}</div>
+  <a href="{:U('Admin/Ad/addAd')}" class="btn"><span>添加广告</span></a>
+  <a href="javascript:void(0);" class="btn del-btn"><span>删除广告</span></a>
+</div>
+<!--END 工具栏-->
+
+<!--列表 BEGIN-->  
+<div class="list">
+  <form class="del-form" action="{:U('Admin/Ad/doDelAd')}" method="post">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <thead>
+        <tr>
+          <th width="5%"><input type="checkbox" class="check-all" /></th>
+          <th width="10%">ID</th>
+          <th width="20%">标题</th>
+          <th width="20%">广告位</th>
+          <th width="15%">排序</th>
+          <th width="15%">是否显示</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <volist name="adList" id="ad">
+          <tr>
+            <td><input type="checkbox" name="id[]" value="{$ad[id]}"></td>
+            <td>{$ad[id]}</td>
+            <td>{$ad[name]}</td>
+            <td>{$ad[position_name]}</td>
+            <td>{$ad[display_order]}</td>
+            <td>{$ad[status_name]}</td>
+            <td>
+              <a href="{$ad[url_admin_edit]}" class="mr10">编辑</a>
+              <a href="{$ad[url_admin_del]}">删除</a>
+            </td>
+          </tr>
+        </volist>
+      <tbody>
+    </table>
+  </form>
+</div>
+<!--END 列表-->
+
+<!--工具栏 BEGIN-->
+<div class="toolbar">
+  <div class="page fr">{$pageHtml}</div>
+  <a href="{:U('Admin/Ad/addAd')}" class="btn"><span>添加广告</span></a>
+  <a href="javascript:void(0);" class="btn del-btn" ><span>删除广告</span></a>
+</div>
+<!--END 工具栏-->
+
+
+<include file="../Public/footer" />

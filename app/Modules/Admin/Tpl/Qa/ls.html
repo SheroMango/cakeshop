@@ -1,0 +1,81 @@
+<include file="Public:header" />
+
+  <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li><a href="javascript:void(0)" class="current">咨询列表</a></li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+  
+  <!--搜索 BEGIN-->
+  <div class="search">
+    <form action="{:U('Admin/Qa/ls')}" method="post">
+      <table width="100%">
+        <th width="80">咨询内容：</th>
+        <td>
+          <input type="text" name="order_sn" />
+          <input type="submit" value="搜 索" class="btn search-btn" />
+        </td>
+      </table>
+    </form>
+  </div>
+  <!--END 搜索--> 
+  
+  <!--工具栏 BEGIN-->
+  <div class="toolbar">
+  </div>
+  <!--END工具栏 BEGIN-->
+  
+  <!--列表 BEGIN-->
+  <div class="list">
+    <form action="{:U('Admin/Qa/del')}" method="post">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th width="5%"><input type="checkbox" class="check-all" /></th>
+            <th width="5%">ID</th>
+            <th width="25%">咨询内容</th>
+            <th width="9%">用户名称</th>
+            <th width="10%">回复内容</th>
+            <th width="10%">显示状态</th>
+            <th width="10%">咨询时间</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <empty name="qaList">
+            <tr>
+              <td colspan="11" class="empty">暂无相关信息</td>
+            </tr>
+          <else />
+            <volist name="qaList" id="vo">
+              <tr>
+                <td><input type="checkbox" name="id[]" value="{$vo[id]}"></td>
+                <td>{$vo[id]}</td>
+                <td>{$vo[question]}</td>
+                <td>{$vo[user_name]}</td>
+                <td>{$vo[answer]}</td>
+                <td>{$vo[status_name]}</td>
+                <td>{$vo[ctime_text]}</td>
+                <td>
+                  <a href="{:U('Admin/Qa/answer', array('id'=>$vo[id]))}" class="mr10">详情</a>
+                  <a href="{:U('Admin/Qa/del', array('id'=>$vo[id]))}">删除</a>
+                </td>
+              </tr>
+            </volist>
+          </empty>
+        </tbody>
+      </table>
+    </form>
+  </div>
+  <!--列表 END-->
+
+  <!--工具栏 BEGIN-->
+  <div class="toolbar">
+    <div class="page right">{$pageHtml}</div>
+    <a href="javascript:void(0)" class="btn del-btn"><span>删除</span></a>
+  </div>
+  <!--END 工具栏-->
+
+<include file="Public:footer" />

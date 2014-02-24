@@ -1,0 +1,128 @@
+<include file="../Public/header" /> 
+<!--头部开始-->
+<div class="header container index">
+  <div class="col-xs-3"><a href="javascript:window.history.go(-1);"><img class="img-responsive fl" src="__IMG__/fanhui.png" /></a></div>
+    <div class="col-xs-6">
+      <h2>鲜花订购-人气</h2>
+    </div>
+  <div class="col-xs-3 shuaixuan"><a href="###"><img class="img-responsive fr" src="__IMG__/shuaixuan.png" /></a></div>
+</div>  
+<!--头部结束-->
+<!--内容开始-->
+<div class="container index product pb50 pt_rl">
+  <ul class="filter row clearfix">
+    <li class="col-xs-4"><a href="{:U('Home/Flower/ls')}" <eq name="orderDesc" value="">class="active"</eq>>人气</a></li>
+    <li class="col-xs-4"><a href="{:U('Home/Flower/ls', array('order'=>'sales'))}" <eq name="orderDesc" value="salse">class="active"</eq>>销量</a></li>
+    <li class="col-xs-4"><a href="{:U('Home/Flower/ls', array('order'=>'price'))}" <eq name="orderDesc" value="price">class="active"</eq>>价格</a></li>
+  </ul>
+  <volist name="arrList" id="arr">
+  <div class="list clearfix">
+    <div class="col-xs-4 tc">
+      <a class="thumbnail" href="{:U('Home/Flower/detail', array('id'=>$arr[id]))}"><img class="img-responsive" src="{$arr[pic]}"></a>
+      <if condition="$arr[discount] eq 100">
+        
+      <else/>
+        <em>优惠</em>
+      </if>
+    </div>        
+    <div class="col-xs-8">
+      <h4><a href="{:U('Home/Flower/detail', array('id'=>$arr[id]))}">{$arr[name]}</a></h4>
+      <span>￥{$arr[price]}</span>
+      <p>{$arr[tag]}{$arr[brief]}</p>
+    </div>
+  </div>
+  </volist>
+  
+   
+
+    <div class="bs-example">
+     <ul class="page mt30">
+      <li class="fl btn btn-default"><a href="#">{$pageHtml}</a></li>
+      </ul>
+    </div >
+
+    <div class="popup row pb30">
+        <div class="nei" style="width: 80%;">
+        <form action="{:U('Home/Flower/ls')}" method="post">
+        <dl>   
+           <dt>
+            <p><span>价格区间</span>•<em>全部</em><input type="hidden" value="" name="shaixuan[jg]" /></p>
+          </dt>
+          <dd>
+            <p><input type="hidden" value="100" />100元以下</p>
+            <p><input type="hidden" value="200" />100元至200元</p>
+            <p><input type="hidden" value="300" />200元至300元</p>
+            <p><input type="hidden" value="400" />300元至500元</p>
+            <p><input type="hidden" value="500" />500元以上</p>
+          </dd>   
+        </dl>
+        <dl>  
+          <dt>
+            <p><span>赠送对象</span>•<em>全部</em><input type="hidden" value="" name="shaixuan[zsdx]" /></p>
+          </dt>
+          <dd>
+            <p>全部</p>
+            <p><input type="hidden" value="爱人" />爱人</p>
+            <p><input type="hidden" value="父母" />父母</p>
+            <p><input type="hidden" value="朋友" />朋友</p>
+            <p><input type="hidden" value="老师" />老师</p>
+            <p><input type="hidden" value="病人" />病人</p>
+            <p><input type="hidden" value="领导" />领导</p>
+            <p><input type="hidden" value="鲜花礼篮" />鲜花礼篮</p>
+          </dd>  
+        </dl>
+        <dl>  
+          <dt>
+            <p><span>适合节日</span>•<em>全部</em><input type="hidden" value="" name="shaixuan[shjr]" /></p>
+          </dt>
+          <dd>
+            <p>全部</p>
+            <p><input type="hidden" value="生日" />生日</p>
+            <p><input type="hidden" value="贺喜" />贺喜</p>
+            <p><input type="hidden" value="情人节" />情人节</p>
+            <p><input type="hidden" value="圣诞节" />圣诞节</p>
+            <p><input type="hidden" value="母亲节" />母亲节</p>
+            <p><input type="hidden" value="教师节" />教师节</p>
+          </dd>  
+        </dl>
+        <dl>  
+          <dt>
+            <p><span>花材</span>•<em>全部</em><input type="hidden" name="shaixuan[hc]" value= /></p>
+          </dt>
+          <dd>
+            <p>全部</p>
+            <p><input type="hidden" value="玫瑰" />玫瑰</p>
+            <p><input type="hidden" value="百合" />百合</p>
+            <p><input type="hidden" value="康乃馨" />康乃馨</p>
+            <p><input type="hidden" value="蓝玫瑰" />蓝玫瑰</p>
+            <p><input type="hidden" value="太阳菊" />太阳菊</p>
+            <p><input type="hidden" value="马蹄莲" />马蹄莲</p>
+            <p><input type="hidden" value="红玫瑰" />红玫瑰</p>
+            <p><input type="hidden" value="白玫瑰" />白玫瑰</p>
+            <p>其他</p>
+          </dd>
+        </dl>
+        <dl>  
+          <dt>
+            <p><span>包装类别</span>•<em>全部</em><input type="hidden" name="shaixuan[bzlb]" value="" /></p>
+          </dt>
+          <dd>
+            <p>全部</p>
+            <p><input type="hidden" value="传情花束" />传情花束</p>
+            <p><input type="hidden" value="精致花篮" />精致花篮</p>
+            <p><input type="hidden" value="瓶插花" />瓶插花</p>
+            <p><input type="hidden" value="特色花礼" />特色花礼</p>
+            <p><input type="hidden" value="创意花盒" />创意花盒</p>
+            <p><input type="hidden" value="卡通花束" />卡通花束</p>
+          </dd>
+        </dl>
+        <p class="pt10 pb10 col-xs-12">
+          <input type="reset" value="重置" class="btn btn-default fl">
+          <input type="submit" value="确认" class="btn btn-primary fr">
+        </p>
+      </form>
+        </div>
+    </div>
+</div>
+<!--内容结束--> 
+<include file="../Public/footer" />

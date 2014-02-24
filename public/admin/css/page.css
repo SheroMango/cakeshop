@@ -1,0 +1,17 @@
+/**
+ * 颜色索引
+ * #29a2e4：深蓝色，用于按钮、表头、边框等
+ * #
+ */
+ 
+@charset "utf-8";
+/*通用样式*/
+
+
+/*页面选项卡*/
+.tabs{ height:40px; margin-bottom:10px; background:#f6f6f6;}
+.tabs li{ float:left; line-height:30px; margin:5px 0; padding:0 20px;}
+.tabs li a{color:#848383; font-size:14px;}
+.tabs li.current{}
+.tabs li.current a{color:#0068c0; font-weight:bold;}
+

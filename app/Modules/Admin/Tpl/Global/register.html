@@ -1,0 +1,45 @@
+<include file="../Public/header" />
+
+   <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li><a href="javascript:void(0)" class="current">注册设置</a></li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+  
+  <!--编辑表单 BEGIN-->
+  <div class="edit">
+    <form method="post" action="{:U('admin/Global/doEditSetting')}">
+      <dl>
+        <dt>注册方式：</dt>
+        <dd>
+          <input  type="radio" name="setting[reg_type]" value="closed" <eq name="reg_type" value="closed">checked</eq> />
+          <label>关闭注册</label>
+          <!--
+          <input name="reg_type" type="radio" value="invite" <eq name="reg_type" value="invite">checked</eq> />
+          <label>邀请注册</label>
+          -->    
+          <input type="radio" name="setting[reg_type]" value="open" <neq name="reg_type" value="closed">checked</neq> />
+          <label>公开注册</label>
+        </dd>
+      </dl>
+      <dl>
+        <dt>邮箱激活：</dt>
+        <dd>
+          <input type="radio" name="setting[reg_email_activate]"  value="0" <eq name="reg_email_activate" value="0">checked</eq> />
+          <label>不需要</label>
+          <input type="radio" name="setting[reg_email_activate]"  value="1" <neq name="reg_email_activate" value="0">checked</neq> />
+          <label>需要</label>
+        </dd>
+      </dl>
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><input type="submit" value="提 交" class="btn submit-btn"/></dd>
+      </dl>
+    </form>
+  </div>
+  <!--编辑表单-->
+
+
+<include file="../Public/footer" />

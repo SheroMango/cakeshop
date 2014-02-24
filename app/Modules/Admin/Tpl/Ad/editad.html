@@ -1,0 +1,72 @@
+<include file="../Public/header" />
+
+
+<!--页面标题 BEGIN-->
+<div class="tabs">
+  <ul>
+    <li><a href="javascript:void(0)" class="current">编辑广告</a></li>
+  </ul>
+</div>
+<!--END 页面标题-->
+
+<!--编辑表单 BEGIN-->
+<div class="edit">
+  <form action="{:U('Admin/Ad/doEditAd')}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id" value="{$adInfo[id]}" />
+    <dl>
+      <dt>广告位：</dt>
+      <dd>
+        <select name="ad[position_id]" class="w150">
+          <option value="0">--请选择--</option>
+          <volist name="positionList" id="position">
+          <option value="{$position[id]}" <eq name="position[id]" value="$adInfo[position_id]">selected="selected"</eq>>{$position[name]}</option>
+          </volist>
+        </select>
+      </dd>
+    </dl>
+    <dl>
+      <dt>标题：</dt>
+      <dd><input type="text" name="ad[name]" value="{$adInfo[name]}" /></dd>
+    </dl>
+    <dl>
+      <dt>链接地址：</dt>
+      <dd><input type="text" name="ad[link]" value="{$adInfo[link]}"  style="width:300px;" /></dd>
+    </dl>
+    <dl>
+      <dt>图片：</dt>
+      <dd><input type="file" name="pic" /></dd>
+    </dl>
+    <notempty name="adInfo[pic]">
+    <dl>
+      <dt>&nbsp;</dt>
+      <dd><img src="{$adInfo[pic_small]}" width="150"></dd>
+    </dl>
+    </notempty>
+    
+    <dl>
+      <dt>描述：</dt>
+      <dd><textarea name="ad[desc]" cols="50" rows="4">{$adInfo[desc]}</textarea></dd>
+    </dl>
+    <dl>
+      <dt>排序：</dt>
+      <dd>
+        <input type="text" name="ad[display_order]" value="{$adInfo[display_order]}" />
+        <p class="tips">数字越小越靠前</p>
+      </dd>
+    </dl>
+    <dl>
+      <dt>是否显示：</dt>
+      <dd>
+        <input type="radio" name="ad[status]" value="1" <eq name="adInfo[status]" value="1">checked="checked"</eq> /> 是 &nbsp;
+        <input type="radio" name="ad[status]" value="0" <eq name="adInfo[status]" value="0">checked="checked"</eq> /> 否 &nbsp;
+      </dd>
+    </dl>
+    <dl>
+      <dt>&nbsp;</dt><dd><input type="submit" class="btn submit-btn" value="确定" /></dd>
+    </dl>
+  </form>
+</div>
+<!--END 编辑表单-->
+
+
+<include file="../Public/footer" />

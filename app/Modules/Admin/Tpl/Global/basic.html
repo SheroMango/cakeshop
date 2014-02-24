@@ -1,0 +1,62 @@
+<include file="../Public/header" />
+
+
+  <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li><a href="javascript:void(0)" class="current">基本信息</a></li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+  
+  <!--编辑表单 BEGIN-->
+  <div class="edit">
+    <form action="{:U('Admin/Global/doEditSetting')}" method="post" enctype="multipart/form-data">
+      <dl>
+        <dt>网站名称：</dt>
+        <dd>
+          <input type="text" name="setting[site_name]"  value="{$site_name}" />
+        </dd>  
+      </dl>
+      <dl>
+        <dt>网址：</dt>
+        <dd>
+          <input type="text" name="setting[site_url]"  value="{$site_url}" class="w250"/>
+        </dd>  
+      </dl>
+      <dl>
+        <dt>备案号：</dt>
+        <dd>
+          <input name="setting[site_icp]" type="text" value="{$site_icp}" />
+          <p class="tips">例如：京ICP备04000001号</p>
+        </dd>
+      </dl>
+      
+      <dl>
+        <dt>客服电话：</dt>
+        <dd>
+          <input type="text" name="setting[service_tel]"  value="{$service_tel}" class="w250" />
+        </dd>
+      </dl>
+      <dl>
+        <dt>客服QQ：</dt>
+        <dd>
+          <input type="text" name="setting[service_qq]" value="{$service_qq}" />
+        </dd>
+      </dl>
+      <dl>
+        <dt>客服email：</dt>
+        <dd>
+          <input type="text" name="setting[service_email]"  value="{$service_email}" />
+        </dd>
+      </dl>
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><input type="submit"  value="提 交" class="btn submit-btn" /></dd>
+      </dl>
+    </form>
+  </div>
+  <!--END 编辑表单--> 
+
+
+<include file="../Public/footer" />

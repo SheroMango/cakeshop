@@ -1,0 +1,97 @@
+<include file="../Public/header" />
+  <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li><a href="javascript:void(0)" class="current">订单详情</a></li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+  
+  <!--编辑表单 BEGIN-->
+  <div class="edit">
+    <form action="{:U('admin/global/doEditPage')}" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="id" value="{$pageInfo[id]}" />
+      
+      <table width="90%" border="0" cellspacing="0" cellpadding="0">
+        <!--startprint-->
+        <tr height="30px;">
+          <td>订单号：{$orderInfo[order_sn]}</td>
+          <td>商品分类：{$orderInfo[type_id]}</td>
+          <td>商品名称：{$goodsInfo[name]}</td>
+          <td>数量：{$orderInfo[goods_number]}</td>
+          <td>商品价格：{$orderInfo[goods_price]}</td>
+        </tr>
+        <tr height="30px;">
+          <td>订购人：{$orderInfo[order_name]}</td>
+          <td>订购人手机号：{$orderInfo[order_mobile]}</td>
+          <td>订购人地址：{$orderInfo[order_address]}</td>
+          <td>订单价格：{$orderInfo[order_total]}</td>
+          <td>订单状态：{$orderInfo[orderstatus]}</td>
+        </tr>
+        <tr height="30px;">
+          <td>收货人：{$orderInfo[consignee_name]}</td>
+          <td>收货人手机号：{$orderInfo[consignee_mobile]}</td>
+          <td>收获地址：{$orderInfo[consignee_district]}{$orderInfo[consignee_address]}</td>
+          <td>送达时间：{$orderInfo[arrive_time]}</td>
+          <td>定制语：{$orderInfo[custom_lang]}</td>
+        </tr>
+        <tr height="30px;">
+          <td>补充说明：{$orderInfo[postscript]}</td>
+          <td>支付方式：{$orderInfo[pay_type]}</td>
+          <td>支付时间：{$orderInfo[pay_time]}</td>
+          <td>支付状态：{$orderInfo[pay_status]}</td>
+          <td>订单创建时间：{$orderInfo[ctime]}</td>
+        </tr>
+        <!--endprint-->
+        <tr>
+        <td colspan="3"><a class="btn submit-btn" target="_blank" href="{:U('Admin/Order/doPrint', array('id'=>$orderInfo[id]))}">打印</a></td>
+          <td align="right" colspan="2">
+            <?php
+              $order_status = $orderInfo['order_status'];
+              $id = $orderInfo['id'];
+              switch ($order_status) {
+                case '0':
+                  echo '<a class="btn submit-btn" href="'.U('Admin/Order/orderStatus', array('order_status'=>1, 'id'=>$id)).'">确认</a>&nbsp;&nbsp';
+                  break;
+                case '1':
+                  echo '<a class="btn submit-btn" href="'.U('Admin/Order/orderStatus', array('order_status'=>2, 'id'=>$id)).'">发货</a>&nbsp;&nbsp';
+                  break;
+                case '2':
+                  echo '<a class="btn submit-btn" href="'.U('Admin/Order/orderStatus', array('order_status'=>3, 'id'=>$id)).'">完成</a>&nbsp;&nbsp';
+                  break;
+                case '3':
+                  echo '<a class="btn submit-btn" href="javascript:void(0);">已完成</a>&nbsp;&nbsp';
+                  break;
+                default:
+                  echo '<a class="btn submit-btn" href="javascript:void(0);">已取消</a>&nbsp;&nbsp';
+                  break;
+              }
+            ?>
+        </td>
+          <if condition="$orderInfo['order_status'] eq 7">
+          
+          <else />
+            <td colspan="3"><a class="btn submit-btn" href="{:U('Admin/Order/orderStatus', array('order_status'=>7, 'id'=>$orderInfo['id']))}">取消</a></td>
+          </if>
+        </tr>
+      </table>
+      
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd></dd>
+      </dl>
+    </form>
+  </div>
+  <!--END 编辑表单-->
+
+
+<include file="../Public/footer" />
+
+
+<!--编辑器 BEGIN-->
+<script type="text/javascript" src="__JS__/other/editor/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__JS__/other/editor/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+UE.getEditor('content');
+</script>
+<!--END 编辑器-->

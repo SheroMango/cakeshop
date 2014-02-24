@@ -1,0 +1,35 @@
+<include file="../Public/header" />
+<include file="../Public/navigation" />
+<!--内容开始-->
+<div class="container index product pb50">
+	<empty name="arrList">
+	<div>
+	<p>您的订单为空哦，去首页逛逛吧</p>
+	</div>
+	<else />
+  <volist name="arrList" id="arr">
+  <div class="list clearfix row my-list">
+    <div class="col-xs-4 tc">
+        <a class="thumbnail" href="{$arr.goods.url_cake}"><img class="img-responsive" src="{$arr.goods.pic_name}"></a>
+    </div>        
+    <div class="col-xs-8">
+        <h4><a href="{$arr.goods.url_cake}">{$arr.goods.name}</a></h4>
+      <p>{$arr.goods.tag}{$arr.goods.brief}</p>
+      <p><span>￥{$arr.goods.price}</span>
+      <p>订单状态：{$arr.order_status_name}</p>
+      <p>支付方式：{$arr.pay_type_name}</p>
+      <p>购买时间：{$arr.ctime_text}</p>
+        <a class="btn-sm btn-primary fr" role="button"  href="{:U('Home/Order/orderDetail', array('id'=>$arr[id]))}">查看详情</a>
+	<a class="btn-sm btn-success fr" role="button" href="{:U('Home/Order/orderStatus', array('id'=>$arr[id]))}">查看进度</a>
+      </p>
+    </div>
+  </div>
+  </volist>
+
+    <ul class="page mt30">
+      <li class="fl btn btn-default"><a href="#">{$pageHtml}</a></li>
+    </ul>
+  </empty>
+</div>
+<!--内容结束-->	
+<include file="../Public/footer" />

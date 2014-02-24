@@ -1,0 +1,27 @@
+<include file="../Public/header" /> 
+<include file="../Public/navigation" />
+<!--内容开始-->
+<div class="container pb50">
+ <ul class="personal mt30">
+  <li><a href="{:U('Home/User/editInfo')}">基本资料<em>&gt;</em></a></li>
+  <li><a href="{:U('Home/User/editPassword')}">修改密码<em>&gt;</em></a></li>
+  <li><a href="{:U('Home/Order/ls')}">我的订单<em>&gt;</em></a></li>
+  <li><a onclick="logout()" href="###">退出登录<em>&gt;</em></a></li>
+ </ul>
+</div>
+<!--内容结束-->
+<script>
+function logout(){
+$.post("{:U('Home/User/logout')}", '', function(data){
+	$("#message").addClass("alert-" + data['status']);
+	$("#message").html(data['content']);
+	$("#message").fadeIn("slow");
+	window.setTimeout('$("#message").fadeOut("slow")', 2000);
+	if(data['status'] == 'success'){
+		url = "{:U('Home/Index/index')}";
+		window.setTimeout("window.location.href='" + url + "'", 2300);
+	}
+}, 'json')
+}
+</script>
+<include file="../Public/footer" />

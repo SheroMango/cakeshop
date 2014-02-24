@@ -1,0 +1,31 @@
+<include file="../Public/header" />
+
+
+<!--页面标题 BEGIN-->
+<div class="tabs">
+  <ul>
+    <li><a href="javascript:void(0)" class="current">添加广告位</a></li>
+  </ul>
+</div>
+<!--END 页面标题-->
+
+<!--编辑表单 BEGIN-->
+<div class="edit">
+  <form action="{:U('Admin/Ad/doAddPosition')}" method="post">
+  <dl>
+    <dt>名称：</dt>
+    <dd><input type="text" name="position[name]" /></dd>
+  </dl>
+  <dl>
+    <dt>描述：</dt>
+    <dd><textarea type="text" name="position[desc]" style="width:400px; height:80px;"/></textarea></dd>
+  </dl>
+  <dl>
+    <dt>&nbsp;</dt><dd><input type="submit" class="btn submit-btn" value="确定" /></dd>
+  </dl>
+  </form>
+</div>
+<!--END 编辑表单-->
+  
+
+<include file="../Public/footer" />

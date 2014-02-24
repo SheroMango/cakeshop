@@ -1,0 +1,56 @@
+<include file="../Public/header" />
+<div class="so_main">
+
+
+   <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li><a href="javascript:void(0)" class="current">支付宝</a></li>
+      <li><a href="javascript:void(0)">财富通</a></li>
+      <li><a href="javascript:void(0)">网银在线</a></li>
+      <li><a href="javascript:void(0)">快钱</a></li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+  
+  <div class="edit">
+    <form method="post" action="{:U('admin/Global/doEditSetting')}" enctype="multipart/form-data">
+      <dl>
+        <dt>收款账号：</dt>
+        <dd>
+          <input name="setting[alipay_seller_email]" type="text" value="{$alipay_seller_email}" class="w200" />
+          <p class="tips">签约支付宝账号或卖家支付宝帐户</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>Partner：</dt>
+        <dd>
+          <input type="text" name="setting[alipay_partner]" value="{$alipay_partner}" />
+          <p class="tips">支付宝分配的合作者身份ID，以2088开头的16位纯数字</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>KEY：</dt>
+        <dd>
+          <input type="text" name="setting[alipay_key]"  value="{$alipay_key}" class="w300">
+          <p class="tips">支付宝分配的交易安全校验码，以数字和字母组成的32位字符</p>
+        </dd>
+      </dl>
+      <!--
+      <dl>
+        <dt>即时到账：</dt>
+        <dd>
+          <input type="radio" name="setting[alipay_direct]"  value="1" /><label>是</label>
+          <input type="radio" name="setting[alipay_dierct]"  value="0" /><label>否</label>
+          <p>与支付宝签约的接口类型</p>
+        </dd>
+      </dl>
+      -->
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><input type="submit"  value="提 交" class="btn submit-btn"/></dd>
+      </dl>
+    </form>
+  </div>
+</div>
+<include file="../Public/footer" />

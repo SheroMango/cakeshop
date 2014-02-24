@@ -1,0 +1,48 @@
+<include file="../Public/header" /> 
+<include file="../Public/navigation" />
+
+<div class="container">
+
+    <!--商品详情头部导航栏-->
+    <include file="../Public/goodsnavigation" />
+    <!--商品详情头部导航栏-->
+    
+    <!--评论列表-->
+    <ul class="product-evaluate pb50">
+        <empty name="commentList">
+            <li><p>您所查看的商品暂时还没有任何评论哦</p></li>
+        <else />
+        <volist name="commentList" id="vo">
+            <li>
+            <p>{$vo.user_name}<div class="stars fr" id="star{$vo[id]}" >
+
+                <!--五角星-->
+                <script>
+                    var count = "{$vo[rank]}";
+                    var id = "{$vo[id]}";
+ 
+                    var data = '';
+                    for (var i=0; i<count; i++){
+                        data += "<span class='glyphicon glyphicon-star mr5'></span>";
+                    }
+                    $("#star"+id).html(data);
+                </script>
+                <!--五角星-->
+
+            
+			</div>
+			</p>
+                <p>{$vo.content}</p>
+                <p class="posted">{$vo.ctime_text}</p>
+            </li>
+        </volist>
+        </empty>
+    </ul>
+    <!--评论列表-->
+
+</div>
+<include file="../Public/footer" />
+<style>
+ 
+.glyphicon-star{ color:#F65648; font-size:20px; }
+</style>

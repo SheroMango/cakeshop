@@ -1,0 +1,82 @@
+<include file="../Public/header" />
+  
+  <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li><a href="javascript:void(0)" class="current">邮件设置</a></li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+  
+  <!--编辑表单 BEGIN-->
+  <div class="edit">
+    <form method="post" action="{:U('admin/Global/doEditSetting')}">
+      <dl>
+        <dt>SMTP地址：</dt>
+        <dd>
+          <input type="text" name="setting[email_smtp_host]" value="{$email_smtp_host}"/> 
+          <p class="tips">如:smtp.qq.com</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>SMTP端口：</dt>
+        <dd>
+          <input type="text" name="setting[email_smtp_port]" value="{$email_smtp_port}" class="w50" /> 
+          <p class="tips">一般为25</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>邮箱地址：</dt>
+        <dd>
+          <input type="text" name="setting[email_smtp_email]" value="{$email_smtp_email}"/> 
+          <p class="tips">发送邮件的邮箱地址</p>
+        </dd>
+      </dl> 
+      <dl>
+        <dt>邮箱密码：</dt>
+        <dd>
+          <input type="text" name="setting[email_smtp_pass]" value="{$email_smtp_pass}"/> 
+          <p class="tips">发送邮箱的密码</p>
+        </dd>
+      </dl>   
+      <dl>
+        <dt>发送者姓名：</dt>
+        <dd>
+          <input type="text" name="setting[email_sender_name]" value="{$email_sender_name}"/> 
+          <p class="tips">收件人看到的发送者姓名</p>
+        </dd>
+      </dl>  
+      <dl>
+        <dt>发送者邮箱：</dt>
+        <dd>
+          <input type="text" name="setting[email_sender_email]" value="{$email_sender_email}"/> 
+          <p class="tips">收件人看到的发送者邮箱</p>
+        </dd>
+      </dl> 
+      <!--发送测试 BEGIN-->
+      <dl>
+        <dt>测试邮箱：</dt>
+        <dd>
+          <input type="text" class="mr10"/>
+          <input type="button" value="发送测试邮件" onclick="sendtestemail();" class="btn submit-btn" style="height:22px; padding:0 5px;" />
+        </dd>
+      </dl>
+      <!--END 发送测试-->
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><input type="submit" value="提 交" class="btn submit-btn"/></dd>
+      </dl>
+    </form>
+  </div>
+  <!--END 编辑表单--> 
+  
+
+<include file="../Public/footer" />
+
+
+<!--发送测试 BEGIN->        
+<script type="text/javascript">
+
+
+</script>
+<!--END 发送测试-->  

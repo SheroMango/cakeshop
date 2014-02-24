@@ -1,0 +1,75 @@
+<include file="../Public/header" />
+
+  <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li><a href="javascript:void(0)" class="current">添加品牌</a></li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+  
+  <!--编辑表单 BEGIN-->
+  <div class="edit">
+    <form action="{:U('admin/Brand/doEditBrand')}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="page[id]" value="{$brandInfo[id]}" />
+      <dl>
+        <dt>品牌名称：</dt>
+        <dd><input type="text" name="page[name]" value="{$brandInfo[name]}" class="w300"/></dd>
+      </dl>
+      <dl>
+        <dt>品牌分类：</dt>
+        <dd>
+        	<select name="page[type_id]">
+        		<volist name="typeList" id="type">
+        		<if condition="$brandInfo[type_id] eq $type[id]">
+        		<option value="{$type[id]}" selected="selected">{$type[ty_name]}</option>
+        		<else />
+        		<option value="{$type[id]}">{$type[ty_name]}</option>
+        		</if>
+        		</volist>
+        	</select>
+        </dd>
+      </dl>
+      <dl>
+        <dt>品牌图片：</dt>
+        <dd>
+        	<img src="__ATTACH__/{$brandInfo[pic]}" width="100" height="80" /><input type="file" name="img" />
+        </dd>
+      </dl>
+      <dl>
+        <dt>品牌描述：</dt>
+        <dd>
+        	<textarea id="content" name="page[brand_desc]" style="width:700px; height:250px;">{$brandInfo[desc]}</textarea>
+        </dd>
+      </dl>
+      <dl class="cb">
+        <dt>排序：</dt>
+        <dd>
+          <input type="text" name="page[display_order]" value="{$brandInfo[display_order]}" class="w100" />
+          <p class="tips">数字越小越靠前</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>显示状态：</dt>
+        <dd>
+          <input type="radio" id="status-yes" name="page[display_status]" value="1" <eq name="brandInfo[display_status]" value="1">checked="checked"</eq> /> <label for="status-yes">显示</label>&nbsp;&nbsp;
+          <input type="radio" id="status-no" name="page[display_status]" value="0" <eq name="brandInfo[display_status]" value="0">checked="checked"</eq> /> <label for="status-no">不显示</label>
+        </dd>
+      </dl>
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><input type="submit"  value="提 交" class="btn submit-btn" /></dd>
+      </dl>
+    </form>
+  </div>
+  <!--编辑表单 BEGIN-->
+
+<include file="../Public/footer" />
+
+<!--编辑器 BEGIN-->
+<script type="text/javascript" src="__JS__/other/editor/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__JS__/other/editor/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+UE.getEditor('content');
+</script>
+<!--END 编辑器-->

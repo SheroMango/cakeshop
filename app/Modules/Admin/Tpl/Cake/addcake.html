@@ -1,0 +1,256 @@
+<include file="../Public/header" />
+
+  <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li class="current"><a href="javascript:void(0)" onclick="document.getElementById('goods_info').style.display = '';document.getElementById('goods_desc').style.display = 'none';document.getElementById('goods_pic').style.display = 'none';">基本信息</a></li>
+      <li><a href="javascript:void(0)" onclick="document.getElementById('goods_info').style.display = 'none';document.getElementById('goods_desc').style.display = '';document.getElementById('goods_pic').style.display = 'none';">属性信息</a></li>
+      <li><a href="javascript:void(0)" onclick="document.getElementById('goods_info').style.display = 'none';document.getElementById('goods_desc').style.display = 'none';document.getElementById('goods_pic').style.display = '';">商品图片</a></li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+  
+  <!--编辑表单 BEGIN-->
+  <div class="edit">
+    <form action="{:U('admin/Cake/doAddCake')}" method="post" enctype="multipart/form-data">
+      <div id="goods_info">
+      <dl>
+        <dt>名称：</dt>
+        <dd><input type="text" name="page[name]" class="w300"/></dd>
+      </dl>
+      <dl>
+        <dt>品牌：</dt>
+        <dd>
+			<select name="page[brand_id]">
+				<volist name="brandList" id="brand">
+				<option value="{$brand[id]}">{$brand[name]}</option>
+				</volist>
+			</select>
+		</dd>
+      </dl>
+      <dl>
+        <dt>价格：</dt>
+        <dd>
+        	最低价格： <input type="text" name="page[price]" class="w50" />元
+        </dd><br />
+        <dd>
+        	<table id="tabsize" border="0" style="float: left" width="500px;">
+		       <tr>
+		       		<td><a href="javascript:;" id="addSize">[+]</a></td>
+		            <td>尺寸:</td>
+		            <td><input type="text" name="size[size0]" /></td>
+		            <td>增加价格:</td>
+		            <td><input type="text" name="size[price0]" /></td>
+		       </tr>
+		    </table>
+        </dd>
+      </dl>
+      <dl>
+        <dt>描述：</dt>
+        <dd>
+        	<textarea name="page[desc]" style="width:300px; height:70px;"></textarea>
+        	<p class="tips">在商品详情页显示！</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>标签：</dt>
+        <dd>
+        	<input type="text" name="page[tag]" class="w300"/>
+        	<p class="tips">在商品列表页显示；格式为：[标签文字][标签文字]...</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>简短描述：</dt>
+        <dd>
+        	<textarea name="page[brief]" style="width:300px; height:70px;"></textarea>
+        	<p class="tips">在商品列表页显示！</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>折扣：</dt>
+        <dd>
+        	<input type="text" name="page[discount]" class="w50" value="100" />
+        	<p class="tips">1-100,数字越小，折扣越多，100为不打折！</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>优惠描述：</dt>
+        <dd>
+        	<textarea name="page[discount_desc]" style="width:300px; height:100px;"></textarea>
+        	<p class="tips">在商品详情页显示</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>商品库存：</dt>
+        <dd>
+        	<input type="text" name="page[number]" class="w50" />
+        </dd>
+      </dl>
+      <dl>
+        <dt>商品图片：</dt>
+        <dd>
+        	<input type="file"  name="image1">
+        </dd>
+      </dl>
+      <dl>
+        <dt>显示状态：</dt>
+        <dd>
+          <input type="radio" id="status-yes" name="page[status]" value="1" checked="checked"/> <label for="status-yes">显示</label>&nbsp;&nbsp;
+          <input type="radio" id="status-no" name="page[status]" value="0" /> <label for="status-no">不显示</label>
+        </dd>
+      </dl>
+      <dl>
+        <dt>是否在首页显示：</dt>
+        <dd>
+          <input type="radio" id="status-yes" name="page[is_index]" value="1" checked="checked"/> <label for="status-yes">是</label>&nbsp;&nbsp;
+          <input type="radio" id="status-no" name="page[is_index]" value="0" /> <label for="status-no">否</label>
+        </dd>
+      </dl>
+      <dl>
+        <dt>是否vip定做：</dt>
+        <dd>
+          <input type="radio" id="status-yes" name="page[is_vip]" value="1" checked="checked"/> <label for="status-yes">是</label>&nbsp;&nbsp;
+          <input type="radio" id="status-no" name="page[is_vip]" value="0" /> <label for="status-no">否</label>
+        </dd>
+      </dl>
+      </div>
+      
+      <div id="goods_desc" style="display: none">
+      <dl>
+        <dt>材料：</dt>
+        <dd>
+        	<textarea style="width: 300px; height: 50px;" name="attr[cl]"></textarea>
+        </dd>
+      </dl>
+      <dl>
+        <dt>保质期：</dt>
+        <dd>
+        	<textarea style="width: 300px; height: 50px;" name="attr[bzq]"></textarea>
+        </dd>
+      </dl>
+      <dl>
+        <dt>口味：</dt>
+        <dd>
+        	<textarea style="width: 300px; height: 50px;" name="attr[kw]"></textarea>
+        </dd>
+      </dl>
+      <dl>
+        <dt>贮藏条件：</dt>
+        <dd>
+        	<textarea style="width: 300px; height: 50px;" name="attr[zctj]"></textarea>
+        </dd>
+      </dl>
+      <dl>
+        <dt>食用人数：</dt>
+        <dd>
+        	<textarea style="width: 300px; height: 50px;" name="attr[syrs]"></textarea>
+        </dd>
+      </dl>
+      </div>
+      
+      <div id="goods_pic" style="display: none">
+      <dl>
+        <dt>商品详情图片：</dt>
+        <dd>
+        	<table id="tab" border="1" style="float: left" width="600px;">
+		       <tr>
+		       		<td><a href="javascript:;" id="addImg">[+]</a></td>
+		            <td>图片描述:</td>
+		            <td><input type="text" name="pic[desc2]" /></td>
+		            <td>文件上传:</td>
+		            <td><input type="file"  name="image2"></td>
+		       </tr>
+		    </table>
+        </dd>
+      </dl>
+      </div>
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><input type="submit"  value="提 交" class="btn submit-btn" /></dd>
+      </dl>
+    </form>
+  </div>
+  <!--编辑表单 BEGIN-->
+<include file="../Public/footer" />
+
+<!--编辑器 BEGIN-->
+<script type="text/javascript" src="__JS__/other/editor/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__JS__/other/editor/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+UE.getEditor('content');
+</script>
+<!--END 编辑器-->
+<script>
+$(function(){
+  $('.content .tabs ul li').click(function(){
+  	$(this).addClass('current');
+  	$(this).siblings('li').removeClass('current');
+  });	
+	
+})	
+	
+</script>
+<script>  
+
+ $(document).ready(function(){
+	
+	//增加<tr/>
+	$("#addImg").click(function(){
+		var _len = $("#tab tr").length+2;        
+		$("#tab").append("<tr id="+_len+">"
+							+"<td><a href=\'#\' onclick=\'deltr("+_len+")\'>[-]</a></td>"
+							+"<td>图片描述:</td>"
+							+"<td><input type='text' name='pic[desc"+_len+"]' id='desc"+_len+"' /></td>"
+							+"<td>文件上传:</td>"+"<td><input type='file' name='image"+_len+"' /></td>"
+						+"</tr>");            
+	})
+	//增加尺寸
+	$("#addSize").click(function(){
+		var _len = $("#tabsize tr").length;        
+		$("#tabsize").append("<tr id="+_len+">"
+							+"<td><a href=\'#\' onclick=\'delsize("+_len+")\'>[-]</a></td>"
+							+"<td>尺寸:</td>"
+							+"<td><input type='text' name='size[size"+_len+"]' id='sizedesc"+_len+"' /></td>"
+							+"<td>增加价格:</td>"+"<td><input type='text' name='size[price"+_len+"]' /></td>"
+						+"</tr>");            
+	})    
+})
+
+//删除<tr/>
+var deltr =function(index)
+{
+	var _len = $("#tab tr").length;
+	$("tr[id='"+index+"']").remove();//删除当前行
+	for(var i=index+1,j=_len;i<j;i++)
+	{
+		var nextTxtVal = $("#desc"+i).val();
+		$("tr[id=\'"+i+"\']")
+			.replaceWith("<tr id="+(i-1)+">"
+							+"<td><a href=\'#\' onclick=\'deltr("+(i+1)+")\'>[-]</a></td>"
+							+"<td>图片描述:</td>"
+							+"<td><input type='text' name='pic[desc"+(i+1)+"]' value='"+nextTxtVal+"' id='desc"+(i+1)+"'/></td>"+"<td>文件上传:</td>"
+							+"<td><input type='file' name='image"+(i+1)+"' /></td>"
+						+"</tr>");
+	}    
+	
+}
+//删除size
+var delsize =function(index)
+{
+	var _len = $("#tabsize tr").length;
+	$("tr[id='"+index+"']").remove();//删除当前行
+	for(var i=index+1,j=_len;i<j;i++)
+	{
+		var nextTxtVal = $("#sizedesc"+i).val();
+		$("tr[id=\'"+i+"\']")
+			.replaceWith("<tr id="+(i-1)+">"
+							+"<td><a href=\'#\' onclick=\'deltr("+(i-1)+")\'>[-]</a></td>"
+							+"<td>尺寸:</td>"
+							+"<td><input type='text' name='size[size"+(i-1)+"]' value='"+nextTxtVal+"' id='desc"+(i-1)+"'/></td>"+"<td>增加价格:</td>"
+							+"<td><input type='text' name='size[price"+(i-1)+"]' /></td>"
+						+"</tr>");
+	}    
+	
+}
+
+</script>  

@@ -1,0 +1,103 @@
+<include file="../Public/header" />
+<include file="../Public/navigation" />
+<!--内容开始-->
+<form action="{:U('Home/Order/doOrderAdd')}" method="post" id="form" onsubmit="return doAddOrder()">
+<div class="container pb50">
+  <div class="write-order">
+    <p>您将预订:</p> 
+    <p>{$orderInfo[goods_name]}*{$orderInfo[num]}<em>￥{$orderInfo[price]}元/{$orderInfo[size]}</em></p>
+  </div>
+  <!--<div class="write-order"> 
+    <p>收货信息:</p>
+    <textarea class="form-control" name="order[address]" ></textarea>
+  </div>-->
+  <div class="write-order">  
+    <p>订购人:</p>
+      <input class="form-control mb10" name="order[order_name]" type="text" placeholder="请填写订购人姓名" class="form-control">
+      <input class="form-control mb10" name="order[order_mobile]" type="text" placeholder="请填写订购人手机号码" class="form-control">
+    <p><span>请填写“订购人”的联系方式，非“收货人“，方便客服联系您确认订单。</span></p>
+    <p>收货人:</p>
+      <input class="form-control mb10" name="order[consignee_name]" type="text" placeholder="请填写收货人姓名" class="form-control">
+      <input class="form-control mb10" name="order[consignee_mobile]" type="text" placeholder="请填写手机号码" class="form-control">
+      <div class="row mt10">
+         <div class="col-xs-4 phone"><span class="form-control">南宁市</span></div>
+         <div class="col-xs-8"><select class="form-control" placeholder="点击选择配送范围" name="order[consignee_district]" />
+                 <option value="青秀区">青秀区</option>
+                 <option value="兴宁区">兴宁区</option>
+                 <option value="江南区">江南区</option>
+                 <option value="西乡塘区">西乡塘区</option>
+                 <option value="良庆区">良庆区</option>
+                 <option value="邕宁区">邕宁区</option>
+                 <option value="五象新区">五象新区</option>
+                 <option value="武鸣县">武鸣县</option>
+                 <option value="横县">横县</option>
+                 <option value="宾阳县">宾阳县</option>
+                 <option value="上林县">上林县</option>
+                 <option value="隆安县">隆安县</option>
+                 <option value="马山县">马山县</option>
+         </select></div>    
+       </div>
+       <input class="form-control mt10" type="text" placeholder="请填写详细地址" class="form-control" name="order[consignee_address]" />
+       <p class="mt10 f12 color-999">请填写详细地址（例：**路**小区**楼**单元***），为了避免系统计算运费出错，请不要有错误字<p>
+  <div class="write-order"> 
+    <p>送达时间:</p>
+    <input class="form-control" type="date" placeholder="选择送达时间" class="form-control" name="order[arrive_time]" />
+    <p><span>最早12月12日11：00左右可以送达，由于当天制作需要时间，强烈建议至少提前一天以上预订。</span></p>
+  </div>
+  <div class="write-order">   
+    <p>餐具和蜡烛:</p>
+    <p><span>赠送5套餐具，送蜡烛，有定制语</span></p>
+    <input class="form-control" type="text" placeholder="请填写定制语" class="form-control" name="order[custom_lang]" />
+    <p><span>另加餐具请于客服联系。附赠蜡烛可选择花型或者数字蜡烛，默认为
+数字蜡烛。免费赠送巧克力牌一个，固定文字为“生日快乐”</span></p>
+  </div>
+  <div class="write-order">
+    <p>支付方式:</p>
+    <label>
+     <input type="radio" name="order[pay_type]" id="optionsRadios1" value="0" checked>
+          在线支付
+    </label>
+    <label>
+     <input type="radio" name="order[pay_type]" id="optionsRadios1" value="1" checked>
+          货到付款
+    </label>
+    <p><span>使用在线支付享受9.5折优惠！一天以上预订。</span></p>
+  </div>
+  <div class="write-order">  
+    <p>订单备注:</p>
+    <input class="form-control mb20" type="text" placeholder="如有特别要求，请留言，客服会视情况处理。" name="order[postscript]" />
+    <p>商品金额：<em>{$orderInfo[sumprice]}元</em></p>
+    <p>优惠：<em>-{$orderInfo[discount]}元</em></p>
+  </div>
+  <input name="goods[goods_price]" value="{$orderInfo[price]}" type="hidden" />
+  <input name="order[order_total]" value="{$orderInfo[sumprice]}" type="hidden" />
+  <input name="goods[goods_number]" value="{$orderInfo[num]}" type="hidden" />
+  <input name="goods[goods_id]" value="{$orderInfo[goods_id]}" type="hidden" />
+  <div class="write-order">
+    <p>总计：<em class="color-red">{$orderInfo[sumdiscount]}元</em> </p>
+    <input type="submit" class="btn btn-warning btn-lg btn-block mt30" value="提交订单">
+  </div>
+
+
+
+</div>
+</form>
+<script>
+function doAddOrder(){
+	$.post("{:U('Home/Order/doOrderAdd')}", $("#form").serialize(), function(data){
+			$("#message").addClass('alert-'+data['status']);
+			$("#message").html(data['content']);
+			$("#message").fadeIn("slow");
+			window.setTimeout('$("#message").fadeOut("slow")', 2000);
+            alert = "alert-" + data['status'];
+            window.setTimeout('$("#message").removeClass(alert)', 2500);
+			url = data['url'];
+			window.setTimeout('window.location.href=url', 2500);
+			},
+		'json'
+		)
+	return false;
+}
+</script>
+<!--内容结束--> 
+<include file="../Public/footer" />

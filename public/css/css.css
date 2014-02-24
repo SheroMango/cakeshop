@@ -1,0 +1,236 @@
+/*重用样式*/
+.hgauto{height: auto;overflow: hidden;}  /*高度自适应*/
+.fl-left{float: left;}                   /*左浮动*/
+.fl-right{float: right;}                 /*右浮动*/
+.lnhg{line-height:2;}                    /*行高为2磅*/
+.pd-top{padding-top: 60px;}
+.color-red{color: #f52828;}
+.color-notice{color: #e46254;}
+.color-gray{color: #6f6e6e;}
+.tc{text-align: center;}
+.clear-b{clear: both;height:1px;}
+.ft20{font-size: 20px;}
+
+/*基本样式*/
+#top{background: #f65648;text-align: center;line-height: 80px;}
+#header,#content{width: 600px;margin:0 auto;}
+#header .back-btn,#header .home-btn{height: 80px;background: url(../images/common/header-sprite.png) no-repeat top left;}
+#header .back-btn{background-position: 0 center;width: 55px;}
+#header .home-btn{background-position: -60px center;width: 54px;}
+#header .product-filter{margin-top: 30px;background: url(../images/product/filter-arrow.png);width: 28px;height: 28px;}
+#header a.address{display: block;background: url(../images/product/address-arrow.png) no-repeat left center;width: 100px;height: 80px;line-height: 80px;color: #fff;}
+#header h1{color: #fff;font-size:150%;}
+#bot{width: 600px;margin: auto;}
+a{color: #000;}
+/*常见问题模块*/
+div ul.faq{padding:0;}
+div ul.faq li{padding: 20px 15px;background: #fff;margin-bottom: 10px;}
+div ul.faq li h1{font-size: 120%;font-weight: bold;margin-bottom: 10px;}
+
+/*按钮样式*/
+div ul li input.okbtn{width: 602px;height: 74px;background:url(../images/common/commonbtn.png) no-repeat left top;text-align: center;color: #fff;font-size:150%;padding: 0;margin-top:30px;border:0;}
+
+/*个人用户模块-登陆*//*个人用户模块-注册*//*个人用户模块-手机验证*//*个人中心*//*通过手机重置密码*/
+
+/*注册*//*通过手机修改密码*/
+div ul.reg li,div ul.byphone li,div ul.byemail li{margin-bottom: 50px;}
+div ul.reg li h1,div ul.byphone li h1{width: 94px;height: 60px;line-height: 60px;text-align: center;background: #dfdfdf;font-size: 150%;color: #9f9f9f;}
+div ul.reg li input.telphone,div ul.byphone li input.telphone{width: 470px;height: 48px;line-height:60px;padding:5px 10px;border: 1px solid #ccc;margin-left: 14px;}
+div ul.reg li a{color: #f65648;}
+/*手机验证*/
+div ul.check li{margin-bottom: 20px;}
+div ul.check li p{font-size:110%;color:#646363;}
+div ul.check li h2{width: 148px;height: 71px;line-height: 71px;text-align: center;font-size: 120%;color:#7f7f7f;background: url(../images/user/checkbg.png);}
+div ul.check li input.checknum{width: 430px;height: 61px;line-height: 71px;padding: 5px;border: 1px solid #ccc;margin-right: 10px;}
+div ul.check li input.checkbtn{margin-top: 80px;background-position: left -75px;}
+/*个人中心*/
+div ul.personal{width: 600px;height: 267px;background: url(../images/user/personalbg.png);}
+div ul.personal li{height: 89px;line-height: 89px;padding-left: 50px;border-bottom: 2px solid #aaa;background: url(../images/user/personalarrow.gif) no-repeat center right;}
+div ul.personal li.nobt,div ul.datachange li.nobt,div ul.detail li.nobt{border-bottom: none;}
+div ul.personal li a{color: #969696;font-size: 150%;display: block;}
+
+/*修改资料*/
+div .avatar{padding: 15px 0;height: 170px;background: #f2f2f2; }
+div .avatar a{display: block;width: 140px;height: 140px;background: url(../images/user/avatarimg.gif);margin: auto;border: 2px solid #fff;}
+div ul.datachange{padding:0 20px;background: #fff;}
+div ul.datachange li{background: #fff;height: 80px;line-height: 80px;border-bottom: 1px solid #ccc;}
+div ul.datachange li h2{margin: 0 30px 0 30px;font-size: 140%;color: #7c7c7c;float: left;}
+div ul.datachange li input.changename,div ul.datachange li input.changebirth{height: 78px;line-height: 78px;width: 80%;}
+div ul.datachange li p{font-size: 120%;line-height: 83px;color: #7c7c7c;}
+div ul.datachange li.select a{margin-top: 25px;}
+
+/*修改头像*/
+#black-avatar,#black-psw{width: 640px;position: absolute;top: 80px;left: 0;background: url(../images/user/changeavatar.png);}
+#black-avatar{height: 600px;}
+#upload{position: absolute;left:0;top:680px;background: url(../images/user/uploadavatar.gif) no-repeat center;background-color: #fff;display: block;width: 640px;height: 100px;}
+
+/*忘记密码*/
+#changepsw{width: 640px;height: 412px;background: url(../images/user/forgot-bg.gif) repeat-x;position: absolute;left: 0;top:480px;}
+#black-psw{height:400px;}
+#changepsw ul{margin: auto;width: 560px;padding-top: 40px;}
+#changepsw ul li{margin-top: 20px;}
+#changepsw ul li input{width: 560px;height: 90px;line-height: 90px;text-align: center;font-size: 25px;background: url(../images/user/btn-sprite.png) no-repeat left top;}
+#changepsw ul li input.backbtn{background-position:left -120px;color: #fff;}
+
+/*登陆*//*修改密码*//*通过邮箱修改密码*/
+div ul.user-input li{margin-bottom: 30px;}
+div ul.user-input li h1{float: left;color: #888;font-size: 140%;background: #fff;height: 60px;width: 120px;line-height: 60px;padding-left: 20px;}
+div ul.user-input li h1.short-title{width: 90px;}
+div ul.user-input li input{line-height: 60px;}
+div ul.user-input li input.ipt-login,div ul.user-input li input.ipt-email{width: 460px;height: 58px;padding-left: 30px;}
+div ul.user-input li input.ipt-change{width: 410px;padding-left: 30px;height: 58px;}
+div ul.user-input li.service a{color: #444;display: block;float: right;padding:30px 0 30px 50px;}
+
+/*订单模块*/
+#container{padding-bottom: 50px;background: #fff;}
+div ul.myorders,div ul.detail{width:600px;margin: auto;}
+
+/*我的订单*/
+div ul.myorders li{padding: 10px;border-bottom: 1px solid #ccc;}
+div ul.myorders li a.imgshow{display: block;width: 136px;height: 136px;margin-right: 50px;}
+div ul li ul.content li{border:0;}
+div ul li ul.content li a.title{color: #000;font-size:130%;}
+div ul li ul.content li span{color: #f65648;}
+div ul li ul.content li a.detail{color: #f65648;}
+
+/*订单详情*/
+div ul.detail li{padding:20px 0;border-bottom: 1px solid #ccc;margin-bottom: 10px;}
+div ul.detail li h1{font-size:120%;margin-bottom: 15px;}
+div ul.detail li p{margin-bottom: 10px;}
+div ul.detail li span{color: #f65648;}
+div ul.detail li p.price{font-size:120%;}
+div ul.detail li input{background-position: left -74px;}
+
+/*添加订单信息*//*收货信息*/
+div ul.addinfo li,div ul.receive li{margin-bottom: 30px;}
+div ul.addinfo li input,div ul.receive li input{padding-left: 10px;width: 588px;height: 58px;line-height: 58px;border: 1px solid #ccc;}
+div ul.addinfo li h1 a{display: block;width: 100px;height: 60px;line-height: 60px;text-align:center;font-size:140%;color: #6e6e6e;background: #dfdfdf;}
+div ul.addinfo li input.address{width: 470px;margin-left: 18px;height:56px;}
+div ul.addinfo li p{font-size:20px;color: #8b8b8b;}
+
+/*填写订单*/
+div ul.addorders li{padding: 15px 0;margin-bottom: 10px;border-bottom: 1px solid #ccc;height: auto;overflow: hidden;}
+div ul.addorders li h1{font-size: 130%;font-weight: 600;}
+div ul.addorders li span{float: right;}
+div ul.addorders li input{width:573px;padding-left:15px;height: 60px;line-height: 60px;border: 1px solid #ccc;}
+div ul.addorders li input.subbtn{width: 602px;height: 72px;background-position: left -75px;border:0;padding:0;}
+div ul.addorders li.select a,div ul.datachange li.select a{background: #fff;border: 2px solid #ccc;width: 100px;height: 30px;line-height: 30px;display: block;float:left;text-align: center;margin-right: 20px;}
+div ul.addorders li.select a.selected,div ul.datachange li.select a.selected{border: 2px solid #f52828;}
+div ul.addorders li p{margin-bottom: 10px;font-size: 16px;}
+div ul.addorders li p.product-name{font-size:20px;}
+
+/*商品展示*/
+div ul.filter{margin-bottom: 20px;}
+div ul.filter li a{display: block;float: left;width: 33%;height: 50px;line-height: 50px;text-align: center;border-bottom: 3px solid #ccc;color: #000;}
+div ul.filter li a.active{border-bottom: 3px solid #f65648;}
+div ul.product-show{width: 600px;margin:auto;}
+div ul.product-show li{width: 580px; height:136px;padding: 10px;border: 1px solid #ccc;margin-bottom: 15px;}
+div ul.product-show li a.img-show{display: block;width: 136px;height: 136px;position: relative;z-index: 0;}
+div ul.product-show li div.introduce{padding: 10px;margin-top: 10px;}
+div ul.product-show li div.introduce h1 a{font-size: 140%;color: #000;}
+div ul.product-show li div.introduce p{margin-top: 25px;font-size:20px;}
+div ul.product-show li div.discount{width: 68px;height: 69px;position: absolute;right: 0;bottom: 0;background: url(../images/product/discount.png);}
+.pagination{width: 410px;margin: auto;border: 1px solid #ccc;}
+.pagination ul li{float: left;text-align: center;width: 40px;line-height: 40px;border-left: 1px solid #ccc;}
+.pagination ul li.nobdl{border: 0;}
+.pagination ul li a{display: block;}
+.pagination ul li a.active{background: #ccc;}
+
+/*筛选*/
+#product-filter{width: 525px;height: 660px;background: #272623;position: absolute;top: 0;right: 0;z-index: 1;}
+#product-filter ul#current li{height: 50px;line-height: 50px;font-size: 130%;}
+#product-filter ul#current li a{padding-left: 10px;color: #7c7c7c;display: block;background-color: #2c2b2a;}
+#product-filter ul#current li h1{color: #fff;}
+#product-filter ul#current li h2{float: left;color: #fff;margin-right: 15px;}
+#product-filter ul#current li p{font-size: 16px;background: url(../images/product/pull-down.png) no-repeat right center;margin-right: 10px;}
+#product-filter p input.filterbtn{width: 364px;height: 61px;background: url(../images/product/filterbtn.gif);}
+
+/*蛋糕首页*/
+.cake-service ul{border-bottom: 1px solid #ccc;}
+.cake-service ul li{width: 33%;float: left;border-right: 1px solid #ccc;text-align: center;padding:20px 0;}
+.cake-service ul li a{display: block;background: url(../images/product/service-sprite.gif) no-repeat center top;padding-top: 90px;}
+.cake-service ul li a.flower-order{background-position: center -95px;}
+.cake-service ul li a.center{background-position: center -190px;}
+.cake-service ul li.nobdr{border: 0;}
+.cake-wrapper{margin:10px 0;}
+.product-show{margin-bottom: 30px;}
+.product-show div.title{margin-bottom: 10px;padding:10px;}
+.product-show div.title h1{font-size: 140%;}
+.product-show ul.productlist{border-bottom: 1px solid #ccc;padding-bottom: 10px;}
+.product-show ul.productlist li{float: left;width: 33%;}
+.product-show ul.productlist li a{display: block;width: 187px;height: 187px;margin: auto;position: relative;}
+.product-show ul.productlist li a div.discount{width: 68px;height: 69px;position: absolute;right: 0;bottom: 0;background: url(../images/product/discount.png);}
+.product-show ul.productlist li h2{font-size: 130%;margin-bottom: 10px;}
+.product-show ul.productlist li span{color: #e46254;font-size: 20px;}
+.product-show ul.productlist li h2,.product-show ul.productlist li span{padding-left: 20px;}
+.product-help{margin-top: 20px;padding:0 10px;}
+.product-help h1{font-size: 130%;margin-bottom: 20px;}
+.product-help p{margin-bottom: 10px;border-bottom: 1px solid #ccc;}
+.product-help span{float: right;}
+.product-help a{display: block;padding:10px 0;height:30px;}
+.product-contact{text-align: center;padding:10px 0;font-size:120%;line-height: 1.5;}
+
+/*购前须知*/
+.product-tab li{border-bottom: 3px solid #ccc;float: left;width:25%;text-align: center;height: 50px;line-height: 50px;background: url(../images/product/tab-right-bd.gif) no-repeat right center;}
+.product-tab li a{display: block;font-size: 20px;}
+.product-tab li.nobg{background-position: -999px center;}
+.product-tab#current li.active{border-bottom: 3px solid #f65648;}
+
+.product-notice,.product-promise{padding:10px 20px;border-bottom: 1px solid #ccc;margin-bottom: 10px;}
+.product-notice li h1{color: #f65648;font-size: 120%;}
+.product-notice li,.product-promise li{line-height: 2;}
+.product-promise li h1{font-size:120%;}
+.product-promise li p{color: #888;}
+
+.product-evaluate{padding:10px 20px;margin-bottom: 10px;}
+.product-evaluate li{position: relative;font-size: 18px;border-bottom: 1px solid #ccc;}
+.product-evaluate li p{padding:10px 0;}
+.product-evaluate li p.posted{color: #888;font-size: 16px;}
+.product-evaluate li p.posted span{margin-left: 10px;}
+.product-evaluate li p.star-img{position: absolute;right: 10px;top: 20px;}
+.product-evaluate li p.star-img img{vertical-align: bottom;}
+.product-evaluate li p.star-img span{margin-left: 10px;font-size: 20px;color: #ffae08;}
+
+/*蛋糕介绍*/
+.cake-show{width: 600px;margin-bottom: 10px;position: relative;border-bottom: 1px solid #ccc;}
+.cake-introduce{position: absolute;left: 0;bottom: 0;font-size: 20px;background: url(../images/product/dotbg.png);}
+.cake-introduce h1{font-size: 140%;}
+.cake-select{margin-top: 20px;}
+.cake-select li{width: 50%;float: left;margin-bottom: 20px;}
+.cake-select li a{display: block;font-size: 20px;width: 293px;height: 63px;line-height: 63px;text-align: center;background: url(../images/product/select.png) left top;}
+.cake-select li a.selected{background-position: left -64px;}
+
+.cake-amount li{float: left;}
+.cake-amount li a{float:left;}
+.cake-amount li a{display: block;height: 64px;width: 64px;background: url(../images/product/amount-sprite.png) left top;}
+.cake-amount li a.add-amount{background-position: -76px top;}
+.cake-amount li input.num{float: left;width: 40px;height: 60px;line-height: 60px;border: 1px solid #ccc;padding-left: 32px;}
+.cake-amount li input.subbtn{width:320px;height:82px;background:url(../images/product/quick-order.png);margin-left: 70px;}
+.cake-amount li h2{margin-top: 15px;font-size: 20px;width: 598px;height: 60px;line-height: 60px;text-align: center;border: 1px solid #ccc;}
+
+/*咨询*/
+.consulting{width: 600px;margin: auto;}
+.consulting li,.custom li,.contact li{margin-bottom: 10px;padding: 10px 0;border-bottom: 1px solid #ccc;}
+.consulting li p,.custom li p,.contact li p{margin:10px 0;}
+.consulting li p span.color-consumer{color: #57afff;}
+.consulting li p span.color-service{color: #f65648;}
+.consulting li input.consult-content{margin-right: 20px;width: 504px;height: 50px;padding: 5px;background: url(../images/product/consul-content.png);}
+.consulting li a{font-size: 20px; }
+.consulting li.nobd{border: 0;}
+
+/*鲜花介绍*/
+.banner{margin-top: 20px;}
+.parameters{margin-top: 20px;border: 1px solid #ccc;}
+.parameters h1.product-title,.flowerimg-show h1.product-title,.cakeimg-show h1.product-title{background:#ccc;height: 50px;line-height: 50px;font-size: 18px;padding-left:20px;}
+.parameters ul li{width:100%;padding: 20px 0;padding-left:20px;line-height: 1.5;height: auto;overflow: hidden;}
+.parameters ul li span{float: left;width: 80%;}
+.parameters ul li p{float: left;width:15%;}
+
+.flowerimg-show,.cakeimg-show{margin-top: 20px;}
+.flowerimg-show ul li,.cakeimg-show ul li{width: 48%;float: left;margin:5px;text-align: center;border: 1px solid #ccc;padding-top: 3px;}
+.flowerimg-show ul li p,.cakeimg-show ul li p{text-align: right;padding: 10px 5px;}
+
+/*餐具、蜡烛和定制语*/
+.custom li{font-size: 18px;}
+.custom li p{margin-bottom: 10px;}
+.custom li p input{width: 588px;height: 58px;border: 1px solid #ccc;padding: 5px;}

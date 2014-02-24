@@ -1,0 +1,78 @@
+<include file="Public:header" />
+
+  <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li><a href="javascript:void(0)" class="current">区域列表</a></li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+  
+  <!--搜索 BEGIN-->
+  <div class="search">
+    <form action="{:U('Admin/User/ls')}" method="post">
+      <table width="100%">
+        <th width="80">名称：</th>
+        <td>
+          <input type="text" name="name" />
+          <input type="submit" value="搜 索" class="btn search-btn" />
+  </td>
+  </table>
+</form>
+</div>
+  <!--END 搜索--> 
+
+  <!--工具栏-->
+  <div class="toolbar">
+      <a href="{:U('Admin/Zone/addZone')}" class="btn"><span>增加区域</span></a>
+  </div>
+  <!--工具栏-->
+  
+  <!--列表 BEGIN-->
+  <div class="list">
+    <form action="{:U('Admin/Zone/del')}" method="post" class="del-form">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <thead>
+          <tr>
+            <th width="5%"><input type="checkbox" class="check-all" /></th>
+            <th width="25%">上级区域</th>
+            <th width="25%">地区名称</th>
+            <th width="15%">运费</th>
+            <th width="15%">排序</th>
+            <th width="20%">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <empty name="userList">
+            <tr>
+              <td colspan="11" class="empty">暂无相关信息</td>
+            </tr>
+          <else />
+            <volist name="userList" id="vo">
+              <tr>
+                <td><input type="checkbox" name="id[]" value="{$vo[id]}"></td>
+                <td>{$vo[pname]}</td>
+                <td>{$vo[name]}</td>
+                <td>{$vo[fee]}</td>
+                <td>{$vo[display_order]}</td>
+                <td>
+                  <a href="{:U('Admin/Zone/doEditZone', array('id'=>$vo[id]))}" class="mr10">编辑</a>
+                  <a href="{:U('Admin/Zone/del', array('id'=>$vo[id]))}">删除</a>
+                </td>
+              </tr>
+            </volist>
+          </empty>
+        </tbody>
+      </table>
+    </form>
+  </div>
+  <!--列表 END-->
+
+  <!--工具栏 BEGIN-->
+  <div class="toolbar">
+    <div class="page right">{$pageHtml}</div>
+    <a href="javascript:void(0)" class="btn del-btn"><span>删除</span></a>
+  </div>
+  <!--END 工具栏-->
+
+<include file="Public:footer" />

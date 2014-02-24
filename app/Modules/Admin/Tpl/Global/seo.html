@@ -1,0 +1,51 @@
+<include file="../Public/header" />
+
+  <style type="text/css">
+  .edit dt {width:150px;}
+  .edit dd {margin-left:155px;}
+  </style>
+  
+  <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li><a href="javascript:void(0)" class="current">SEO设置</a></li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+
+  <!--编辑表单 BEGIN-->
+  <div class="edit">
+    <form method="post" action="{:U('Admin/Global/doEditSetting')}">
+      <!--首页 BEGIN-->
+      <dl>
+        <dt>首页SEO标题：</dt>
+        <dd>
+          <input name="setting[seo_index_title]" type="text" value="{$seo_index_title}" size="60" />
+          <p class="tips">一般不超过80字</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>首页SEO关键字：</dt>
+        <dd>
+          <input name="setting[seo_index_keywords]" type="text" value="{$seo_index_keywords}" size="40" />
+          <p class="tips">3-5个关键字</p>
+        </dd>
+      </dl>
+      <dl>
+        <dt>首页SEO描述：</dt>
+        <dd>
+          <textarea  name="setting[seo_index_description]" cols="80" rows="3">{$seo_index_description}</textarea>
+          <p class="tips">一般不超过200字</p>
+        </dd>
+      </dl>
+      <!--END 首页-->
+      
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><input type="submit"  value="提 交" class="btn submit-btn"/></dd>
+      </dl>
+    </form>
+  </div>
+  <!--END 编辑表单-->
+  
+<include file="../Public/footer" />

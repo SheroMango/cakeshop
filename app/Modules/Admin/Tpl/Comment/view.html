@@ -1,0 +1,43 @@
+<include file="../Public/header" />
+
+  <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li class="current">咨询信息</li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+  
+  <!--编辑表单 BEGIN-->
+  <div class="edit">
+    <form action="{:U('admin/Comment/doUpdate')}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{$commentInfo.id}" />
+      <dl>
+        <dt>商品名称：</dt>
+        <dd><input type="text" class="w300" disabled="disabled" value="{$commentInfo.goods_name}" /></dd>
+      </dl>
+      <dl>
+        <dt>用户名称：</dt>
+        <dd>
+        <input type="text" class="w300" disabled="disabled" value="{$commentInfo.user_name}" />
+		</dd>
+      </dl>
+      <dl>
+          <dt>星级：</dt>
+          <dd>
+          <input type="text" class="w300" disabled="disabled" value="{$commentInfo.rank}" />
+      </dl>
+      <dl>
+        <dt>状态：</dt>
+        <input type="radio" id="status-yes" name="status" value="1" <eq name="commentInfo[status]" value="1">checked="checked"</eq> /> <label for="status-yes">显示</label>&nbsp;&nbsp;
+        <input type="radio" id="status-no" name="status" value="0" <eq name="commentInfo[status]" value="0">checked="checked"</eq> /> <label for="status-no">不显示</label>
+        </dd>
+      </dl>
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><input type="submit"  value="更 新" class="btn submit-btn" /></dd>
+      </dl>
+    </form>
+  </div>
+  <!--编辑表单 BEGIN-->
+<include file="../Public/footer" />
