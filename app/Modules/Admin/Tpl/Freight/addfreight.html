@@ -1,0 +1,71 @@
+<include file="../Public/header" />
+
+
+<!--页面标题 BEGIN-->
+<div class="tabs">
+  <ul>
+    <li><a href="javascript:void(0)" class="current">区域管理</a></li>
+  </ul>
+</div>
+<!--END 页面标题-->
+
+<!--搜索 BEGIN-->
+<div class="edit">
+  <form action="{:U('Admin/Freight/doAddFreight')}" method="post">
+    <input type="hidden" id="zone" name="zone_id" value="" />
+      <dl class="zone"><dt>省份：</dt>
+          <dd><select>
+              <option value="0">--选择省份--</option>
+              <volist name="list" id="vo">
+              <option value="{$vo.id}">{$vo.name}</option>
+              </volist>
+          </select></dd>
+      </dl>
+      <dl class="zone"><dt>城市：</dt>
+          <dd><select>
+              <option value="0">--选择城市--</option>
+          </select></dd>
+      </dl>
+      <dl class="zone"><dt>县区：</dt>
+          <dd><select>
+              <option value="0">--选择县区--</option>
+          </select>
+      </dl>
+      <dl><dt>运费：</dt>
+          <dd><input type="text" name="fee"></dd>
+      </dl>
+      <dl><dt>&nbsp;</dt>
+          <dd><input type="submit" class="btn submit-btn" value="添加" /></dd>
+      </dl>
+  </form>
+</div>
+<script>
+$(function(){
+  $(".zone").eq(0).find("select").change(function(){set_value(0);});
+  $(".zone").eq(1).find("select").change(function(){set_value(1);});
+  $(".zone").eq(2).find("select").change(function(){
+    var zone_id = $(".zone").eq(2).find("select").val();
+    $("#zone").val(zone_id);
+    })
+
+  function set_value(num){
+    var pid = $(".zone").eq(num).find("select").val();
+    $.get("{:U('Admin/Freight/getZoneList')}",
+          {'id': pid},
+          function(data){
+            list = '';
+            for(x in data['content']){
+              list = list + '<option value="'+data['content'][x]['id']+'">'+data['content'][x]['name']+'</option>';
+              }
+            $(".zone").eq(num+1).find("select").html(list);
+            if(num < 2){
+              set_value(num+1);
+              }
+            var zone_id = $(".zone").eq(2).find("select").val();
+            $("#zone").val(zone_id);
+          }, 'json');
+      }
+
+  })
+</script>
+<include file="../Public/footer" />

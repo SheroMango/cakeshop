@@ -1,0 +1,10 @@
+data/*
+data/attach/
+app/Runtime/
+app/Runtime/Cache/*
+app/Runtime/Logs/*
+app/Runtime/Temp/*
+app/Runtime/Data/*
+
+*.rar
+*.sql
