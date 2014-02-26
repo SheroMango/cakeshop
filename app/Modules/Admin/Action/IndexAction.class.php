@@ -79,7 +79,7 @@ class IndexAction extends AdminCommonAction
                 '咨询列表' => U('admin/Qa/ls'),
             ),
             '运费管理' => array(
-                '城市列表' => U('admin/Zone/ls'),
+                '城市列表' => U('admin/Freight/ls'),
             ),
 
 		);

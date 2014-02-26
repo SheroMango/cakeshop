@@ -11,6 +11,14 @@ class FreightModel extends CommonModel
      */
     public function format($arrInfo, $arrFormatField)
     {
+        if(in_array('zone_name', $arrFormatField)){
+            $zoneInfo = D('Zone')->where('id='.$arrInfo['zone_id'])->find();
+            $cityInfo = D('Zone')->where('id='.$zoneInfo['pid'])->find();
+            $provinceInfo = D('Zone')->where('id='.$cityInfo['pid'])->find();
+            $arrInfo['zone_name'] = $zoneInfo['name'];
+            $arrInfo['city_name'] = $cityInfo['name'];
+            $arrInfo['province_name'] = $provinceInfo['name'];
+        }
         return $arrInfo;
     }
 }
