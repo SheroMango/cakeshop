@@ -1,67 +1,107 @@
 <include file="../Public/header" />
-<include file="../Public/navigation" />
+ 
+<script src="__JS__/modal.js"></script>
+<!--头部开始-->
+<div class="header container index">
+   <div class="col-xs-3"><img class="img-responsive fl" src="__IMG__/fanhui.png" data-toggle="modal" data-target="#myModal"/></div>
+      <div class="col-xs-6">
+        <h2>{$title}</h2>
+      </div>
+   <div class="col-xs-3">
+   <a href="{:U('Home/Index/index')}"><img class="img-responsive fr" src="__IMG__/index.png" /></a></div>
+</div>
+
+<!-- 静态框 -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p class="tc">确认要放弃填写订单吗？</p>
+      </div>
+      <div class="modal-footer tc">
+
+        <button type="button" class="btn btn-primary" onClick="javascript:window.history.go(-1);">稍后再订</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal">继续填写</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- 静态框 -->
+
+
+<!--头部结束-->
 <!--内容开始-->
 <form action="{:U('Home/Order/doOrderAdd')}" method="post" id="form" onsubmit="return doAddOrder()">
 <div class="container pb50">
-  <div class="write-order">
-    <p>您将预订:</p> 
-    <p>{$orderInfo[goods_name]}*{$orderInfo[num]}<em>￥{$orderInfo[price]}元/{$orderInfo[size]}</em></p>
-  </div>
-  <!--<div class="write-order"> 
-    <p>收货信息:</p>
-    <textarea class="form-control" name="order[address]" ></textarea>
-  </div>-->
-  <div class="write-order">  
-    <p>订购人:</p>
-      <input class="form-control mb10" name="order[order_name]" type="text" placeholder="请填写订购人姓名" class="form-control" value="{$preOrderInfo.order_name}">
-      <input class="form-control mb10" name="order[order_mobile]" type="text" placeholder="请填写订购人手机号码" class="form-control" value="{$preOrderInfo.order_mobile}">
+	<div class="write-order">
+		<p>您将预订:</p> 
+		<p>{$orderInfo[goods_name]}*{$orderInfo[num]}<em>￥{$orderInfo[price]}元/{$orderInfo[size]}</em></p>
+	</div>
+	<div class="write-order">  
+		<p>订购人:</p>
+    <div class="form-group">
+		<input class="form-control mb10 required" id="order_name" name="order[order_name]" type="text" placeholder="请填写订购人姓名" class="form-control" value="{$preOrderInfo.order_name}">
+	</div>
+	
+	<div class="form-group">
+		<input class="form-control mb10 required" id="order_mobile" name="order[order_mobile]" type="text" placeholder="请填写订购人手机号码" class="form-control" value="{$preOrderInfo.order_mobile}">
+	</div>
     <p><span>请填写“订购人”的联系方式，非“收货人“，方便客服联系您确认订单。</span></p>
     <p>收货人:</p>
-      <input class="form-control mb10" name="order[consignee_name]" type="text" placeholder="请填写收货人姓名" class="form-control" value="{$preOrderInfo.consignee_name}">
-      <input class="form-control mb10" name="order[consignee_mobile]" type="text" placeholder="请填写手机号码" class="form-control" value="{$preOrderInfo.consignee_mobile}">
-      <div class="row mt10">
-         <div class="col-xs-4 phone"><span class="form-control">南宁市</span></div>
-         <div class="col-xs-8"><select class="form-control" placeholder="点击选择配送范围" name="order[consignee_district]" />
-	   <notempty name="preOrderInfo[consignee_district]">
-	     <option value="{$preOrderInfo[consignee_district]}">{$preOrderInfo.consignee_district}</option>
-	   </notempty>
-                 <option value="青秀区">青秀区</option>
-                 <option value="兴宁区">兴宁区</option>
-                 <option value="江南区">江南区</option>
-                 <option value="西乡塘区">西乡塘区</option>
-                 <option value="良庆区">良庆区</option>
-                 <option value="邕宁区">邕宁区</option>
-                 <option value="五象新区">五象新区</option>
-                 <option value="武鸣县">武鸣县</option>
-                 <option value="横县">横县</option>
-                 <option value="宾阳县">宾阳县</option>
-                 <option value="上林县">上林县</option>
-                 <option value="隆安县">隆安县</option>
-                 <option value="马山县">马山县</option>
-         </select></div>    
-       </div>
-       <input class="form-control mt10" type="text" placeholder="请填写详细地址" class="form-control" name="order[consignee_address]" value="{$preOrderInfo.consignee_address}" />
-       <p class="mt10 f12 color-999">请填写详细地址（例：**路**小区**楼**单元***），为了避免系统计算运费出错，请不要有错误字<p>
-  <div class="write-order"> 
-    <p>送达时间:</p>
-    <input class="form-control" type="date" placeholder="选择送达时间" class="form-control" name="order[arrive_time]" />
+    <div class="form-group">
+		<input class="form-control mb10 required" id="consignee_name" name="order[consignee_name]" type="text" placeholder="请填写收货人姓名" class="form-control" value="{$preOrderInfo.consignee_name}">
+	</div>
+	<div class="form-group">
+		<input class="form-control mb10 required" id="consignee_mobile" name="order[consignee_mobile]" type="text" placeholder="请填写手机号码" class="form-control" value="{$preOrderInfo.consignee_mobile}">
+	</div>
+    <div class="row mt10">
+		<div class="col-xs-4 phone"><span class="form-control">南宁市</span></div>
+	<div class="col-xs-8"><select id="zone" class="form-control" placeholder="点击选择配送范围" name="order[consignee_district]" />
+		<volist name="freightList" id="vo">
+        <option value="{$vo.zone_name}" title="{$vo.fee}" <eq name="vo[zone_name]" value="preOrderInfo[consignee_district]">selected="selected"</eq>>{$vo.zone_name}</option>
+		</volist>
+		</select></div>
+	</div>
+	<div class="form-group">
+       <input class="form-control mt10 required" type="text" id="consignee_address" placeholder="请填写详细地址" class="form-control" name="order[consignee_address]" value="{$preOrderInfo.consignee_address}" />
+	</div>
+	<p>运费: <em class="color-red" id="freight_value"></em></p>
+	<div class="form-group">
+	   <input id="freight" class="form-control" type="hidden" name="order[freight]" />
+	</div>
+    <div class="write-order"> 
+		<p class="riqi"><span>选择送达日期:</span><span>选择送达时间:</span></p>
+    <div class="form-group">
+      <div class="xuanriqi"> 
+		<input type="date" name="arrive_time" class="form-control" />
+      </div>
+	  <div class="xuanriqi">
+		<select>
+		  <option>11:00-12:00</option>
+		  <option>12:00-13:00</option>
+		  <option>13:00-14:00</option>
+		  <option>14:00-15:00</option>
+		  <option>15:00-16:00</option>
+		  <option>16:00-17:00</option>
+		  <option>17:00-18:00</option>
+		  <option>18:00-19:00</option>
+		</select>
+      </div>		
+	</div>
     <p><span>最早12月12日11：00左右可以送达，由于当天制作需要时间，强烈建议至少提前一天以上预订。</span></p>
-  </div>
-  <div class="write-order">   
-    <p>餐具和蜡烛:</p>
-    <p><span>赠送5套餐具，送蜡烛，有定制语</span></p>
-    <input class="form-control" type="text" placeholder="请填写定制语" class="form-control" name="order[custom_lang]" />
-    <p><span>另加餐具请于客服联系。附赠蜡烛可选择花型或者数字蜡烛，默认为
+	</div>
+	<div class="write-order">   
+		<p>餐具和蜡烛:</p>
+		<p><span>赠送5套餐具，送蜡烛，有定制语</span></p>
+		<input class="form-control" type="text" placeholder="请填写定制语" class="form-control" name="order[custom_lang]" />
+		<p><span>另加餐具请于客服联系。附赠蜡烛可选择花型或者数字蜡烛，默认为
 数字蜡烛。免费赠送巧克力牌一个，固定文字为“生日快乐”</span></p>
-  </div>
-  <div class="write-order">
-    <p>支付方式:</p>
-    <label>
-     <input type="radio" name="order[pay_type]" id="optionsRadios1" value="0" checked>
-          在线支付
-    </label>
-    <label>
-     <input type="radio" name="order[pay_type]" id="optionsRadios1" value="1" checked>
+	</div>
+	<div class="write-order">
+		<p>支付方式:</p>
+		<label>
+		<input type="radio" name="order[pay_type]" id="optionsRadios1" value="0" checked>在线支付</label><label>
+		<input type="radio" name="order[pay_type]" id="optionsRadios1" value="1" checked>
           货到付款
     </label>
     <p><span>使用在线支付享受9.5折优惠！一天以上预订。</span></p>
@@ -73,11 +113,11 @@
     <p>优惠：<em>-{$orderInfo[discount]}元</em></p>
   </div>
   <input name="goods[goods_price]" value="{$orderInfo[price]}" type="hidden" />
-  <input name="order[order_total]" value="{$orderInfo[sumprice]}" type="hidden" />
+  <input id="order_total" name="order[order_total]" value="{$orderInfo[sumprice]}" type="hidden" />
   <input name="goods[goods_number]" value="{$orderInfo[num]}" type="hidden" />
   <input name="goods[goods_id]" value="{$orderInfo[goods_id]}" type="hidden" />
   <div class="write-order">
-    <p>总计：<em class="color-red">{$orderInfo[sumdiscount]}元</em> </p>
+    <p>总计：<em class="color-red" id="sumdiscount"></em> </p>
     <input type="submit" class="btn btn-warning btn-lg btn-block mt30" value="提交订单">
   </div>
 
@@ -86,7 +126,38 @@
 </div>
 </form>
 <script>
+$(function(){
+  setValue();
+});
+$("#zone").change(function (){setValue();})
+$("input").focus(function(){
+        $("input").parent("div").removeClass("has-error");
+        $("input").parent("div").siblings("div").children(".required").remove("has-error");
+})
+		
+//设置运费和总价
+function setValue(){
+	var sumdiscount = '{$orderInfo[sumdiscount]}';
+	var fee = $("#zone").children("option:selected").attr("title");
+	$("#freight").val(fee);
+	$("#freight_value").html(fee + '元');
+    $("#sumdiscount").html(parseFloat(sumdiscount) + parseFloat(fee) + '元');
+    $("#order_total").val(parseFloat(sumdiscount) + parseFloat(fee));
+}
+
+//提交订单
 function doAddOrder(){
+	//判断是否填写完整
+    var is_ok = "true";
+    for(var i=0; i<6; i++){
+        if($(".required").eq(i).val() == ''){
+            $(".required").eq(i).parent("div").addClass("has-error");
+            window.scrollTo(1,1);
+            is_ok = "error";
+        }
+    }
+	//如果填写完整就提交订单
+    if(is_ok != "error"){
 	$.post("{:U('Home/Order/doOrderAdd')}", $("#form").serialize(), function(data){
 			$("#message").addClass('alert-'+data['status']);
 			$("#message").html(data['content']);
@@ -99,6 +170,7 @@ function doAddOrder(){
 			},
 		'json'
 		)
+    }
 	return false;
 }
 </script>

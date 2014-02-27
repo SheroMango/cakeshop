@@ -243,6 +243,7 @@ class PublicAction extends CommonAction
     {
         $tplData = array(
             'title' => $_GET['title'],
+            'content' => $_GET['content'],
         );
         $this->assign($tplData);
         $this->display();

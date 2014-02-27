@@ -19,6 +19,7 @@ class FreightAction extends AdminCommonAction
         $page = page($count);
         $pageHtml = $page->show();
         $freightList = $freightObj->getList($arrField, $arrMap, $arrOrder, $page->firstRow, $page->listRows);
+        $arrFormatField = array('zone_name');
         foreach($freightList as $k=>$v){
             $freightList[$k] = $freightObj->format($v, $arrFormatField);
         }

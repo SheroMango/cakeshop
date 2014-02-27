@@ -1,18 +1,28 @@
 <include file="../Public/header" /> 
 <include file="../Public/navigation" />
+ <script>
+$(document).ready(function() {
+	
+$('.delt-xiang img').click(function(){
+  var url=$(this).attr('src');
+   window.location.href = url; 
+})
+	});
+</script>
+    
 <!--内容开始-->
-<form name="form1" action="" method="post" enctype="multipart/form-data">
+<form name="form1" action="{:U('Home/Order/writeOrder')}" method="post" enctype="multipart/form-data">
 <div class="container">
 <include file="../Public/goodsnavigation" />
   <input type="hidden" name="goods[id]" id="goodsid" value="{$cakeInfo[id]}" />
   <input type="hidden" name="goods[price]" id="goodsprice" value="{$cakeInfo[price]}" />
-  <div class="cake-show row pt_rl detail-btop">
+  <div class="cake-show row pt_rl detail-btop delt-xiang">
  
-    <img src="{$cakeInfo[pic]}" class="img-responsive shang">
+    <img src="{$cakeInfo[pic]}" class="img-responsive shang"> 
     <div class="cake-introduce lnhg">
      <h2>
        {$cakeInfo[name]}
-       <a href="###" class="btn btn-warning btn-sm ml10">网付</a>
+       <a href="###" lass="btn btn-warning btn-sm ml10">网付</a>
        <a href="###" class="btn btn-primary btn-sm ml5">到付</a>
      </h2>
      <p>价格：<span class="color-notice" id="price">￥{$cakeInfo[price]}元</span></p>
@@ -25,14 +35,13 @@
   </div>
   
   
-  <div class="primary-bottom row">
+  <div class="primary-bottom row delt-xiang">
     <div class="col-xs-12">
       <!--<ul class="cake-select hgauto">
        <volist name="sizeList" id="size">
         
           <input type="hidden" name="size_id" value="{$size[id]}" />
           <li><a href="{:U('Home/Cake/detail', array('size_id'=>$size[id], 'id'=>$cakeInfo[id]))}" class="selected">{$size[attr_value]}</a></li>
-        
        </volist>
       </ul>-->
 
@@ -43,7 +52,7 @@
         <input type="hidden" name="goods[sizeid]" id="sizeid" value="{$size[id]}" />
         <li class="selected"><a href="###" class="selsize" name="{$size[id]}">{$size[attr_value]}<em></em></a></li>
         <else />
-        <li><a href="###" class="selsize" name="{$size[id]}">{$size[attr_value]} <em></em></a></li>
+        <li><a href="###" class="selsize" name="{$size[id]}">{$size[attr_value]}<em></em></a></li>
         </if>
        </volist>
       </ul>
@@ -52,7 +61,7 @@
          
         <span class="fl mt10">数量：</span><em class="subtract-btn fl">-</em> <input type="text" name="goods[num]" value="1" class="num fl"> <em class="add-btn fl">+</em> 
        <span class="fr"> 
-	  <input type="submit" class="btn btn-warning fr" value="立即订购"  onclick="tjbutton()"/>
+	  <input type="submit" class="btn btn-warning fr" value="立即订购" />
 	  </span></p>
       <h4 class="mb20"><img src="__IMG__/biao.gif">南宁市区内免费配送（联系电话:010-1258489）</h4>
       <table border="1" bordercolor="#e2e2e2">
@@ -63,10 +72,11 @@
         </tr>
         </volist>
       </table>
-      <img src="__IMG__/lintu.jpg" class="img-responsive"/>
+ 
+      <img src="__IMG__/lintu.jpg" href="__IMG__/lintu.jpg" id="example1" class="img-responsive"/>
     </div>
   </div>   
-  <div class="row pb50 delt-bottom">
+  <div class="row pb50 delt-bottom " >
     <img src="__IMG__/lin-logo.jpg" class="img-responsive"/>
     <div class="col-xs-12 jieshao mt20 mb20">
       <p>上海元祖梦果子股份有限公司1981年创立于台湾，1993年进驻上海至今，元祖食品以上海为基地，已先后在中国大陆的上海、无锡、杭州、成都、武汉、青岛、长沙、重庆、广东、福建、大连等主要城市设立了多家分公司，门店遍及台海两岸，力求以时效确保质量新鲜、服务贴心。从初创时期开始，随着产品的不断创新和门店数的扩增，公司每年业绩稳步成长。</p>
@@ -78,6 +88,7 @@
 <!--内容结束--> 
 </body>
 </html>
+<!--
 <script type="text/javascript">
   function tjbutton(){
   var id = '{$cakeInfo[id]}';
@@ -88,6 +99,7 @@
   }
   
 </script>
+-->
 
 //选择价格
 <script type="text/javascript">

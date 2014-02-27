@@ -13,8 +13,8 @@
 p{ line-height:26px;}   
 .write-bg{ background:#fff;}    
 .header{ background:#f65648; height:40px; line-height:40px; color:#fff; }
-.header h1{ font-size:18px; color:#fff; overflow:hidden;  height:50px;}
-.header h1 em{ font-size:16px; line-height:25px;  display:block; color:#fff;}
+.header h1{ font-size:18px; color:#fff; overflow:hidden;  height:50px; line-height:50px;}
+.header h1 em{ font-size:22px;    color:#fff;}
 .header .col-xs-3,.header .col-xs-6{ padding:0;}
 .header a{color:#fff;}
 .head-r{ height:20px; line-height:20px; margin-top:15px;}
@@ -213,8 +213,9 @@ div ul.filter li a.active{border-bottom: 3px solid #f65648;}
 .chanpin  .col-xs-4{ padding:0 5px;} 
 .chanpin  .col-xs-4 h2,.chanpin  .col-xs-4 span{ font-size:12px;}
 
-
-
+.riqi span{ width:50%; display:inline-block; color:#333;}
+.xuanriqi{ width:50%; float:left;}
+.xuanriqi select{ width:80%; height:26px;}
 
 
 

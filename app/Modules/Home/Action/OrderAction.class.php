@@ -24,56 +24,7 @@ class OrderAction extends HomeCommonAction {
             $orderList[$k] = $orderInfoDao->format($v, array('ctime_text', 'order_status_name', 'pay_type_name'));
             $orderList[$k]['goods'] = D('Goods')->format($goodsInfo[$goods_id], array('pic_name', 'url_cake'));
         }
-        /*
-		//模型
-		$goodsDao = D('Goods');
-		$GoodsAttrDao = D('GoodsAttr');
-		$attrDao  = D('Attr');
-		$orderGoodsDao = D('OrderGoods');
-		$orderInfoDao = D('OrderInfo');
-
-		$uid = session('uid');
-		//条件
-		$arrField = array('id', 'name', 'price', 'brief', 'tag', 'pic', 'discount');
-		$arrMap = array();
-		$arrOrder = array();
-
-		//分页
-		import('ORG.Util.Page');
-		$count      = $orderInfoDao->where(array('user_id'=>$uid))->count();
-		$Page       = new Page($count,20);	
-		$show       = $Page->show();
-		$offset   = $Page->firstRow;
-        $length   = $Page->listRows;
-
-		$order_id = $orderInfoDao->getList(array('id'),array('user_id'=>$uid), array('ctime'=>'desc'), $offset, $length);
-		$i = 0;
-		foreach ($order_id as $key => $value) {
-			$orderid = $value['id'];
-			$goods_id = $orderGoodsDao->where(array('order_id'=>$orderid))->getField('goods_id');
-			$orders[$i]['order_id'] = $orderid;
-			$orders[$i]['goods_id'] = $goods_id;
-			$i++;
-		}
-		$j=0;
-		foreach ($orders as $key => $value) {
-			$arrMap['id'] = $value['goods_id'];
-			$order_id = $value['order_id'];
-			$goodsInfo = $goodsDao->getInfo($arrField, $arrMap);
-			$arrList[$j]['id'] = $goodsInfo['id'];
-			$arrList[$j]['name'] = $goodsInfo['name'];
-			$arrList[$j]['price'] = $goodsInfo['price'];
-			$arrList[$j]['brief'] = $goodsInfo['brief'];
-			$arrList[$j]['tag'] = $goodsInfo['tag'];
-			$arrList[$j]['pic'] = $goodsInfo['pic'];
-			$arrList[$j]['order_id'] = $order_id;
-			$arrList[$j]['pay_type'] = $orderInfoDao->where('id='.$order_id)->getField('pay_type');
-			$j++;
-		}
-		foreach ($arrList as $key => $value) {
-			$arrList[$key]['pic']  = getPicPath($value['pic'], 'b');
-		}
-         */
+ 
 		//输出到模版
 		$tplData = array(
             'title' => '我的订单',
@@ -91,9 +42,22 @@ class OrderAction extends HomeCommonAction {
 
         //根据历史记录自动填写订单信息
         $preOrderInfo = D('OrderInfo')->where('user_id='.$_SESSION['uid'])->order('ctime desc')->find();
+		
+		//地区运费
+		$city_id = D('Zone')->where("name='南宁市'")->getField('id');
+		$zoneList = D('Zone')->where('pid='.$city_id)->select();
+		foreach($zoneList as $k=>$v){
+			$freightInfo = D('Freight')->where('zone_id='.$v['id'])->find();
+			if(!empty($freightInfo)){
+				$freightList[$k] = D('Freight')->format($freightInfo, array('zone_name'));
+				}
+			}
 
 		//接受表单参数
 		$goods = $_POST['goods'];
+        if(empty($goods)){
+            $this->redirect('Public/is_empty', array('title'=>'订单错误', 'content'=>'订单会话已过期，请返回上一步重新填写'));
+        }
 
 		$goods_id = intval($goods['id']);
 		$price = floatval($goods['price']);
@@ -117,6 +81,7 @@ class OrderAction extends HomeCommonAction {
 			'title' => '填写订单',
 			'orderInfo' => $orderInfo,
             'preOrderInfo' => $preOrderInfo,//自动填写的订单信息
+			'freightList' => $freightList,
 		);
 		$this->assign($tplData);
 		$this->display();
@@ -147,21 +112,12 @@ class OrderAction extends HomeCommonAction {
 
 		$orderGoodsDao->addData($orderGoods);
 		$order_paytype = $orderInfo['pay_type'];
-		if ($order_paytype == 0) {
-			$data = array(
-				'status'  => 'success',
-				'url'     => U('Home/Order/orderDetail',array('id'=>$order_id)),
-				'content' => '订单提交成功',
-			);
-			echo json_encode($data);
-		} elseif ($order_paytype == 1) {
-			$data = array(
-				'status'  => 'success',
-				'url'     => U('Home/Order/orderDetails',array('id'=>$order_id)),
-				'content' => '订单提交成功',
-			);
-			echo json_encode($data);
-		}
+		$data = array(
+			'status'  => 'success',
+			'url'     => U('Home/Order/orderDetail',array('id'=>$order_id)),
+			'content' => '订单提交成功',
+		);
+		echo json_encode($data);
 		
 	}
 	//在线支付
@@ -175,7 +131,7 @@ class OrderAction extends HomeCommonAction {
 		$brandDao = D('Brand');
 
 		//订单信息
-		$orderField = array('id', 'order_sn', 'ctime', 'order_total', 'order_status', 'pay_type', 'pay_status');
+		$orderField = array('id', 'order_sn', 'ctime', 'order_total', 'order_status', 'pay_type', 'pay_status', 'freight');
 		$orderInfo = $orderInfoDao->getInfoById($id, $orderField);
         $orderInfo = $orderInfoDao->format($orderInfo, array('order_status_name'));
 		$orderInfo['ctime'] = date('Y-m-d H:i:s', $orderInfo['ctime']);

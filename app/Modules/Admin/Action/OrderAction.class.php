@@ -14,6 +14,7 @@ class OrderAction extends AdminCommonAction
 		$orderList = $OrderInfoDao->order('id desc')->select();
 		//分页
 		import('ORG.Util.Page');
+		
 		$count      = $OrderInfoDao->count();
 		$Page       = new Page($count,10);
 		$show       = $Page->show();
@@ -22,7 +23,20 @@ class OrderAction extends AdminCommonAction
 		if (!empty($order_sn)) {
 			$arrMap['order_sn'] = array('like', "%{$order_sn}%");
 		}
+		//排序
 		$arrOrder = array('id'=>'desc');
+		$display_order = trim($_GET['display_order']);
+		$display_order_desc = trim($_GET['desc']);
+		if (!empty($display_order)) {
+			if(!empty($display_order_desc)){
+				$arrOrder = array($display_order.' desc');
+				$display_desc = '0';
+			}else{
+				$arrOrder = array($display_order);
+				$display_desc = '1';
+			}
+		}
+		
 		$offset   = $Page->firstRow;
         $length   = $Page->listRows;
 		$orderList = $OrderInfoDao->getList($arrField, $arrMap, $arrOrder, $offset, $length);
@@ -38,6 +52,8 @@ class OrderAction extends AdminCommonAction
 		$tplData = array(
 			'orderList'    => $orderList,
 			'pageHtml' => $show,
+			'display_order' => $display_order,
+			'display_desc' => $display_desc,
 		);
 		$this->assign($tplData);
 		$this->display();
