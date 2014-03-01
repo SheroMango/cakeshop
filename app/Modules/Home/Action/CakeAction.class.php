@@ -164,7 +164,7 @@ class CakeAction extends CommonAction
 			$sizePrice = $GoodsAttrDao->getOneValue($sizePriceMap, 'attr_price');
 			$cakeInfo['price'] = number_format(($cakeInfo['price']+$sizePrice), 2);
 		} else {
-			$sizePrice = 0;
+			$sizePrice = 0.00;
 		}
 		//尺寸
 		$sizeMap = array('goods_id'=>$goods_id, 'attr_id'=>213);
@@ -182,6 +182,12 @@ class CakeAction extends CommonAction
 		foreach ($attList as $key => $value) {
 			$attList[$key]['attr_id'] = $attrDao->getOneValue(array('id'=>$value['attr_id']), 'attr_name');
 		}
+
+        //商品图片
+        $picList = D('GoodsPic')->select();
+        foreach($picList as $k=>$v){
+            $picList[$k]['pic_name'] = getPicPath($v['pic']);
+        }
 		//输出到模版
 		$tplData = array(
             'title'    => '蛋糕详情',
@@ -191,6 +197,7 @@ class CakeAction extends CommonAction
 			'sizeList' => $sizeList,
 			'sizePrice'=> $sizePrice,
 			'attList'  => $attList,
+            'picList'  => $picList,
 		);
 		$this->assign($tplData);
 		$this->display();

@@ -54,6 +54,18 @@ class UserAction extends AdminCommonAction
 		$this->display();
 	}
 
+    /**
+     * 查看详情
+     */
+    public function view()
+    {
+        $id = intval($this->_get('id'));
+        $userInfo = D('User')->getInfoById($id);
+        $userInfo = D('User')->format($userInfo, array('sex_name'));
+        $this->assign('userInfo', $userInfo);
+        $this->display();
+    }
+
 	/**
 	 * 删除用户 
 	 */

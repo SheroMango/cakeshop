@@ -74,6 +74,7 @@
                 <td>{$vo[spend_times]}</td>
                 <td>{$vo[spend_count]}</td>
                 <td>
+                    <a href="{:U('Admin/User/view', array('id'=>$vo[id]))}">详情</a>
                   <a href="{:U('Admin/User/del', array('id'=>$vo[id]))}">删除</a>
                 </td>
               </tr>

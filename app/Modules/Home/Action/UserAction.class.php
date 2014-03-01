@@ -26,7 +26,6 @@ class UserAction extends HomeCommonAction
 		$userDao = D('User');
 
 		$userInfo = $userDao->getInfoById($uid);
-		$userInfo['birth'] = date('Y年m月d日', $userInfo['birth']);
 		//输出到模版
 		$tplData = array(
 			'title' => '基本资料',

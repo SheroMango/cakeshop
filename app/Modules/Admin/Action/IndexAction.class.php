@@ -89,12 +89,10 @@ class IndexAction extends AdminCommonAction
 			'帮助'=>array(
 				'常见问题'=>U('Admin/help/question'),
 			),
-            /*
 			'广告' => array(
 				'广告管理'   => U('admin/ad/ad'),
 				'广告位管理' => U('admin/ad/position'),
 			),
-             */
 		);
 		return $menu;
 	}

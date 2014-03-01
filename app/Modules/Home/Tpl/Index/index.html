@@ -6,7 +6,11 @@
      <div class="col-xs-6 tc">
        <h1><em>3156</em>蛋糕微网店</h1>
      </div>
-     <div class="col-xs-3 head-r"><a href="###" class="fr"><img src="__IMG__/product/address-arrow.png" class="fr"><em class="fr">{$city}</em></a></div>
+     <div class="col-xs-3 head-r"><img src="__IMG__/product/address-arrow.png" class="fr"><em class="fr">
+                 <select name="city">
+                     <volist name="cityList" id="vo">
+                     <option value="{$vo}">{$vo}</option>
+         </volist></select></em></div>
   </div>
 </div>
 <!-- END 头部 -->
@@ -37,9 +41,9 @@
     <div id="wrapper" style="overflow: hidden; ">
        <div id="scroller">
          <ul id="thelist">
-           <li><img src="__IMG__/product/banner1.jpg"/></li>
-           <li><img src="__IMG__/product/banner2.jpg"/></li>  
-           <li><img src="__IMG__/product/banner3.jpg"/></li>                
+             <volist name="positionList[1][adList]" id="vo">
+             <li><img src="{$vo.pic_name}" /></li>
+             </volist>
         </ul>
       </div>
     </div>
@@ -114,15 +118,14 @@
   </div>-->
   <div class="row"> 
     <div class="title col-xs-12 ">
-      <h2>私人定制</h2> 
+      <h2>私人订制</h2> 
     </div>
   </div>  
   <div class="product-custom white-bg row chanpin pb20">
-    <a href="{:U('Home/Cake/ls', array('is_vip'=>1))}"><img src="__IMG__/product/img1.jpg"  class="img-responsive"></a>
-    <dl class="vip-lei col-xs-12">
-      <dt>好利来</dt>
-      <dd>利来将成为未来人们好利来将成为未来人们好利来将成为未来来将成为未来人们好利来将成为未来好利来将成为未来好利...</dd>
-    </dl>
+    <a href="{:U('Home/Cake/ls', array('is_vip'=>1))}">
+        <volist name="positionList[0][adList]" id="vo">
+        <img src="{$vo.pic_name}" class="img-responsive">
+</volist></a>
   </div>
  
     <div class="row">
@@ -138,7 +141,7 @@
 <div class="indent col-xs-12 mt5  " id="indent0"> 
   <ul> 
     <volist name="orderList" id="order">
-    <li>送往：{$order[consignee_district]}</li> 
+    <li>送往：南宁市{$order[consignee_district]}{$order.consignee_address}</li> 
     </volist>
   </ul> 
 </div>
@@ -193,6 +196,7 @@ startmarquee(25,30,2000,0);
 <!--内容结束-->	
 
 <!--获取用户地理位置-->
+<!--
 <script>
 $city = '{$_SESSION[current_city]}';
 if($city == 0){
@@ -210,6 +214,6 @@ function setLocation(position){
 }
 </script>
 <!--获取用户地理位置-->
-
+-->
 </body>
 </html>

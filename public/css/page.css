@@ -10,7 +10,7 @@
 .thumbnail{ border:0; padding:0; margin:0; background:none;}
 .container { background:#f2f2f2;} 
 .color-999{ color:#999;}    
-p{ line-height:26px;}   
+p{ line-height:24px;}   
 .write-bg{ background:#fff;}    
 .header{ background:#f65648; height:40px; line-height:40px; color:#fff; }
 .header h1{ font-size:18px; color:#fff; overflow:hidden;  height:50px; line-height:50px;}
@@ -20,8 +20,8 @@ p{ line-height:26px;}
 .head-r{ height:20px; line-height:20px; margin-top:15px;}
 .head-r em{ line-height:20px; color:#fff;}
 .head-r img{ margin:-5px 5px 0 5px;}
-
-
+#thelist img{ width:640px; height:60px;}
+.product-custom img{width:640px; height:300px;}
 
 .title{background:#f2f2f2;}
 .title h2{ font-size:16px; line-height:40px; }
@@ -45,13 +45,13 @@ p{ line-height:26px;}
 .question p{ line-height:30px;}
 .mima a{ color:#8b8b8b;}
 .account em a{ color:#F90;}
-.product .list { border:1px solid #e8e8e8; padding:15px 0; margin-top:20px; background:#fff;}
-.product .list .col-xs-4{ position:relative; padding-right:0;}
+.product .list { border:1px solid #e8e8e8; padding:8px 0; margin-top:10px; background:#fff;}
+.product .list .col-xs-4{ position:relative; padding-right:0; padding-left:8px;}
 .product .list .col-xs-4 em{ position:absolute; background:url(../images/namtou.png); font-size:16px; color:#fff; bottom:0; right:0; padding:5px; border-radius:20px 5px 0 5px;}
 
 
-.product .list h4 a{ font-size:16px; color:#000;line-height:24px;}
-.product .list span{ color:#f65648; font-size:18px; line-height:26px;}
+.product .list h4 a{  color:#000; }
+.product .list span{ color:#f65648;  font-size:16px;   }
 .pagination { background: none repeat scroll 0 0 #FFFFFF; width: 100%;}
 .pagination { border-radius: 4px; display: inline-block; margin: 20px 0; padding-left:0;}
 
@@ -203,7 +203,7 @@ div ul.filter li a.active{border-bottom: 3px solid #f65648;}
 .city-list a{ padding:0 15px; display:block; line-height:40px; border-bottom:1px solid #ededed; color:#767676; font-size:16px;}
 .city-list a:hover{ background:#fff;}
 
-.tou-in .col-xs-3{ border:1px solid #cecece; border-right-color:#fff;   padding:10px 0;}
+.tou-in .col-xs-3{ border:1px solid #cecece; border-right-color:#fff;   padding:10px;}
  .tou-in .col-xs-3:last-child{  border-right-color:#cecece;}
  
 .chanpin{border-bottom:1px solid #cecece;}
@@ -212,10 +212,7 @@ div ul.filter li a.active{border-bottom: 3px solid #f65648;}
 .alert-shenlan{ position:fixed; top:0; left:0; width:100%; text-align:center; }
 .chanpin  .col-xs-4{ padding:0 5px;} 
 .chanpin  .col-xs-4 h2,.chanpin  .col-xs-4 span{ font-size:12px;}
-
-.riqi span{ width:50%; display:inline-block; color:#333;}
-.xuanriqi{ width:50%; float:left;}
-.xuanriqi select{ width:80%; height:26px;}
+ 
 
 
 

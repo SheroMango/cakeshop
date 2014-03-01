@@ -12,13 +12,13 @@
 </div>
 
 <!-- 静态框 -->
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="myModal" >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
         <p class="tc">确认要放弃填写订单吗？</p>
       </div>
-      <div class="modal-footer tc">
+      <div class="modal-footer tc" >
 
         <button type="button" class="btn btn-primary" onClick="javascript:window.history.go(-1);">稍后再订</button>
 		<button type="button" class="btn btn-default" data-dismiss="modal">继续填写</button>
@@ -27,7 +27,17 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- 静态框 -->
+<script>
+$(function(){
+  var wgao=$(window).height();
+ 
+  var mtop=(wgao/2)-130;
+  $('.modal-dialog').css('margin-top',mtop+'px');
+  
+  
 
+})
+</script>
 
 <!--头部结束-->
 <!--内容开始-->
@@ -49,10 +59,10 @@
     <p><span>请填写“订购人”的联系方式，非“收货人“，方便客服联系您确认订单。</span></p>
     <p>收货人:</p>
     <div class="form-group">
-		<input class="form-control mb10 required" id="consignee_name" name="order[consignee_name]" type="text" placeholder="请填写收货人姓名" class="form-control" value="{$preOrderInfo.consignee_name}">
+		<input class="form-control mb10 required" id="consignee_name" name="order[consignee_name]" type="text" placeholder="请填写收货人姓名" class="form-control">
 	</div>
 	<div class="form-group">
-		<input class="form-control mb10 required" id="consignee_mobile" name="order[consignee_mobile]" type="text" placeholder="请填写手机号码" class="form-control" value="{$preOrderInfo.consignee_mobile}">
+		<input class="form-control mb10 required" id="consignee_mobile" name="order[consignee_mobile]" type="text" placeholder="请填写手机号码" class="form-control">
 	</div>
     <div class="row mt10">
 		<div class="col-xs-4 phone"><span class="form-control">南宁市</span></div>
@@ -70,13 +80,15 @@
 	   <input id="freight" class="form-control" type="hidden" name="order[freight]" />
 	</div>
     <div class="write-order"> 
-		<p class="riqi"><span>选择送达日期:</span><span>选择送达时间:</span></p>
+		<p> 选择送达日期: </p>
     <div class="form-group">
       <div class="xuanriqi"> 
-		<input type="date" id="date" class="" value="选择日期" style=" width:80%; height:20px; border:1px solid #ccc;" />
+		<input type="date" id="date" class="" value="选择日期" style=" width:100%; height:30px; border:1px solid #ccc;" />
       </div>
+    </div>  
+    <p>选择送达时间: </p>  
 	  <div class="xuanriqi form-select">
-		<select class="" id="time" style=" width:80%; height:20px;">
+		<select class="" id="time" style=" width:100%; height:30px;">
 		  <option>11:00-12:00</option>
 		  <option>12:00-13:00</option>
 		  <option>13:00-14:00</option>
@@ -87,7 +99,7 @@
 		  <option>18:00-19:00</option>
 		</select>
       </div>		
-	</div>
+ 
       <input type="hidden" id="arrive_time" name="order[arrive_time]" class="form-control" />
     <p class="cb"><span>最早12月12日11：00左右可以送达，由于当天制作需要时间，强烈建议至少提前一天以上预订。</span></p>
 	</div>

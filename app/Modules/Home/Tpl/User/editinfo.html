@@ -14,12 +14,12 @@
    
           <div class="radio">
             <label>
-			<input  type="radio" name="page[sex]" <eq name="userInfo[sex]" value="1">checked="checked"</eq>  class="mr5">男
+			<input  type="radio" name="page[sex]" value="1" <eq name="userInfo[sex]" value="1">checked="checked"</eq>  class="mr5">男
 		  </label>
           </div>
           <div class="radio">
 		   <label>
-			<input  type="radio" name="page[sex]" <eq name="userInfo[sex]" value="0">checked="checked"</eq> class="mr5">女
+			<input  type="radio" name="page[sex]" value="0" <eq name="userInfo[sex]" value="0">checked="checked"</eq> class="mr5">女
 		   </label>
         </div>
       </div>
@@ -30,7 +30,7 @@
 	</div>
 	<div class="form-group">
 		<label for="remark" class="col-xs-12">备注</label>
-		<div class="col-xs-12"><input class="form-control" name="page[remark]" value="{$userInfo[remark]}"  calss="form-control" /></div>
+		<div class="col-xs-12"><input class="form-control" type="text" name="page[remark]" value="{$userInfo[remark]}"  calss="form-control" /></div>
 	</div>
 	<input type="submit" value="提交" class="btn btn-primary btn-lg btn-block mt30" />
 </form>

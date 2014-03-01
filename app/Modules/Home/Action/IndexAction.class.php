@@ -40,17 +40,49 @@ class IndexAction extends CommonAction
 		}
 		
 		//最新订单
-        $orderField = array('consignee_district');
+        $orderField = array('consignee_district', 'consignee_address');
         $orderMap = array();
         $orderOrder = array('ctime desc');
 		$orderList = $orderInfoDao->getList($orderField, $orderMap, $orderOrder);
-		
+
+        //广告位
+        $positionList = D('AdPosition')->select();
+        foreach($positionList as $k=>$v){
+            $adList = D('Ad')->where('position_id='.$v['id'])->select();
+            foreach($adList as $k2=>$v2){
+                $adList[$k2]['pic_name'] = getPicPath($v2['pic']);
+            }
+            $positionList[$k]['adList'] = $adList;
+        }
+
+        //城市选择
+        $freightList = D('Freight')->select();
+        foreach($freightList as $k=>$v){
+            $zoneList[$k] = D('Freight')->format($v, array('zone_name'));
+            $cityList[$k] = $zoneList[$k]['city_name'];
+        }
+        $i = 0;
+        $newCityList[$i] = $cityList[$i];
+        foreach($cityList as $k=>$v){
+            $j = 1;
+            foreach($newCityList as $k2=>$v2){
+                if($v2 == $v){
+                    $j = 0;
+                }
+            }
+            if($j == 1){
+                $i++;
+                $newCityList[$i] = $v;
+            }
+        }
 		//输出到模版
 		$tplData = array(
 			'cakeList' => $cakeList,
 			'flowerList'=>$flowerList,
 			'orderList'=>$orderList,
-            'city' => ($_SESSION['current_city']) ? $_SESSION['current_city'] : '未知',
+            'city' => ($_SESSION['current_city']) ? $_SESSION['current_city'] : '南宁市',
+            'positionList' => $positionList,
+            'cityList' => $newCityList,
 		);
 		$this->assign($tplData);
 		$this->display();

@@ -1,0 +1,123 @@
+<include file="../Public/header" />
+
+  <!--选项卡 BEGIN-->
+  <div class="tabs">
+    <ul>
+      <li class="current">会员详情</li>
+    </ul>
+  </div>
+  <!--END 选项卡-->
+  
+  <!--编辑表单 BEGIN-->
+  <div class="edit">
+      <dl>
+        <dt>用户姓名：</dt>
+        <dd><input type="text" disabled="disabled" value="{$userInfo.name}" /></dd>
+      </dl>
+      <dl>
+        <dt>手机号码：</dt>
+        <dd><input type="text" disabled="disabled" value="{$userInfo.mobile}" /></dd>
+      </dl>
+      <dl>
+        <dt>性别：</dt>
+        <dd><input type="text" disabled="disabled" value="{$userInfo.sex_name}" /></dd>
+      </dl>
+      <dl><dt>生日：</dt>
+          <dd><input type="text" disabled="disabled" value="{$userInfo.birth}" /></dd>
+      </dl>
+      <dl><dt>累计消费次数：</dt>
+          <dd><input type="text" disabled="disabled" value="{$userInfo.spend_times}" /></dd>
+      </dl>
+      <dl><dt>累计消费金额：</dt>
+          <dd><input type="text" disabled="disabled" value="{$userInfo.spend_count}" /></dd>
+      </dl>
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><input type="submit"  value="提 交" class="btn submit-btn" /></dd>
+      </dl>
+    </form>
+  </div>
+  <!--编辑表单 BEGIN-->
+<include file="../Public/footer" />
+
+<!--编辑器 BEGIN-->
+<script type="text/javascript" src="__JS__/other/editor/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__JS__/other/editor/ueditor/ueditor.all.js"></script>
+<script type="text/javascript">
+UE.getEditor('content');
+</script>
+<!--END 编辑器-->
+<script>
+$(function(){
+  $('.content .tabs ul li').click(function(){
+  	$(this).addClass('current');
+  	$(this).siblings('li').removeClass('current');
+  });	
+	
+})	
+	
+</script>
+<script>  
+
+ $(document).ready(function(){
+	
+	//增加<tr/>
+	$("#addImg").click(function(){
+		var _len = $("#tab tr").length+2;        
+		$("#tab").append("<tr id="+_len+">"
+							+"<td><a href=\'#\' onclick=\'deltr("+_len+")\'>[-]</a></td>"
+							+"<td>图片描述:</td>"
+							+"<td><input type='text' name='pic[desc"+_len+"]' id='desc"+_len+"' /></td>"
+							+"<td>文件上传:</td>"+"<td><input type='file' name='image"+_len+"' /></td>"
+						+"</tr>");            
+	})
+	//增加尺寸
+	$("#addSize").click(function(){
+		var _len = $("#tabsize tr").length;        
+		$("#tabsize").append("<tr id="+_len+">"
+							+"<td><a href=\'#\' onclick=\'delsize("+_len+")\'>[-]</a></td>"
+							+"<td>尺寸:</td>"
+							+"<td><input type='text' name='size[size"+_len+"]' id='sizedesc"+_len+"' /></td>"
+							+"<td>增加价格:</td>"+"<td><input type='text' name='size[price"+_len+"]' /></td>"
+						+"</tr>");            
+	})    
+})
+
+//删除<tr/>
+var deltr =function(index)
+{
+	var _len = $("#tab tr").length;
+	$("tr[id='"+index+"']").remove();//删除当前行
+	for(var i=index+1,j=_len;i<j;i++)
+	{
+		var nextTxtVal = $("#desc"+i).val();
+		$("tr[id=\'"+i+"\']")
+			.replaceWith("<tr id="+(i-1)+">"
+							+"<td><a href=\'#\' onclick=\'deltr("+(i+1)+")\'>[-]</a></td>"
+							+"<td>图片描述:</td>"
+							+"<td><input type='text' name='pic[desc"+(i+1)+"]' value='"+nextTxtVal+"' id='desc"+(i+1)+"'/></td>"+"<td>文件上传:</td>"
+							+"<td><input type='file' name='image"+(i+1)+"' /></td>"
+						+"</tr>");
+	}    
+	
+}
+//删除size
+var delsize =function(index)
+{
+	var _len = $("#tabsize tr").length;
+	$("tr[id='"+index+"']").remove();//删除当前行
+	for(var i=index+1,j=_len;i<j;i++)
+	{
+		var nextTxtVal = $("#sizedesc"+i).val();
+		$("tr[id=\'"+i+"\']")
+			.replaceWith("<tr id="+(i-1)+">"
+							+"<td><a href=\'#\' onclick=\'deltr("+(i-1)+")\'>[-]</a></td>"
+							+"<td>尺寸:</td>"
+							+"<td><input type='text' name='size[size"+(i-1)+"]' value='"+nextTxtVal+"' id='desc"+(i-1)+"'/></td>"+"<td>增加价格:</td>"
+							+"<td><input type='text' name='size[price"+(i-1)+"]' /></td>"
+						+"</tr>");
+	}    
+	
+}
+
+</script>  
