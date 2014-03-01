@@ -25,7 +25,9 @@ class CakeAction extends CommonAction
 		$is_vip = $_GET['is_vip'];
 		if (!empty($is_vip)) {
 			$arrMap['is_vip'] = 1;
-		}
+        }else{
+            $arrMap['is_vip'] = 0;
+        }
 
 		//筛选
 		$shaixuan = $_POST['shaixuan'];
@@ -126,12 +128,14 @@ class CakeAction extends CommonAction
 		
 		//输出到模版
 		$tplData = array(
+            'title' => '蛋糕订购',
 			'arrList'=>$arrList,
 			'pageHtml'=>$show,
 			'orderDesc'=>$orderDesc,
 			'brandList'=>$brandList,
 			'syrsList'=>$syrsList,
 			'kwList'=>$kwList,
+            'is_vip' => $is_vip,
 		);
 		$this->assign($tplData);
 		$this->display();

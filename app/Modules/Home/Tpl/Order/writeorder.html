@@ -73,10 +73,10 @@
 		<p class="riqi"><span>选择送达日期:</span><span>选择送达时间:</span></p>
     <div class="form-group">
       <div class="xuanriqi"> 
-		<input type="date" name="arrive_time" class="form-control" />
+		<input type="date" id="date" class="" value="选择日期" style=" width:80%; height:20px; border:1px solid #ccc;" />
       </div>
-	  <div class="xuanriqi">
-		<select>
+	  <div class="xuanriqi form-select">
+		<select class="" id="time" style=" width:80%; height:20px;">
 		  <option>11:00-12:00</option>
 		  <option>12:00-13:00</option>
 		  <option>13:00-14:00</option>
@@ -88,7 +88,8 @@
 		</select>
       </div>		
 	</div>
-    <p><span>最早12月12日11：00左右可以送达，由于当天制作需要时间，强烈建议至少提前一天以上预订。</span></p>
+      <input type="hidden" id="arrive_time" name="order[arrive_time]" class="form-control" />
+    <p class="cb"><span>最早12月12日11：00左右可以送达，由于当天制作需要时间，强烈建议至少提前一天以上预订。</span></p>
 	</div>
 	<div class="write-order">   
 		<p>餐具和蜡烛:</p>
@@ -128,6 +129,7 @@
 <script>
 $(function(){
   setValue();
+  setDateTime();
 });
 $("#zone").change(function (){setValue();})
 $("input").focus(function(){
@@ -135,6 +137,14 @@ $("input").focus(function(){
         $("input").parent("div").siblings("div").children(".required").remove("has-error");
 })
 		
+//设置时间
+$("#date").change(function(){setDateTime();})
+$("#time").change(function(){setDateTime();})
+function setDateTime(){
+    var date = $("#date").val();
+    var time = $("#time").val();
+    $("#arrive_time").val(date + ' ' + time);
+}
 //设置运费和总价
 function setValue(){
 	var sumdiscount = '{$orderInfo[sumdiscount]}';

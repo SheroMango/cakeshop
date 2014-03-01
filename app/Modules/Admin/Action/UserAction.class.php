@@ -23,8 +23,19 @@ class UserAction extends AdminCommonAction
         if(!empty($search_filter)){
             $arrMap['spend_count'] = array('gt', $search_filter);
         }
-		$arrField = array('*');
 		$arrOrder = array('spend_count desc');
+        $display_order = trim($_GET['display_order']);
+        $display_order_desc = trim($_GET['desc']);
+        if(!empty($display_order)){
+            if(!empty($display_order_desc)){
+                $arrOrder = array($display_order.' desc');
+                $display_desc = '0';
+            }else{
+                $arrOrder = array($display_order);
+                $display_desc = '1';
+            }
+        }
+		$arrField = array('*');
 		$count = $userDao->getCount($arrMap);
 		$page = page($count);
 		$pageHtml = $page->show();
@@ -36,8 +47,38 @@ class UserAction extends AdminCommonAction
 		$tplData = array(
 			'userList' => $userList,
 			'pageHtml' => $pageHtml,
+            'display_order' => $display_order,
+            'display_desc' => $display_desc,
 		);
 		$this->assign($tplData);
 		$this->display();
 	}
+
+	/**
+	 * 删除用户 
+	 */
+	public function del()
+	{
+		//模型
+		$userDao = D('User');
+		//数据
+		$delIds = array();
+		$postIds = $this->_post('id');
+		if (!empty($postIds)) {
+			$delIds = $postIds;
+		}
+		$getId = intval($this->_get('id'));
+		if (!empty($getId)) {
+			$delIds[] = $getId;
+		}
+		//删除
+		if (empty($delIds)) {
+			$this->error('请选择您要删除的数据');
+		}
+		$map['id'] = array('in', $delIds);
+		$userDao->where($map)->delete();
+		$this->success('删除成功');
+	}
+
+
 }

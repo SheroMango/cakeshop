@@ -1,0 +1,34 @@
+<include file="../Public/header" />
+
+
+<!--页面标题 BEGIN-->
+<div class="tabs">
+  <ul>
+    <li><a href="javascript:void(0)" class="current">区域管理</a></li>
+  </ul>
+</div>
+<!--END 页面标题-->
+
+<!--搜索 BEGIN-->
+<div class="edit">
+  <form action="{:U('Admin/Freight/doEditFreight')}" method="post">
+      <input type="hidden" name="id" value="{$freightInfo.id}" />
+      <input type="hidden" name="zone_id" value="{$freightInfo.zone_id}" />
+      <dl><dt>省份：</dt>
+          <dd><input type="text" disabled="disabled" value="{$freightInfo.province_name}" /></dd>
+      </dl>
+      <dl><dt>城市：</dt>
+          <dd><input type="text" disabled="disabled" value="{$freightInfo.city_name}" /></dd>
+      </dl>
+      <dl><dt>县区：</dt>
+          <dd><input type="text" disabled="disabled" value="{$freightInfo.zone_name}" /></dd>
+      </dl>
+      <dl><dt>运费：</dt>
+          <dd><input type="text" name="fee" value="{$freightInfo.fee}"></dd>
+      </dl>
+      <dl><dt>&nbsp;</dt>
+          <dd><input type="submit" class="btn submit-btn" value="更新" /></dd>
+      </dl>
+  </form>
+</div>
+<include file="../Public/footer" />

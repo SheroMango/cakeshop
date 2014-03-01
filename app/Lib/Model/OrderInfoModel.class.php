@@ -40,7 +40,7 @@ class OrderInfoModel extends CommonModel
                     $action_url  = './api/pay/alipay_web/alipayapi.php';
                 }else{
                     $action_name = '确认收货';
-                    $action_url  = U('Home/Order/checkStatus');
+                    $action_url  = U('Home/Order/setStatus', array('toStatus'=>'5'));
                 }
                 break;
             case '1':

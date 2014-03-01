@@ -36,7 +36,7 @@
   
   <!--列表 BEGIN-->
   <div class="list">
-    <form action="{:U('Admin/User/doDelUser')}" method="post" class="del-form">
+    <form action="{:U('Admin/User/del')}" method="post" class="del-form">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
@@ -44,8 +44,18 @@
             <th width="5%">编号</th>
             <th width="25%">会员名称</th>
             <th width="20%">手机号码</th>
-            <th width="20%">累计消费金额</th>
-            <th width="15%">上次访问时间</th>
+            <th width="15%">
+            <eq name="display_order" value="spend_times">
+                <a href="{:U('Admin/User/ls', array('display_order'=>'spend_times', 'desc'=>$display_desc))}">
+            <else />
+                <a href="{:U('Admin/User/ls', array('display_order'=>'spend_times'))}">
+            </eq>累计消费次数</a></th>
+            <th width="20%">
+            <eq name="display_order" value="spend_count">
+                <a href="{:U('Admin/User/ls', array('display_order'=>'spend_count', 'desc'=>$display_desc))}">
+            <else />
+                <a href="{:U('Admin/User/ls', array('display_order'=>'spend_count'))}">
+            </eq>累计消费金额</a></th>
             <th width="10%">操作</th>
           </tr>
         </thead>
@@ -61,11 +71,10 @@
                 <td>{$vo[id]}</td>
                 <td>{$vo[name]}</td>
                 <td>{$vo[mobile]}</td>
+                <td>{$vo[spend_times]}</td>
                 <td>{$vo[spend_count]}</td>
-                <td>{$vo[ctime_text]}</td>
                 <td>
-                  <a href="{:U('Admin/User/editUser', array('id'=>$vo[id]))}" class="mr10">编辑</a>
-                  <a href="{:U('Admin/User/doDelUser', array('id'=>$vo[id]))}">删除</a>
+                  <a href="{:U('Admin/User/del', array('id'=>$vo[id]))}">删除</a>
                 </td>
               </tr>
             </volist>

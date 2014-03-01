@@ -1,0 +1,78 @@
+<div class="header container index">
+  <div class="col-xs-3"><a href="javascript:window.history.go(-1);"><img class="img-responsive fl" src="__IMG__/fanhui.png" /></a></div>
+    <div class="col-xs-6">
+        <h2>{$title}</h2>
+    </div>
+  <div class="col-xs-3 shuaixuan"><a href="###"><img class="img-responsive fr" src="__IMG__/shuaixuan.png" /></a></div>
+</div>  
+
+<div class="container index product pb50 pt_rl">
+  <ul class="filter row clearfix">
+      <li class="col-xs-4"><a href="{:U('Home/Cake/ls', array('is_vip'=>$is_vip))}" <eq name="orderDesc" value="">class="active"</eq>>人气</a></li>
+      <li class="col-xs-4"><a href="{:U('Home/Cake/ls', array('order'=>'sales', 'is_vip'=>$is_vip))}" <eq name="orderDesc" value="sales">class="active"</eq>>销量</a></li>
+      <li class="col-xs-4"><a href="{:U('Home/Cake/ls', array('order'=>'price', 'is_vip'=>$is_vip))}" <eq name="orderDesc" value="price">class="active"</eq>>价格</a></li>
+  </ul>
+
+    <div class="popup row pb30">
+        <div class="nei" style="width: 80%;">
+            <form action="{:U('Home/Cake/ls', array('is_vip'=>$is_vip))}" method="post">
+        <dl>  
+          <dt>
+            <p><span>品牌</span>•<em>全部</em><input type="hidden" value="" name="shaixuan[brand]" /></p>
+          </dt>
+          <dd>
+            <volist name="brandList" id="brand">
+            <p><input type="hidden" value="{$brand[id]}" />{$brand[name]}</p>
+            </volist>
+          </dd>  
+        </dl>
+        <dl>  
+          <dt>
+            <p><span>食用人数</span>•<em>全部</em><input type="hidden" value="" name="shaixuan[syrs]" /></p>
+          </dt>
+          <dd>
+            <p>全部</p>
+            <p><input type="hidden" value="2" />2-3人</p>
+            <p><input type="hidden" value="3" />3-5人</p>
+            <p><input type="hidden" value="5" />5-8人</p>
+            <p><input type="hidden" value="8" />8-12人</p>
+            <p><input type="hidden" value="12" />12-20人</p>
+            <p><input type="hidden" value="20" />20人以上</p>
+          </dd>  
+        </dl>
+        <dl>  
+          <dt>
+            <p><span>口味</span>•<em>全部</em><input type="hidden" value="" name="shaixuan[kw]" /></p>
+          </dt>
+          <dd>
+            <p>全部</p>
+            <p><input type="hidden" value="芝士" />芝士</p>
+            <p><input type="hidden" value="慕斯" />慕斯</p>
+            <p><input type="hidden" value="巧克力" />巧克力</p>
+            <p><input type="hidden" value="花果" />花果</p>
+            <p><input type="hidden" value="乳脂" />乳脂</p>
+            <p><input type="hidden" value="冰淇淋" />冰淇淋</p>
+            <p><input type="hidden" value="无糖" />无糖</p>
+            <p><input type="hidden" value="其他" />其他</p>
+          </dd>
+        </dl>
+        <dl>   
+           <dt>
+            <p><span>价格区间</span>•<em>全部</em><input type="hidden" value="" name="shaixuan[jg]" /></p>
+          </dt>
+          <dd>
+            <p><input type="hidden" value="100" />100元以下</p>
+            <p><input type="hidden" value="200" />100元至200元</p>
+            <p><input type="hidden" value="300" />200元至300元</p>
+            <p><input type="hidden" value="400" />300元至500元</p>
+            <p><input type="hidden" value="500" />500元以上</p>
+          </dd>   
+        </dl>
+        <p class="pt10 pb10 col-xs-12">
+          <input type="reset" value="重置" class="btn btn-default fl">
+          <input type="submit" value="确认" class="btn btn-primary fr">
+        </p>
+        </div>
+      </form>
+    </div>
+

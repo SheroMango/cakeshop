@@ -32,7 +32,7 @@ class IndexAction extends AdminCommonAction
 			'index'   => '首页',
 			'global'  => '全局',
 			'content'   => '内容管理',
-			//'other'   => '其他',
+			'other'   => '其他',
 		);
 	}
 
@@ -58,7 +58,7 @@ class IndexAction extends AdminCommonAction
 				'SEO设置'  => U('admin/global/seo'),
 				//'邮件设置' => U('Admin/global/email'),
 				//'附件设置' => U('Admin/global/attach'),
-				//'单页管理' => U('Admin/global/page'),
+				'单页管理' => U('Admin/global/page'),
 			),
 		);
 		//商品
@@ -89,10 +89,12 @@ class IndexAction extends AdminCommonAction
 			'帮助'=>array(
 				'常见问题'=>U('Admin/help/question'),
 			),
+            /*
 			'广告' => array(
 				'广告管理'   => U('admin/ad/ad'),
 				'广告位管理' => U('admin/ad/position'),
 			),
+             */
 		);
 		return $menu;
 	}

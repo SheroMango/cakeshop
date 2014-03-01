@@ -14,10 +14,14 @@ class FreightAction extends AdminCommonAction
         $freightObj = D('Freight');
         $arrField = array('*');
         $arrMap = array();
+        //搜索
+        $search = trim($_POST['name']);
+        $idList = $this->searchName($search);
+        if(!empty($idList)){
+            $arrMap['id'] = array('in', $idList);
+        }
         $arrOrder = array();
-        $count = $freightObj->getCount($arrMap);
-        $page = page($count);
-        $pageHtml = $page->show();
+        $page = page($freightObj->getCount($arrMap));
         $freightList = $freightObj->getList($arrField, $arrMap, $arrOrder, $page->firstRow, $page->listRows);
         $arrFormatField = array('zone_name');
         foreach($freightList as $k=>$v){
@@ -25,7 +29,7 @@ class FreightAction extends AdminCommonAction
         }
         $tplData = array(
             'list' => $freightList,
-            'pageHtml' => $pageHtml,
+            'pageHtml' => $page->show(),
         );
         $this->assign($tplData);
         $this->display();
@@ -88,6 +92,82 @@ class FreightAction extends AdminCommonAction
             );
             echo json_encode($data);
         }
+    }
+
+    /**
+     * 更新运费页面
+     */
+    public function editFreight()
+    {
+        $id = intval($_GET['id']);
+        $freightInfo = D('Freight')->getInfoById($id);
+        $freightInfo = D('Freight')->format($freightInfo, array('zone_name'));
+        $tplData = array(
+            'freightInfo' => $freightInfo,
+        );
+        $this->assign($tplData);
+        $this->display();
+    }
+
+    /**
+     * 更新运费操作
+     */
+    public function doEditFreight()
+    {
+        $data = $_POST;
+        if(D('Freight')->save($data)){
+            $this->success('更新成功');
+        }else{
+            $this->error('更新失败');
+        }
+    }
+
+	/**
+	 * 删除运费 
+	 */
+	public function del()
+	{
+		//模型
+		$freightDao = D('Freight');
+		//数据
+		$delIds = array();
+		$postIds = $this->_post('id');
+		if (!empty($postIds)) {
+			$delIds = $postIds;
+		}
+		$getId = intval($this->_get('id'));
+		if (!empty($getId)) {
+			$delIds[] = $getId;
+		}
+		//删除
+		if (empty($delIds)) {
+			$this->error('请选择您要删除的数据');
+		}
+		$map['id'] = array('in', $delIds);
+		$freightDao->where($map)->delete();
+		$this->success('删除成功');
+	}
+
+    /**
+     * 获取搜索匹配的ID列表
+     */
+    public function searchName($search)
+    {
+        $freightObj = D('Freight');
+        $resultList = $freightObj->select();
+        $i = 0;
+        $idList = array();
+        foreach($resultList as $k=>$v){
+            $resultList[$k] = $freightObj->format($v, array('zone_name'));
+            preg_match('/'.$search.'/i', $resultList[$k]['province_name'], $province_result);
+            preg_match('/'.$search.'/i', $resultList[$k]['city_name'], $city_result);
+            preg_match('/'.$search.'/i', $resultList[$k]['zone_name'], $zone_result);
+            if($province_result OR $city_result OR $zone_result){
+                $idList[$i] = $v['id'];
+                $i++;
+            }
+        }
+        return $idList;
     }
 
 }

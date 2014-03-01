@@ -104,7 +104,6 @@ class GlobalAction extends AdminCommonAction
 
 		//分页
 		$count = $pageDao->getCount($arrMap);
-		$count = 100;
 		$page = page($count);
 		$pageHtml = $page->show();
 

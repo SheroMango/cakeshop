@@ -58,10 +58,10 @@ if($verify_result) {//验证成功
 		//更新订单状态等信息
 		mysql_query("UPDATE cs_order_info SET pay_status = '2', pay_time = '". $time ."' WHERE order_sn = '" . $out_trade_no . "'");
 		
-		//会员的消费金额增加
+		//会员的消费金额增加，消费次数增加
         $order_info = mysql_query("select id, user_id, order_total from cs_order_info where order_sn = ".$out_trade_no);
         $order_info = mysql_fetch_assoc($order_info);
-		mysql_query("UPDATE cs_user SET spend_count = spend_count+".$order_info['order_total']." WHERE id = ".$order_info['user_id']);
+		mysql_query("UPDATE cs_user SET spend_count = spend_count+".$order_info['order_total'].", spend_times = spend_times+'1' WHERE id = ".$order_info['user_id']);
 		
         //商品的销售数量增加
         $goods_info = mysql_query("select goods_id, goods_number from cs_order_goods where order_id = ".$order_info['id']);
