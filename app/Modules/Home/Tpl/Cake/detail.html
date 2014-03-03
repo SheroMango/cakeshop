@@ -1,14 +1,6 @@
 <include file="../Public/header" /> 
 <include file="../Public/navigation" />
- <script>
-$(document).ready(function() {
-	
-$('.delt-xiang img').click(function(){
-  var url=$(this).attr('src');
-   window.location.href = url; 
-})
-	});
-</script>
+ 
     
 <!--内容开始-->
 <form name="form1" action="{:U('Home/Order/writeOrder')}" method="post" enctype="multipart/form-data">
@@ -18,7 +10,7 @@ $('.delt-xiang img').click(function(){
   <input type="hidden" name="goods[price]" id="goodsprice" value="{$cakeInfo[price]}" />
   <div class="cake-show row pt_rl detail-btop delt-xiang">
  
-    <img src="{$cakeInfo[pic]}" class="img-responsive shang"> 
+    <a href="{:U('Home/Public/image', array('image'=>$cakeInfo[pic]))}"><img src="{$cakeInfo[pic]}" class="img-responsive shang"></a> 
     <div class="cake-introduce lnhg">
      <h2>
        {$cakeInfo[name]}
@@ -56,6 +48,7 @@ $('.delt-xiang img').click(function(){
         <span class="fl mt10">数量：</span><em class="subtract-btn fl">-</em> <input type="text" name="goods[num]" value="1" class="num fl"> <em class="add-btn fl">+</em> 
        <span class="fr"> 
 	  <input type="submit" class="btn btn-warning fr" value="立即订购" />
+      </form>
 	  </span></p>
       <h4 class="mb20"><img src="__IMG__/biao.gif">南宁市区内免费配送（联系电话:010-1258489）</h4>
       <table border="1" bordercolor="#e2e2e2">
@@ -66,21 +59,28 @@ $('.delt-xiang img').click(function(){
         </tr>
         </volist>
       </table>
- 
-      <volist name="picList" id="vo">
-      <img src="{$vo.pic_name}" href="{$vo.pic_name}" class="img-responsive" />
-      </volist>
+      <form id="picForm" method="post" action="{:U('Home/Public/image')}" />
+        <volist name="picList" id="vo">
+        <input type="hidden" name="image[img{$key+1}]" value="{$vo.pic_name}" />
+        <img src="{$vo.pic_name}" class="img-responsive" onClick="viewPic()" />
+        </volist>
+      </form>
+      <script>
+	  	function viewPic(){
+			$.post("{:U('Home/Public/do_image')}", $("#picForm").serialize(),function(result){window.location.href="index.php?g=home&m=Public&a=image&result="+result});
+		}
+	  </script>
     </div>
   </div>   
   <div class="row pb50 delt-bottom " >
-    <img src="__IMG__/lin-logo.jpg" class="img-responsive"/>
-    <div class="col-xs-12 jieshao mt20 mb20">
-      <p>上海元祖梦果子股份有限公司1981年创立于台湾，1993年进驻上海至今，元祖食品以上海为基地，已先后在中国大陆的上海、无锡、杭州、成都、武汉、青岛、长沙、重庆、广东、福建、大连等主要城市设立了多家分公司，门店遍及台海两岸，力求以时效确保质量新鲜、服务贴心。从初创时期开始，随着产品的不断创新和门店数的扩增，公司每年业绩稳步成长。</p>
+      <img src="{$brandInfo.pic_name}" class="img-responsive"/>
+    <div class="p10">
+        {$brandInfo.desc}
     </div>
-    <h3>精致礼品管家</h3>
+    <h3>3156蛋糕商城</h3>
   </div>
 </div>
-</form>
+
 <!--内容结束--> 
 </body>
 </html>
@@ -97,7 +97,6 @@ $('.delt-xiang img').click(function(){
 </script>
 -->
 
-//选择价格
 <script type="text/javascript">
 
   $(".selsize").click(function(){

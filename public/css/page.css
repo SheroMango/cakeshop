@@ -212,8 +212,10 @@ div ul.filter li a.active{border-bottom: 3px solid #f65648;}
 .alert-shenlan{ position:fixed; top:0; left:0; width:100%; text-align:center; }
 .chanpin  .col-xs-4{ padding:0 5px;} 
 .chanpin  .col-xs-4 h2,.chanpin  .col-xs-4 span{ font-size:12px;}
- 
 
+.city-seek{ background:#c6cacb;} 
+.city-seek .city-nei{ background:#fff; border-radius:5px;}
+.city-seek .city-nei input.city-text{ width:90%; border:0;}
 
 
 

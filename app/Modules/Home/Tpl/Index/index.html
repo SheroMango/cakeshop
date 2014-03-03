@@ -6,11 +6,7 @@
      <div class="col-xs-6 tc">
        <h1><em>3156</em>蛋糕微网店</h1>
      </div>
-     <div class="col-xs-3 head-r"><img src="__IMG__/product/address-arrow.png" class="fr"><em class="fr">
-                 <select name="city">
-                     <volist name="cityList" id="vo">
-                     <option value="{$vo}">{$vo}</option>
-         </volist></select></em></div>
+     <div class="col-xs-3 head-r"><a href="{:U('Home/Public/setCity')}" class="fr"><img src="__IMG__/product/address-arrow.png" class="fr"><em class="fr">{$city}</em></a></div>
   </div>
 </div>
 <!-- END 头部 -->
@@ -196,7 +192,6 @@ startmarquee(25,30,2000,0);
 <!--内容结束-->	
 
 <!--获取用户地理位置-->
-<!--
 <script>
 $city = '{$_SESSION[current_city]}';
 if($city == 0){
@@ -214,6 +209,6 @@ function setLocation(position){
 }
 </script>
 <!--获取用户地理位置-->
--->
+
 </body>
 </html>

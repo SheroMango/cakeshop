@@ -248,4 +248,22 @@ class PublicAction extends CommonAction
         $this->assign($tplData);
         $this->display();
     }
+	
+	/**
+	 * 图片显示
+	 */
+	public function image()
+	{
+		//$image = trim($_GET['image']);
+		//$images = $_POST['image'];
+		//$this->assign('image', $image);
+		echo $_REQUEST['result'];exit;
+		$this->display('image.html');
+	}
+	
+	public function do_image()
+	{
+	  echo 1;
+	}
+	
 }

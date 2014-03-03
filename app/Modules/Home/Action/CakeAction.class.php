@@ -152,7 +152,7 @@ class CakeAction extends CommonAction
 		$attrDao  = D('Attr');
 		$goodsDao->where('id='.$goods_id)->setInc('views', 1);
 		//条件
-		$arrField = array('id', 'name', 'price', 'discount', 'discount_desc', 'desc', 'pic');
+		$arrField = array('id', 'name', 'brand_id', 'price', 'discount', 'discount_desc', 'desc', 'pic');
 		//详情信息
 		$cakeInfo = $goodsDao->getInfoById($goods_id, $arrField);
 		$cakeInfo['pic']  = getPicPath($cakeInfo['pic']);
@@ -184,10 +184,15 @@ class CakeAction extends CommonAction
 		}
 
         //商品图片
-        $picList = D('GoodsPic')->select();
+        $picList = D('GoodsPic')->where('goods_id='.$goods_id)->select();
         foreach($picList as $k=>$v){
             $picList[$k]['pic_name'] = getPicPath($v['pic']);
         }
+
+        //品牌信息
+        $brandInfo = D('Brand')->where('id='.$cakeInfo['brand_id'])->find();
+        $brandInfo['pic_name'] = getPicPath($brandInfo['pic']);
+
 		//输出到模版
 		$tplData = array(
             'title'    => '蛋糕详情',
@@ -198,6 +203,7 @@ class CakeAction extends CommonAction
 			'sizePrice'=> $sizePrice,
 			'attList'  => $attList,
             'picList'  => $picList,
+            'brandInfo' => $brandInfo,
 		);
 		$this->assign($tplData);
 		$this->display();
