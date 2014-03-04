@@ -193,6 +193,8 @@ class CakeAction extends CommonAction
         $brandInfo = D('Brand')->where('id='.$cakeInfo['brand_id'])->find();
         $brandInfo['pic_name'] = getPicPath($brandInfo['pic']);
 
+        //设置登录返回的路径
+        $_SESSION['return_url'] = U('Home/Cake/detail', array('id'=>$goods_id));
 		//输出到模版
 		$tplData = array(
             'title'    => '蛋糕详情',

@@ -1,0 +1,58 @@
+<include file="../Public/header" /> 
+<body style="background:#000;">
+<div class="header container index">
+ 
+    <div class="col-xs-3"><a href="javascript:window.history.go(-1);"><img class="img-responsive fl" src="__IMG__/fanhui.png" /></a></div>
+     <div class="col-xs-6 tc">
+       <h1>产品详情</h1>
+     </div>
+     <div class="col-xs-3 head-r"> </div>
+ 
+</div> 
+<!-- start 幻灯片 --> 
+      <div class="container mt50" style="padding:0; position:relative;">
+        <div class="banner">
+          <link type="text/css" rel="stylesheet" href="__CSS__/index.css" />
+  <script type="text/javascript" src="__JS__/common/iscroll.js"></script>
+  <script>
+  var myScroll;
+      function loaded() {
+          myScroll = new iScroll('wrapper', {
+              snap: true,
+              momentum: false,
+              hScrollbar: false,
+              onScrollEnd: function() {
+
+              }
+          });
+      }
+      document.addEventListener('DOMContentLoaded', loaded, false);
+  </script> 
+        <div id="wrapper" style="overflow: hidden; ">
+          <div id="scroller">
+            <ul id="thelist">
+			<volist name="images" id="vo">
+			  <li><img src="{$vo}" ></li>
+			</volist>
+			</ul> 
+          </div>
+         </div>
+         <div id="nav" >
+           <div id="prev" onClick="javascript:myScroll.scrollToPage('prev', 0);"></div>
+             <ul id="indicator" class="fr pr20">
+             </ul>
+             <div id="next" onClick="javascript:myScroll.scrollToPage('next', 0, 400, 2);">
+             </div>
+           </div>
+          <div class="clr"></div>
+         </div>
+       </div>  
+       <script type="text/javascript" src="__JS__/banner.js"></script>
+       <!-- END 幻灯片 --> 
+
+
+</div>
+<style>
+#thelist img{ height:auto;}
+</style>
+</body>

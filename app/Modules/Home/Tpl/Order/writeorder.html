@@ -81,13 +81,13 @@ $(function(){
 	</div>
     <div class="write-order"> 
 		<p> 选择送达日期: </p>
+    </div>
     <div class="form-group">
-      <div class="xuanriqi"> 
-		<input type="date" id="date" class="w fl mb20" value="选择日期" style=" width:100%; float:left; height:30px; border:1px solid #ccc;" />
-      </div>
+		<input type="date" id="date" class="form-control required" value="选择日期" placeholder="请选择日期" />
+    </div>
      
 	  <div class="xuanriqi form-select ">
-		<select class=" w fl id="time" style=" width:100%; height:30px; float:left;">
+		<select class=" w fl" id="time" style=" width:100%; height:30px; float:left;">
 		  <option>11:00-12:00</option>
 		  <option>12:00-13:00</option>
 		  <option>13:00-14:00</option>
@@ -140,7 +140,6 @@ $(function(){
 <script>
 $(function(){
   setValue();
-  setDateTime();
 });
 $("#zone").change(function (){setValue();})
 $("input").focus(function(){
@@ -148,14 +147,6 @@ $("input").focus(function(){
         $("input").parent("div").siblings("div").children(".required").remove("has-error");
 })
 		
-//设置时间
-$("#date").change(function(){setDateTime();})
-$("#time").change(function(){setDateTime();})
-function setDateTime(){
-    var date = $("#date").val();
-    var time = $("#time").val();
-    $("#arrive_time").val(date + ' ' + time);
-}
 //设置运费和总价
 function setValue(){
 	var sumdiscount = '{$orderInfo[sumdiscount]}';
@@ -179,7 +170,10 @@ function doAddOrder(){
     }
 	//如果填写完整就提交订单
     if(is_ok != "error"){
-	$.post("{:U('Home/Order/doOrderAdd')}", $("#form").serialize(), function(data){
+        var date = $("#date").val();
+        var time = $("#time").val();
+        $("#arrive_time").val(date + ' ' + time);
+	    $.post("{:U('Home/Order/doOrderAdd')}", $("#form").serialize(), function(data){
 			$("#message").addClass('alert-'+data['status']);
 			$("#message").html(data['content']);
 			$("#message").fadeIn("slow");

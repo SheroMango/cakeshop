@@ -9,6 +9,8 @@ class IndexAction extends CommonAction
 	 */
 	public function index()
 	{
+        //return_url
+        $_SESSION['return_url'] = U('Home/User/center');
 		//模型
 		$goodsDao     = D('Goods');
 		$GoodsAttrDao = D('GoodsAttr');
@@ -56,6 +58,7 @@ class IndexAction extends CommonAction
         }
 
         //城市选择
+        /*
         $freightList = D('Freight')->select();
         foreach($freightList as $k=>$v){
             $zoneList[$k] = D('Freight')->format($v, array('zone_name'));
@@ -75,12 +78,22 @@ class IndexAction extends CommonAction
                 $newCityList[$i] = $v;
             }
         }
+        */
+        $city_id = intval($_GET['city_id']);
+        if(!D('Freight')->where('zone_id='.$city_id)->find()){
+            $message = '此地区暂未开通服务';
+            print_r($message);
+        }
+        $city = trim($_GET['city']);
+        if(!empty($city)){
+            $_SESSION['city'] = $city;
+        }
 		//输出到模版
 		$tplData = array(
 			'cakeList' => $cakeList,
 			'flowerList'=>$flowerList,
 			'orderList'=>$orderList,
-            'city' => ($_SESSION['current_city']) ? $_SESSION['current_city'] : '南宁市',
+            'city' => ($_SESSION['city'])?$_SESSION['city']:'请选择城市',
             'positionList' => $positionList,
             'cityList' => $newCityList,
 		);
@@ -92,7 +105,6 @@ class IndexAction extends CommonAction
      * 获取地址位置
      */
     public function getLocation(){
-        echo 'haha';
         $latitude = $this->_post('latitude');
         $longitude = $this->_post('longitude');
         if(!empty($latitude)){

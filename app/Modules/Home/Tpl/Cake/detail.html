@@ -67,7 +67,8 @@
       </form>
       <script>
 	  	function viewPic(){
-			$.post("{:U('Home/Public/do_image')}", $("#picForm").serialize(),function(result){window.location.href="index.php?g=home&m=Public&a=image&result="+result});
+			$.post("{:U('Home/Public/do_image')}", $("#picForm").serialize(),function(result){
+			window.location.href="index.php?g=home&m=Public&a=imageslide&result="+result});
 		}
 	  </script>
     </div>

@@ -1,12 +1,20 @@
 <include file="../Public/header" /> 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script>
+    $(function() {
+        var cityList = '{$cityTags}';
+        $( "#tags" ).autocomplete({
+            source: cityList
+        });
+});
+</script>
 <include file="../Public/navigation" />
 <div class="container">
   <div class="city-seek row p10">
-    <div class="city-nei">
-    <form>
-      <input type="text" class="city-text" />
+    <div class="city-nei clearfix ui-widget">
+      <input id="tags" type="text" class="city-text" />
       <input type="submit" value=" " class="submit" />
-    </form>
     </div>
   </div>
   <dl class="city-list row">
@@ -16,24 +24,9 @@
     </dd>
     <dt>热门城市</dt>
     <dd>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
-      <a href="###">北京</a>
+    <volist name="cityList" id="vo">
+    <a href="{:U('Home/Index/index', array('city_id'=>$vo[id], 'city'=>$vo[name]))}">{$vo.name}</a>
+    </volist>
     </dd>  
   </dl>
 </div>

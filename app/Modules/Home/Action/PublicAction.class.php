@@ -254,16 +254,44 @@ class PublicAction extends CommonAction
 	 */
 	public function image()
 	{
-		//$image = trim($_GET['image']);
-		//$images = $_POST['image'];
-		//$this->assign('image', $image);
-		echo $_REQUEST['result'];exit;
-		$this->display('image.html');
+		$image = $_GET['image'];
+		$this->assign('image', $image);
+		$this->display();
+	}
+	
+	public function imageSlide()
+	{
+        $images = $_GET['result'];
+        $images = unserialize($images);
+        $this->assign('images', $images);
+		$this->display();
 	}
 	
 	public function do_image()
 	{
-	  echo 1;
+		$images = $_POST['image'];
+		echo serialize($images);
 	}
+
+    /**
+     * 获取城市列表
+     */
+    public function setCity()
+    {
+        $provinceList = D('Zone')->where('pid=0')->select();
+        foreach($provinceList as $k=>$v){
+            $cityList[$k] = D('Zone')->where('pid='.$v['id'])->select();
+        }
+        $newCityList = array();
+        for($i=0; $i<count($cityList); $i++){
+            $newCityList += array_merge($newCityList, $cityList[$i]);
+        }
+        foreach($newCityList as $k=>$v){
+            $cityTags[$k] = urlencode($v['name']);
+        }
+        $this->assign('cityTags', json_encode(urldecode($cityTags)));
+        $this->assign('cityList', $newCityList);
+        $this->display();
+    }
 	
 }

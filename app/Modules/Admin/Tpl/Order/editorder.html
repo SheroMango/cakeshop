@@ -44,14 +44,15 @@
         </tr>
         <!--endprint-->
         <tr>
-        <td colspan="3"><a class="btn submit-btn" target="_blank" href="{:U('Admin/Order/doPrint', array('id'=>$orderInfo[id]))}">打印</a></td>
+        <td colspan="3"><a class="btn submit-btn" target="_blank" href="{:U('Admin/Order/doPrint', array('id'=>$orderInfo[id]))}">打印</a>
+        <a class="btn submit-btn" target="_blank" href="{:U('Admin/Order/viewPrint', array('id'=>$orderInfo[id]))}">打印预览</a></td>
           <td align="right" colspan="2">
             <?php
               $order_status = $orderInfo['order_status'];
               $id = $orderInfo['id'];
               switch ($order_status) {
                 case '0':
-                  echo '<a class="btn submit-btn" href="'.U('Admin/Order/orderStatus', array('order_status'=>1, 'id'=>$id)).'">确认</a>&nbsp;&nbsp';
+                  echo '<a class="btn submit-btn" href="'.U('Admin/Order/orderStatus', array('order_status'=>1, 'id'=>$id)).'">确认订单</a>&nbsp;&nbsp';
                   break;
                 case '1':
                   echo '<a class="btn submit-btn" href="'.U('Admin/Order/orderStatus', array('order_status'=>2, 'id'=>$id)).'">发货</a>&nbsp;&nbsp';
@@ -71,7 +72,7 @@
           <if condition="$orderInfo['order_status'] eq 7">
           
           <else />
-            <td colspan="3"><a class="btn submit-btn" href="{:U('Admin/Order/orderStatus', array('order_status'=>7, 'id'=>$orderInfo['id']))}">取消</a></td>
+            <td colspan="3"><a class="btn submit-btn" href="{:U('Admin/Order/orderStatus', array('order_status'=>7, 'id'=>$orderInfo['id']))}">取消订单</a></td>
           </if>
         </tr>
       </table>

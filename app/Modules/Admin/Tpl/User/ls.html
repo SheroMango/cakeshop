@@ -41,16 +41,18 @@
         <thead>
           <tr>
             <th width="5%"><input type="checkbox" class="check-all" /></th>
-            <th width="5%">编号</th>
-            <th width="25%">会员名称</th>
-            <th width="20%">手机号码</th>
-            <th width="15%">
+            <th width="15%">会员名称</th>
+            <th width="10%">生日</th>
+            <th width="10%">性别</th>
+            <th width="15%">备注</th>
+            <th width="15%">手机号码</th>
+            <th width="10%">
             <eq name="display_order" value="spend_times">
                 <a href="{:U('Admin/User/ls', array('display_order'=>'spend_times', 'desc'=>$display_desc))}">
             <else />
                 <a href="{:U('Admin/User/ls', array('display_order'=>'spend_times'))}">
             </eq>累计消费次数</a></th>
-            <th width="20%">
+            <th width="10%">
             <eq name="display_order" value="spend_count">
                 <a href="{:U('Admin/User/ls', array('display_order'=>'spend_count', 'desc'=>$display_desc))}">
             <else />
@@ -68,8 +70,10 @@
             <volist name="userList" id="vo">
               <tr>
                 <td><input type="checkbox" name="id[]" value="{$vo[id]}"></td>
-                <td>{$vo[id]}</td>
                 <td>{$vo[name]}</td>
+                <td>{$vo[birth]}</td>
+                <td>{$vo[sex_name]}</td>
+                <td>{$vo[remark]}</td>
                 <td>{$vo[mobile]}</td>
                 <td>{$vo[spend_times]}</td>
                 <td>{$vo[spend_count]}</td>

@@ -214,12 +214,12 @@ div ul.filter li a.active{border-bottom: 3px solid #f65648;}
 .chanpin  .col-xs-4 h2,.chanpin  .col-xs-4 span{ font-size:12px;}
 
 .city-seek{ background:#c6cacb;} 
-.city-seek .city-nei{ background:#fff; border-radius:5px;}
-.city-seek .city-nei input.city-text{ width:90%; border:0;}
-
-
-
-
+.city-seek .city-nei{ background:#fff; border-radius:5px; overflow:hidden;}
+.city-seek .city-nei input.city-text{ float:left; padding:5px 0; width:90%; border:0;}
+.city-seek .city-nei input.submit{ float:right; padding:5px 0; width:10%; border:0;  background:url(../images/magnifying.gif) no-repeat center center;}
+.city-list dt{ padding:0 15px; line-height:30px;}
+.city-list dd a{ background:#fff;}
+.city-list dd a:hover{ background:#f7f7f7;}
 
 
 

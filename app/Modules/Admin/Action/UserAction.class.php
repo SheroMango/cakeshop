@@ -40,7 +40,7 @@ class UserAction extends AdminCommonAction
 		$page = page($count);
 		$pageHtml = $page->show();
 		$userList = $userDao->getList($arrField, $arrMap, $arrOrder, $page->firstRow, $page->listRows);
-        $arrFormatField = array('ctime_text');
+        $arrFormatField = array('ctime_text', 'sex_name');
 		foreach($userList as $k=>$v){
             $userList[$k] = $userDao->format($v, $arrFormatField);
 		}
