@@ -1,14 +1,6 @@
 <include file="../Public/header" /> 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-<script>
-    $(function() {
-        var cityList = '{$cityTags}';
-        $( "#tags" ).autocomplete({
-            source: cityList
-        });
-});
-</script>
 <include file="../Public/navigation" />
 <div class="container">
   <div class="city-seek row p10">
@@ -18,10 +10,6 @@
     </div>
   </div>
   <dl class="city-list row">
-    <dt>定位城市</dt>
-    <dd>
-      <a href="###">济南市</a>
-    </dd>
     <dt>热门城市</dt>
     <dd>
     <volist name="cityList" id="vo">
@@ -30,3 +18,12 @@
     </dd>  
   </dl>
 </div>
+<script>
+    $(function() {
+        var cityList = '{$cityTags}';
+        $( "#tags" ).autocomplete({
+            source: cityList
+        });
+});
+</script>
+

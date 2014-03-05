@@ -53,7 +53,7 @@
   </div>
   <div class="clr"></div>
 </div>
-<script type="text/javascript" src="__JS__/banner.js"></script>
+
 
 <!-- banner广告 -->
 
@@ -117,11 +117,23 @@
       <h2>私人订制</h2> 
     </div>
   </div>  
-  <div class="product-custom white-bg row chanpin pb20">
-    <a href="{:U('Home/Cake/ls', array('is_vip'=>1))}">
+  <div class="product-custom white-bg row chanpin pb20" style="padding:0; position:relative;">
+       <script src="__JS__/jquery.bxslider.min.js"></script> 
+      <link href="__CSS__/jquery.bxslider.css" rel="stylesheet" /> 
+         <ul class="bxslider">
         <volist name="positionList[0][adList]" id="vo">
-        <img src="{$vo.pic_name}" class="img-responsive">
-</volist></a>
+          <li><a href="{:U('Home/Cake/ls', array('is_vip'=>1))}"><img src="{$vo.pic_name}"  ></a></li>
+		  <li><a href="{:U('Home/Cake/ls', array('is_vip'=>1))}"><img src="{$vo.pic_name}"  ></a></li>
+        </volist>
+		
+	</ul>
+	  <script>
+$(document).ready(function(){
+  $('.bxslider').bxSlider();
+});
+ 
+  </script>
+       
   </div>
  
     <div class="row">
@@ -193,6 +205,7 @@ startmarquee(25,30,2000,0);
 
 <!--获取用户地理位置-->
 <script>
+/*
 $city = '{$_SESSION[current_city]}';
 if($city == 0){
 window.onload = function getLocation(){
@@ -207,8 +220,9 @@ function setLocation(position){
         window.location.href='{:U('home/Index/index')}';
         });
 }
+*/
 </script>
 <!--获取用户地理位置-->
-
+<script type="text/javascript" src="__JS__/banner.js"></script>
 </body>
 </html>

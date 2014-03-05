@@ -82,7 +82,6 @@ class IndexAction extends CommonAction
         $city_id = intval($_GET['city_id']);
         if(!D('Freight')->where('zone_id='.$city_id)->find()){
             $message = '此地区暂未开通服务';
-            print_r($message);
         }
         $city = trim($_GET['city']);
         if(!empty($city)){

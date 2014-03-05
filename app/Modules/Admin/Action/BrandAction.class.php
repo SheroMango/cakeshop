@@ -146,8 +146,10 @@ class BrandAction extends AdminCommonAction
 		$res = $brandDao->updateData('',$update);
 		if ($res) {
 			$this->success('修改成功', U('Admin/Brand/ls'));
-		}
-	}
+        }else{
+            $this->error('修改失败');
+        }
+    }
 	/**
 	 * 删除品牌
 	 */

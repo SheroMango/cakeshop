@@ -35,6 +35,18 @@ class CakeAction extends AdminCommonAction
             $arrMap['sales'] = array('gt', $search_sales);
         }
 		$arrOrder = array('id'=>'desc');
+        $display_order = trim($_GET['display_order']);
+        $display_order_desc = trim($_GET['desc']);
+        if(!empty($display_order)){
+            if(!empty($display_order_desc)){
+                $arrOrder = array($display_order.' desc');
+                $display_desc = '0';
+            }else{
+                $arrOrder = array($display_order);
+                $display_desc = '1';
+            }
+        }
+
 		$offset   = $Page->firstRow;
         $length   = $Page->listRows;
 		$pageList = $goodsDao->getList($arrField, $arrMap, $arrOrder, $offset, $length);
@@ -52,6 +64,9 @@ class CakeAction extends AdminCommonAction
         $tplData = array(
             'pageList' => $pageList,
             'pageHtml' => $show,
+            'display_order' => $display_order,
+            'display_desc' => $display_desc,
+
         );
         $this->assign($tplData);
 		$this->display();

@@ -50,7 +50,11 @@
             <th width="5%">上/下架</th>
             <th width="5%">折扣</th>
             <th width="5%">库存</th>
-            <th width="5%">销量</th>
+            <th width="5%"><eq name="display_order" value="sales">
+                <a href="{:U('Admin/Cake/ls', array('display_order'=>'sales', 'desc'=>$display_desc))}">
+            <else />
+                <a href="{:U('Admin/Cake/ls', array('display_order'=>'sales'))}">
+            </eq>销量</a></th>
             <th width="10%">更新时间</th>
             <th>操作</th>
           </tr>

@@ -190,7 +190,7 @@ class CakeAction extends CommonAction
         }
 
         //品牌信息
-        $brandInfo = D('Brand')->where('id='.$cakeInfo['brand_id'])->find();
+        $brandInfo = D('Brand')->where('id='.$cakeInfo['brand_id'].' AND display_status=1')->find();
         $brandInfo['pic_name'] = getPicPath($brandInfo['pic']);
 
         //设置登录返回的路径
