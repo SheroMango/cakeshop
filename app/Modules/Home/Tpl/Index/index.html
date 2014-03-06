@@ -79,7 +79,9 @@
     <volist name = "cakeList" id = "cake" offset="0" length="3">
     <div class="col-xs-4 tc">
 	  <div class="white-bg pb5">
-   	  <a href="{:U('Home/Cake/detail', array('id'=>$cake[id]))}" class="thumbnail "> <img class="img-responsive" src="{$cake[pic]}" /></a>
+   	  <a href="{:U('Home/Cake/detail', array('id'=>$cake[id]))}" class="thumbnail pr"> <img class="img-responsive" src="{$cake[pic]}" />
+        <if condition="$cake[discount] lt 100"><em>优惠</em></if>
+      </a>  
       <h2 class="pt10 pb5">{$cake[name]|csubstr=0,7,'.'}</h2>
       <span>￥{$cake[price]}</span>
     </div>
@@ -90,7 +92,9 @@
   <volist name = "cakeList" id = "cake" offset="3" length="3">
     <div class="col-xs-4 tc">
 	<div class="white-bg pb5">
-   	  <a href="{:U('Home/Cake/detail', array('id'=>$cake[id]))}" class="thumbnail "> <img class="img-responsive" src="{$cake[pic]}" /></a>
+   	  <a href="{:U('Home/Cake/detail', array('id'=>$cake[id]))}" class="thumbnail pr"> <img class="img-responsive" src="{$cake[pic]}" />
+        <if condition="$cake[discount] lt 100"><em>优惠</em></if>
+      </a>  
       <h2 class="pt10 pb5">{$cake[name]|csubstr=0,7,'.'}</h2>
       <span>￥{$cake[price]}</span>
     </div>
@@ -224,5 +228,9 @@ function setLocation(position){
 </script>
 <!--获取用户地理位置-->
 <script type="text/javascript" src="__JS__/banner.js"></script>
+<style>
+.bx-wrapper .bx-viewport{ border:0; left:0;}
+.bx-wrapper{ margin:0;}
+</style>
 </body>
 </html>

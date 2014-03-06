@@ -121,12 +121,20 @@ class OrderAction extends AdminCommonAction
 	{
 		$order_status = $_GET['order_status'];
 		$id = intval($_GET['id']);
-
 		$OrderInfoDao = D('OrderInfo');
-
 		$data['order_status'] = $order_status;
-
 		$res = $OrderInfoDao->updateData(array('id'=>$id), $data);
+        if($order_status == 3){
+            $orderInfo = D('OrderInfo')->where('id='.$id)->find();
+		    //更新订单状态等信息
+            D('OrderInfo')->where('order_sn='.$orderInfo['order_sn'])->setField(array('pay_status'=>2, 'pay_time'=>time()));
+		    //会员的消费金额增加，消费次数增加
+            D('User')->where('id='.$orderInfo['user_id'])->setInc('spend_count', $orderInfo['order_total']);
+            D('User')->where('id='.$orderInfo['user_id'])->setInc('spend_times');
+            //商品的销售数量增加
+            $goodsInfo = D('OrderGoods')->where('order_id='.$orderInfo['id'])->find();
+            D('Goods')->where('id='.$goodsInfo['goods_id'])->setInc('sales', $goodsInfo['goods_number']);
+        }
 		$this->success('修改成功');
 
 	}
