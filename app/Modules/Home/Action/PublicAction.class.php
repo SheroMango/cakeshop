@@ -289,9 +289,39 @@ class PublicAction extends CommonAction
         foreach($newCityList as $k=>$v){
             $cityTags[$k] = urlencode($v['name']);
         }
-        $this->assign('cityTags', json_encode(urldecode($cityTags)));
-        $this->assign('cityList', $newCityList);
+        $data = array(
+            'cityList' => $newCityList,
+            'cityTags' => urldecode(json_encode($cityTags)),
+        );
+        $this->assign($data);
         $this->display();
+    }
+
+    /**
+     * 获取城市列表
+     */
+    public function getCityList()
+    {
+        $city_name = $_REQUEST['city_name'];
+        if(!empty($city_name)){
+            $map['name'] = array('like', '%'.$city_name.'%');
+        }
+        $provinceList = D('Zone')->where('pid=0')->select();
+        foreach($provinceList as $k=>$v){
+            $map['pid'] = array('eq', $v['id']);
+            $cityList[$k] = D('Zone')->where($map)->select();
+        }
+        $newCityList = array();
+        for($i=0; $i<count($cityList); $i++){
+            if(!empty($cityList[$i])){
+            $newCityList += array_merge($newCityList, $cityList[$i]);
+            }
+        }
+        foreach($newCityList as $k=>$v){
+            $cityTags[$k]['label'] = urlencode($v['name']);
+            $cityTags[$k]['value'] = urlencode(U('Home/Index/index', array('city_id'=>$v['id'], 'city'=>$v['name'])));
+        }
+        echo urldecode(json_encode($cityTags));
     }
 	
 }

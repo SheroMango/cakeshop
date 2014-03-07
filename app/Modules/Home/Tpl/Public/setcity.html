@@ -19,11 +19,23 @@
   </dl>
 </div>
 <script>
-    $(function() {
-        var cityList = '{$cityTags}';
-        $( "#tags" ).autocomplete({
-            source: cityList
-        });
-});
+$(function() {
+    var cityList = '{$cityTags}';
+    $( "#tags" ).autocomplete({
+        source: function(request, response){
+            $.ajax({
+                url: "{:U('Home/Public/getCityList')}",
+                dataType: "json",
+                data: {city_name: request.term},
+                success: function(data){
+                    response(data);
+                }
+            });
+        },
+        select: function(event, ui){
+            window.location.href=ui.item.value
+        }
+    })
+})
 </script>
 

@@ -122,19 +122,26 @@
     </div>
   </div>  
   <div class="product-custom white-bg row chanpin pb20" style="padding:0; position:relative;">
-       <script src="__JS__/jquery.bxslider.min.js"></script> 
-      <link href="__CSS__/jquery.bxslider.css" rel="stylesheet" /> 
-         <ul class="bxslider">
+ 
+       <script src="__JS__/swipe.js"></script> 
+ <div id="mySwipe" style="max-width:640px;margin:0 auto; overflow:hidden;" class="swipe">
+  <div class="swipe-wrap">
         <volist name="positionList[0][adList]" id="vo">
-          <li><a href="{:U('Home/Cake/ls', array('is_vip'=>1))}"><img src="{$vo.pic_name}"  ></a></li>
-		  <li><a href="{:U('Home/Cake/ls', array('is_vip'=>1))}"><img src="{$vo.pic_name}"  ></a></li>
+          <div><a href="{:U('Home/Cake/ls', array('is_vip'=>1))}"><img src="{$vo.pic_name}"  ></a></div>
+		  <div><a href="{:U('Home/Cake/ls', array('is_vip'=>1))}"><img src="{$vo.pic_name}"  ></a></div>
         </volist>
-		
-	</ul>
-	  <script>
-$(document).ready(function(){
-  $('.bxslider').bxSlider();
+	</div></div>
+ 
+ <script>
+
+// pure JS
+var elem = document.getElementById('mySwipe');
+window.mySwipe = Swipe(elem, {
+ 
 });
+
+ 
+ 
  
   </script>
        
