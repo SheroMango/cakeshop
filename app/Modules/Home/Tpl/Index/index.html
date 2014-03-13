@@ -11,7 +11,6 @@
 </div>
 <!-- END 头部 -->
 
-
 </div>
 
 <!--头部结束-->
@@ -128,7 +127,6 @@
   <div class="swipe-wrap">
         <volist name="positionList[0][adList]" id="vo">
           <div><a href="{:U('Home/Cake/ls', array('is_vip'=>1))}"><img src="{$vo.pic_name}"  ></a></div>
-		  <div><a href="{:U('Home/Cake/ls', array('is_vip'=>1))}"><img src="{$vo.pic_name}"  ></a></div>
         </volist>
 	</div></div>
  
@@ -137,8 +135,17 @@
 // pure JS
 var elem = document.getElementById('mySwipe');
 window.mySwipe = Swipe(elem, {
- 
+  // startSlide: 4,
+    auto: 1500,
+  // continuous: true,
+  // disableScroll: true,
+  // stopPropagation: true,
+  // callback: function(index, element) {},
+  // transitionEnd: function(index, element) {}
 });
+
+// with jQuery
+// window.mySwipe = $('#mySwipe').Swipe().data('Swipe');
 
  
  

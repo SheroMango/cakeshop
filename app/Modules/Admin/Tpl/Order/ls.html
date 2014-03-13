@@ -34,33 +34,39 @@
         <thead>
           <tr>
             <th width="5%"><input type="checkbox" class="check-all" /></th>
-            <th width="5%">ID</th>
-            <th width="25%">订单号</th>
-            <th width="15%">
+            <th width="10%">订单号</th>
+            <th width="8%">商品名称</th>
+            <th width="5%">规格</th>
+            <th width="5%">数量</th>
+            <th width="8%">单价</th>
+            <th width="8%">优惠</th>
+            <th width="8%">运费</th>
+            <th width="5%">操作员</th>
+            <th width="8%">
 			<eq name="display_order" value="order_total">
 				<a href="{:U('Admin/Order/ls', array('display_order'=>'order_total', 'desc'=>$display_desc))}">
 			<else />
 				<a href="{:U('Admin/Order/ls', array('display_order'=>'order_total'))}">
 			</eq>总价</th>
-			<th width="10%">
+			<th width="8%">
 			<eq name="display_order" value="order_status">
 				<a href="{:U('Admin/Order/ls', array('display_order'=>'order_status', 'desc'=>$display_desc))}">
 			<else />
 				<a href="{:U('Admin/Order/ls', array('display_order'=>'order_status'))}">
 			</eq>订单状态</a></th>
-            <th width="10%">
+            <th width="8%">
 			<eq name="display_order" value="pay_type">
 				<a href="{:U('Admin/Order/ls', array('display_order'=>'pay_type', 'desc'=>$display_desc))}">
 			<else />
 				<a href="{:U('Admin/Order/ls', array('display_order'=>'pay_type'))}">
 			</eq>支付方式</a></th>
-            <th width="10%">
+            <th width="8%">
 			<eq name="display_order" value="pay_status">
 				<a href="{:U('Admin/Order/ls', array('display_order'=>'pay_status', 'desc'=>$display_desc))}">
 			<else />
 				<a href="{:U('Admin/Order/ls', array('display_order'=>'pay_status'))}">
 			</eq>支付状态</a></th>
-            <th width="10%">
+            <th width="8%">
 			<eq name="display_order" value="ctime">
 				<a href="{:U('Admin/Order/ls', array('display_order'=>'ctime', 'desc'=>$display_desc))}">
 			<else />
@@ -78,8 +84,13 @@
             <volist name="orderList" id="page">
               <tr>
                 <td><input type="checkbox" name="id[]" value="{$page[id]}"></td>
-                <td>{$page[id]}</td>
                 <td>{$page[order_sn]}</td>
+                <td>{$page.goods_name}</td>
+                <td></td>
+                <td>{$page.number}</td>
+                <td>{$page.price}</td>
+                <td>{$page.discount}</td>
+                <td>{$page.freight}</td>
                 <td>{$page[order_total]}</td>
 				<td>{$page[order_status_name]}</td>
                 <td>{$page[pay_type]}</td>

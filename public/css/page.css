@@ -6,7 +6,7 @@
 
 /*全局*/
 .white-bg{ background:#fff;}
-*{padding:0;margin:0;font-size:14px; color:#3e3e3e;  font-family:Microsoft YaHei;}
+body{padding:0;margin:0;font-size:14px; color:#3e3e3e;  font-family:Microsoft YaHei;}
 .thumbnail{ border:0; padding:0; margin:0; background:none;}
 .container { background:#f2f2f2;} 
 .color-999{ color:#999;}    
@@ -75,7 +75,7 @@ div ul.filter li{ padding:0;}
 div ul.filter li a{display: block;  height: 50px;line-height: 50px;text-align: center;border-bottom: 3px solid #ccc;color: #000;}
 div ul.filter li a.active{border-bottom: 3px solid #f65648;}
 
-.cake-introduce{ position:absolute; bottom:0px; left:0; background:url(../images/baiban.png); padding:15px; width:100%;  }
+.cake-introduce{ position:absolute; bottom:0px; left:0; background:url(../images/baitouming.png); padding:15px; width:100%;  }
 .detail-btop{ height:250px; overflow:hidden;}
 .detail-btop  img.shang{position:relative; top:-50px;}
 .cake-introduce h2{ font-size:16px; font-size:16px; line-height:30px; color:#000;}
