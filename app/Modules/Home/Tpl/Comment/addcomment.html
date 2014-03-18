@@ -8,14 +8,20 @@
         <label>商品名称：</label>
         <p>{$goods_name}</p>
     </div>
-    <div class="form-group">
-        <label>姓名：</label>
-        <p>{$user_name}</p>
-    </div>
     <div class="form-group" >
-        <label for="rank">星级：</label>
+        <label for="rank">描述相符：</label>
         <div id="starData"></div>
         <input type="hidden" name="rank" id="rank" />
+    </div>
+    <div class="form-group" >
+        <label for="rank1">服务态度：</label>
+        <div id="starData1"></div>
+        <input type="hidden" name="rank1" id="rank1" />
+    </div>
+    <div class="form-group" >
+        <label for="rank2">发货速度：</label>
+        <div id="starData2"></div>
+        <input type="hidden" name="rank2" id="rank2" />
     </div>
     <div class="form-group">
         <label for="content">评价内容：</label>
@@ -31,6 +37,16 @@ $(function(){
         data += "<span id='star"+o+"' onclick='starEvent("+o+")' class='glyphicon glyphicon-star-empty ' style=' font-size:34px; margin-right:5px;'></span>";
     }
     $("#starData").html(data);
+    var data1 = ''
+    for(var o1=1; o1<=5; o1++){
+        data1 += "<span id='1star"+o1+"' onclick='starEvent1("+o1+")' class='glyphicon glyphicon-star-empty ' style=' font-size:34px; margin-right:5px;'></span>";
+    }
+    $("#starData1").html(data1);
+    var data2 = ''
+    for(var o2=1; o2<=5; o2++){
+        data2 += "<span id='2star"+o2+"' onclick='starEvent2("+o2+")' class='glyphicon glyphicon-star-empty ' style=' font-size:34px; margin-right:5px;'></span>";
+    }
+    $("#starData2").html(data2);
 })
 
 function starEvent(data){
@@ -46,7 +62,32 @@ function starEvent(data){
         $(rightStar).addClass("glyphicon-star-empty");
     }
 }
-
+function starEvent1(data){
+    $("#rank1").val(data);
+    for(var j=1; j<=data; j++){
+        var leftStar = "#1star" + j;
+        $(leftStar).removeClass("glyphicon-star-empty");
+        $(leftStar).addClass("glyphicon-star");
+    }
+    for(var k=5; k>data; k--){
+        var rightStar = "#1star" + k;
+        $(rightStar).removeClass("glyphicon-star");
+        $(rightStar).addClass("glyphicon-star-empty");
+    }
+}
+function starEvent2(data){
+    $("#rank2").val(data);
+    for(var j=1; j<=data; j++){
+        var leftStar = "#2star" + j;
+        $(leftStar).removeClass("glyphicon-star-empty");
+        $(leftStar).addClass("glyphicon-star");
+    }
+    for(var k=5; k>data; k--){
+        var rightStar = "#2star" + k;
+        $(rightStar).removeClass("glyphicon-star");
+        $(rightStar).addClass("glyphicon-star-empty");
+    }
+}
 function doComment(){
     $.post("{:U('Home/Comment/doAddComment')}", $("#form").serialize(), function(data){
         $("#message").html(data['content'])
