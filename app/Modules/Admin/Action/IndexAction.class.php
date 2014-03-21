@@ -70,7 +70,6 @@ class IndexAction extends AdminCommonAction
 			),
 			'订单管理' => array(
 			    '订单列表' => U('admin/Order/ls'),
-                '分析统计' => U('admin/Order/log'),
 			),
 			'会员管理' => array(
 				'会员列表' => U('admin/User/ls'),
