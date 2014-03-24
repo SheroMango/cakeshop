@@ -3,6 +3,8 @@
 <script src="//code.jquery.com/jquery-1.9.1.js"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script>
+$( ".btn" ).button();
+$( "input[type=submit]" ).button();
 $(function() {
     $(function(){  
                $('#date').datepicker();  
@@ -66,7 +68,7 @@ $( ".datepicker" ).datepicker();
       <form action="{:U('Admin/User/ls')}" method="post">
       <span>开始时间：</span><input type="text" name="dateStart" class="datepicker" />
       <span>结束时间：</span><input type="text" name="dateOffset" class="datepicker" />
-      <input type="submit" class="btn submit-btn" value="查询" />
+      <input type="submit" class="btn" value="查询" />
   </form>
   <div class="tr"><a href="{:U('Admin/User/exportExcel')}" class="btn" /><span>导出到EXCEL文件</span></a></div>
 
@@ -137,3 +139,6 @@ $( ".datepicker" ).datepicker();
   <!--END 工具栏-->
 
 <include file="Public:footer" />
+<style>
+.submit-btn{ border:0;}
+</style>

@@ -13,7 +13,7 @@ class OrderInfoModel extends CommonModel
 			 $info['goods_name'] = D('Goods')->where("id={$good_id}")->getField('name');
 		}
         if(in_array('goods_size', $fields)){
-            $goods_id = D('OrderGoods')->where('order_id='.$info['id'])->getField('goods_id');
+            $info['goods_size'] = D('OrderGoods')->where('order_id='.$info['id'])->getField('goods_size');
         }
 		//品牌名称
 		if(in_array('bland_name',$fields)){
