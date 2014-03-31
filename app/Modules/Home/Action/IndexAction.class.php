@@ -79,6 +79,7 @@ class IndexAction extends CommonAction
             }
         }
         */
+        /*
         $city_id = intval($_GET['city_id']);
         if(!D('Freight')->where('zone_id='.$city_id)->find()){
             $message = '此地区暂未开通服务';
@@ -86,13 +87,16 @@ class IndexAction extends CommonAction
         $city = trim($_GET['city']);
         if(!empty($city)){
             $_SESSION['city'] = $city;
-        }
+        }else{
+			$_SESSION['city'] = '南宁市';
+		}
+         */
 		//输出到模版
 		$tplData = array(
 			'cakeList' => $cakeList,
 			'flowerList'=>$flowerList,
 			'orderList'=>$orderList,
-            'city' => ($_SESSION['city'])?$_SESSION['city']:'请选择城市',
+            'city' => ($_SESSION['city'])?$_SESSION['city']:'未知',
             'positionList' => $positionList,
             'cityList' => $newCityList,
 		);
@@ -127,7 +131,7 @@ class IndexAction extends CommonAction
         curl_close($ch);
         $result = json_decode($result, true);
         $city = $result['result']['addressComponent']['city'];
-        $_SESSION['current_city'] = $city;
+        $_SESSION['city'] = $city;
     }
 
 }

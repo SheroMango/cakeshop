@@ -117,6 +117,13 @@ class OrderAction extends HomeCommonAction {
 			'url'     => U('Home/Order/orderDetail',array('id'=>$order_id)),
 			'content' => '订单提交成功',
 		);
+		
+		/* 短信通知 */
+		$msgMobile = '1555005746';
+		$msgContent = '您好，有订单号为'.$orderInfo['order_sn'].'的新订单';
+		$url = 'http://sms.106vip.com/sms.aspx?action=send&userid=16328&account=tanhuayou&password=asdf1234&mobile='.$msgMobile.'&content='.$msgContent.'【316蛋糕商城】&sendTime=&taskName=订单通知&checkcontent=1&mobilenumber=1&countnumber=1';
+		file_get_contents($url);
+		
 		echo json_encode($data);
 		
 	}

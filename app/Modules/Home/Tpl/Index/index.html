@@ -6,7 +6,7 @@
      <div class="col-xs-6 tc">
        <h1><em>3156</em>蛋糕微网店</h1>
      </div>
-     <div class="col-xs-3 head-r"><a href="{:U('Home/Public/setCity')}" class="fr"><img src="__IMG__/product/address-arrow.png" class="fr"><em class="fr">{$city}</em></a></div>
+     <div class="col-xs-3 head-r"><a href="javascript:void(0);" class="fr"><img src="__IMG__/product/address-arrow.png" class="fr"><em class="fr">{$city}</em></a></div>
   </div>
 </div>
 <!-- END 头部 -->
@@ -167,7 +167,7 @@ window.mySwipe = Swipe(elem, {
 <div class="indent col-xs-12 mt5  " id="indent0"> 
   <ul> 
     <volist name="orderList" id="order">
-    <li>送往：南宁市{$order[consignee_district]}{$order.consignee_address}</li> 
+    <li>送往：南宁市{$order[consignee_district]}</li> 
     </volist>
   </ul> 
 </div>
@@ -216,6 +216,7 @@ startmarquee(25,30,2000,0);
   <div class="foot row">
       <p class="color-red">客服热线：<a href="tel:0531-1456789">0531-1456789</a></p>
     <p>周一至周日：9:00-18:00</p>
+	<p>桂ICP备14001197号-1</p>
   </div>
 </div>
  
@@ -223,8 +224,7 @@ startmarquee(25,30,2000,0);
 
 <!--获取用户地理位置-->
 <script>
-/*
-$city = '{$_SESSION[current_city]}';
+$city = '{$_SESSION[city]}';
 if($city == 0){
 window.onload = function getLocation(){
     navigator.geolocation.getCurrentPosition(setLocation);
@@ -238,7 +238,6 @@ function setLocation(position){
         window.location.href='{:U('home/Index/index')}';
         });
 }
-*/
 </script>
 <!--获取用户地理位置-->
 <script type="text/javascript" src="__JS__/banner.js"></script>
