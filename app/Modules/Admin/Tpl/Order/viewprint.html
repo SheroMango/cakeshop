@@ -1,7 +1,7 @@
 <include file="../Public/header" />
 <body>
 <h1>3156蛋糕订单</h1>
-<table width="640" border="0" class="no-border">
+<table width="640" border="0" class="no-border order-box">
   <tr>
     <td colspan="6">收 货 人：	{$orderInfo.consignee_name}</td>					
     <td colspan="2" class="tr">订单编号： {$orderInfo.order_sn}</td>
@@ -18,7 +18,7 @@
     <td colspan="4">送货时间：{$orderInfo.arrive_time}</td>
   </tr>
 </table>
-<table width="640" border="1"> 
+<table width="640" border="1" class="order-box"> 
   <tr>
     <th>商品名称</th>	
     <th>规格</th>	
@@ -50,7 +50,7 @@
     <td colspan="3" class="tc">支付方式：{$orderInfo.pay_type_name}</td>
   </tr>
 </table>
-<table width="640" border="0"  class="no-border">   
+<table width="640" border="0"  class="no-border order-box">   
   <tr>
     <td colspan="2">3156蛋糕商城</td>                      
     <td colspan="2">地址：南宁市</td>                                   

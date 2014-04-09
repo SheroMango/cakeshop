@@ -50,6 +50,19 @@
           <input type="text" name="setting[service_email]"  value="{$service_email}" />
         </dd>
       </dl>
+	  <dl>
+		<dt>在线支付：</dt>
+		<dd>
+			<input type="radio" name="setting[pay_online]" value="1" <eq name="pay_online" value="1">checked="checked"</eq>>使用&nbsp;&nbsp;
+			<input type="radio" name="setting[pay_online]" value="0" <eq name="pay_online" value="0">checked="checked"</eq>>不使用
+		</dd>
+		</dl>
+		<dl>
+		<dt>货到付款：</dt>
+		<dd><input type="radio" name="setting[pay_face]" value="1" <eq name="pay_face" value="1">checked="checked"</eq>>使用&nbsp;&nbsp;
+		<input type="radio" name="setting[pay_face]" value="0" <eq name="pay_face" value="0">checked="checked"</eq>>不使用
+		</dd>
+		</dl>
       <dl>
         <dt>&nbsp;</dt>
         <dd><input type="submit"  value="提 交" class="btn submit-btn" /></dd>

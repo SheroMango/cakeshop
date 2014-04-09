@@ -237,10 +237,13 @@ class CakeAction extends CommonAction
 	public function notice()
 	{
 		$goods_id = intval($_REQUEST['goods_id']);
+        $pageInfo = D('Page')->where("spell='notice'")->find();
+        $pageInfo['content'] = htmlspecialchars_decode($pageInfo['content']);
         $tplData = array(
             'title' => '购前须知',
             'current' => 'notice',
             'goods_id' => $goods_id,
+			'content' => $pageInfo['content'],
         );
 		$this->assign($tplData);
 		$this->display();

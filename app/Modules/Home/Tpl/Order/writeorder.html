@@ -64,14 +64,25 @@ $(function(){
 	<div class="form-group">
 		<input class="form-control mb10 required" id="consignee_mobile" name="order[consignee_mobile]" type="text" placeholder="请填写手机号码" class="form-control">
 	</div>
+	
+	<!-- 选择地区 -->
     <div class="row mt10">
-		<div class="col-xs-4 phone"><span class="form-control">南宁市</span></div>
-	<div class="col-xs-8"><select id="zone" class="form-control" placeholder="点击选择配送范围" name="order[consignee_district]" />
+		<div class="col-xs-4">
+		<select id="citySel" class="form-control" name="order[consignee_city]">
+		<volist name="cityList" id="vo">
+		<option value="{$vo.name}" title="{$vo.id}">{$vo.name}</option>
+		</volist>
+		</select></div>
+		
+		<div class="col-xs-8">
+		<select id="zone" class="form-control" placeholder="点击选择配送范围" name="order[consignee_district]" />
 		<volist name="freightList" id="vo">
-        <option value="{$vo.zone_name}" title="{$vo.fee}" <eq name="vo[zone_name]" value="preOrderInfo[consignee_district]">selected="selected"</eq>>{$vo.zone_name}</option>
+        <option value="{$vo.zone_name}" title="{$vo.fee}">{$vo.zone_name}</option>
 		</volist>
 		</select></div>
 	</div>
+	<!-- 地区 -->
+	
 	<div class="form-group">
        <input class="form-control mt10 required" type="text" id="consignee_address" placeholder="请填写详细地址" class="form-control" name="order[consignee_address]" value="{$preOrderInfo.consignee_address}" />
 	</div>
@@ -100,7 +111,7 @@ $(function(){
       </div>		
  
       <input type="hidden" id="arrive_time" name="order[arrive_time]" class="form-control" />
-      <p class="cb"><span>最早<?php $d=time()+86400;echo date('m月d日',$d); ?>11：00左右可以送达，由于当天制作需要时间，强烈建议至少提前一天以上预订。</span></p>
+      <p class="cb"><span>由于当天制作需要时间，强烈建议至少提前一天以上预订。</span></p>
 	</div>
 	<div class="write-order">   
 		<p>餐具和蜡烛:</p>
@@ -112,9 +123,9 @@ $(function(){
 	<div class="write-order">
 		<p>支付方式:</p>
 		<label>
-		<input type="radio" name="order[pay_type]" id="optionsRadios1" value="0" checked>在线支付</label><label>
-		<input type="radio" name="order[pay_type]" id="optionsRadios1" value="1" checked>
-          货到付款
+		<notempty name="_G[setting][pay_online]"><input type="radio" name="order[pay_type]" id="optionsRadios1" value="0" checked>在线支付</label><label></notempty>
+		<notempty name="_G[setting][pay_face]"><input type="radio" name="order[pay_type]" id="optionsRadios1" value="1" checked>
+          货到付款</notempty>
     </label>
     <p><span>使用在线支付享受9.5折优惠！一天以上预订。</span></p>
   </div>
@@ -139,17 +150,34 @@ $(function(){
 </div>
 </form>
 <script>
+
 $(function(){
-  setValue();
-});
-$("#zone").change(function (){setValue();})
+
+  set_value();
+
+  $("#citySel").change(function(){set_value();});
+  function set_value(){
+    var pid = $("#citySel").children("option:selected").attr('title');
+    $.get("{:U('Home/Order/getZoneList')}",
+          {'id': pid},
+          function(data){
+            list = '';
+            for(x in data){
+              list = list + '<option value="'+data[x]['name']+'" title="'+data[x]['fee']+'">'+data[x]['name']+'</option>';
+              }
+            $("#zone").html(list);  set_price();
+          }, 'json');
+      }
+
+  })
+$("#zone").change(function (){set_price();})
 $("input").focus(function(){
         $("input").parent("div").removeClass("has-error");
         $("input").parent("div").siblings("div").children(".required").remove("has-error");
 })
 		
 //设置运费和总价
-function setValue(){
+function set_price(){
 	var sumdiscount = '{$orderInfo[sumdiscount]}';
 	var fee = $("#zone").children("option:selected").attr("title");
 	$("#freight").val(fee);

@@ -34,6 +34,28 @@ class OrderAction extends HomeCommonAction {
 		$this->assign($tplData);
 		$this->display();
 	}
+	
+	/**
+     * 获取城市列表
+     */
+    public function getZoneList()
+    {
+        $id = intval($this->_get('id'));
+		
+		//freight list
+		$freightList = D('Freight')->select();
+		foreach($freightList as $k=>$v){
+			$freightList[$k] = array_merge($v, D('Zone')->where('id='.$v['zone_id'])->find());
+			if($id == $freightList[$k]['pid']){
+				$newList[] = $freightList[$k];
+			}
+		}
+		foreach($newList as $k=>$v){
+			$newList[$k]['name'] = urlencode($v['name']);
+		}
+        echo urldecode(json_encode($newList));
+    }
+	
 	public function writeOrder()
 	{
 		//模型
@@ -44,14 +66,12 @@ class OrderAction extends HomeCommonAction {
         $preOrderInfo = D('OrderInfo')->where('user_id='.$_SESSION['uid'])->order('ctime desc')->find();
 		
 		//地区运费
-		$city_id = D('Zone')->where("name='南宁市'")->getField('id');
-		$zoneList = D('Zone')->where('pid='.$city_id)->select();
-		foreach($zoneList as $k=>$v){
-			$freightInfo = D('Freight')->where('zone_id='.$v['id'])->find();
-			if(!empty($freightInfo)){
-				$freightList[$k] = D('Freight')->format($freightInfo, array('zone_name'));
-				}
-			}
+		$freightList = D('Freight')->select();
+		foreach($freightList as $k=>$v){
+			$cityIds[] = D('Zone')->where('id='.$v['zone_id'])->getField('pid');
+		}
+		$cityMap['id'] = array('in', $cityIds);
+		$cityList = D('Zone')->where($cityMap)->select();
 
 		//接受表单参数
 		$goods = $_POST['goods'];
@@ -81,7 +101,7 @@ class OrderAction extends HomeCommonAction {
 			'title' => '填写订单',
 			'orderInfo' => $orderInfo,
             'preOrderInfo' => $preOrderInfo,//自动填写的订单信息
-			'freightList' => $freightList,
+			'cityList' => $cityList,
 		);
 		$this->assign($tplData);
 		$this->display();
@@ -99,6 +119,7 @@ class OrderAction extends HomeCommonAction {
 		$randStr = str_shuffle('1234567890');
 		$rand = substr($randStr,0,5);
 		$orderInfo['order_sn'] = time().$rand;
+		$orderInfo['consignee_district'] = $orderInfo['consignee_city'].$orderInfo['consignee_district'];
 		$orderInfo['user_id'] = session('uid');
 		$goods_id = $orderGoods['goods_id'];
 		$orderInfo['type_id'] = D('Goods')->where('id='.$goods_id)->getField('cat_id');
@@ -119,8 +140,8 @@ class OrderAction extends HomeCommonAction {
 		);
 		
 		/* 短信通知 */
-		$msgMobile = '1555005746';
-		$msgContent = '您好，有订单号为'.$orderInfo['order_sn'].'的新订单';
+		$msgMobile = '13878857057';
+		$msgContent = '您好,最新订单号:'.$orderInfo['order_sn'].'下单,请注意确认<3156蛋糕>';
 		$url = 'http://sms.106vip.com/sms.aspx?action=send&userid=16328&account=tanhuayou&password=asdf1234&mobile='.$msgMobile.'&content='.$msgContent.'【316蛋糕商城】&sendTime=&taskName=订单通知&checkcontent=1&mobilenumber=1&countnumber=1';
 		file_get_contents($url);
 		

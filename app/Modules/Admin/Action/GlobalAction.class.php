@@ -219,4 +219,5 @@ class GlobalAction extends AdminCommonAction
 		//页面跳转
 		$this->success('删除成功');
 	}
+
 }
