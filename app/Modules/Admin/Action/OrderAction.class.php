@@ -91,7 +91,7 @@ class OrderAction extends AdminCommonAction
 		$orderInfo['goods_price'] = $orderGoods['goods_price'];
 		$orderInfo['type_id'] = ($orderGoods['type_id'] == 1) ? '蛋糕' : '鲜花';
 		$orderInfo['pay_type'] = ($orderGoods['pay_type'] == 0) ? '在线支付' : '货到付款';
-		$orderInfo['pay_time'] = date('Y-m-d H:i:s', $orderInfo['pay_time']);
+		$orderInfo['pay_time'] = ($orderInfo['pay_time']) ? date('Y-m-d H:i:s', $orderInfo['pay_time']) : '未知';
 		$orderInfo['ctime'] = date('Y-m-d H:i:s', $orderInfo['ctime']);
 		$orderInfo['pay_status'] = ($orderGoods['pay_status'] == 0) ? '未付款' : '已付款';
 		switch ($orderInfo['order_status']) {
