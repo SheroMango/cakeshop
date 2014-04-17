@@ -1,5 +1,6 @@
 <include file="../Public/header" />
 <body>
+<div class="w-auto pt20">
 <h1>3156蛋糕订单</h1>
 <table width="640" border="0" class="no-border order-box">
   <tr>
@@ -18,6 +19,7 @@
     <td colspan="4">送货时间：{$orderInfo.arrive_time}</td>
   </tr>
 </table>
+<div style="float:left;">
 <table width="640" border="1" class="order-box"> 
   <tr>
     <th>商品名称</th>	
@@ -50,27 +52,27 @@
     <td colspan="3" class="tc">支付方式：{$orderInfo.pay_type_name}</td>
   </tr>
 </table>
-<table width="640" border="0"  class="no-border order-box">   
-  <tr>
-    <td colspan="2">3156蛋糕商城</td>                      
-    <td colspan="2">地址：南宁市</td>                                   
-    <td colspan="2">订购电话：4006163156</td>                                
-    <td colspan="2">投诉电话：4006163156</td>
-  </tr>
-  <tr>
-    <td colspan="2">收货时间：</td>                                              
-    <td colspan="3">配送人员：</td>                                           
-    <td colspan="3">客户签收：</td>
-  </tr>
-</table>
+</div>
+<div style="float:left;">
+  <ul>
+    <li>3156蛋糕商城<br>收货时间：</li>
+	<li>地址：南宁市　<br>配送人员：</li>
+	<li>订购电话：4006163156<br>客户签收：</li>
+	<li style="margin:0;">投诉电话：4006163156</li>
+  </ul>	
+ 
+</div>
+</div>
 <style> 
-table.no-border td{ height:26px; line-height:26px;}
-table td,table th{ padding:0 5px; height:20px; line-height:20px; text-align:left;}
+.order-box tbody tr td, .order-box tbody tr th{ font-size:12px;}
+.w-auto{ width:640px; margin:0 auto;}
+table.no-border td{ height:22px; line-height:22px;font-size:12px;}
+table td,table th{ padding:0 5px; height:20px; line-height:20px; text-align:left; font-size:12px;}
 table td.tc{ text-align:center;}
 table td.tr{ text-align:right;}
 table th{  text-align:center; background:#c0c0c0;}
-h1{ display:block; padding-bottom:10px;  font-size:30px; color:#000;text-align:center;}
-
+.content h1{ display:block; padding-bottom:10px;  font-size:20px; color:#000;text-align:center;}
+ul li{ line-height:26px; font-size:12px; float:left; margin-right:50px;}
 </style>
 </body>
 </html>
